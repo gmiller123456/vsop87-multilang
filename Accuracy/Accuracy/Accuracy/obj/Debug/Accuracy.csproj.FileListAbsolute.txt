@@ -1,0 +1,6 @@
+C:\prog\Astronomy\VSOP87Generator\Accuracy\Accuracy\Accuracy\bin\Debug\Accuracy.exe.config
+C:\prog\Astronomy\VSOP87Generator\Accuracy\Accuracy\Accuracy\bin\Debug\Accuracy.exe
+C:\prog\Astronomy\VSOP87Generator\Accuracy\Accuracy\Accuracy\bin\Debug\Accuracy.pdb
+C:\prog\Astronomy\VSOP87Generator\Accuracy\Accuracy\Accuracy\obj\Debug\Accuracy.csprojResolveAssemblyReference.cache
+C:\prog\Astronomy\VSOP87Generator\Accuracy\Accuracy\Accuracy\obj\Debug\Accuracy.exe
+C:\prog\Astronomy\VSOP87Generator\Accuracy\Accuracy\Accuracy\obj\Debug\Accuracy.pdb

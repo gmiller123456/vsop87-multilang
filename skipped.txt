@@ -1,0 +1,10 @@
+full 	Total Terms:   269949    Skipped Terms: 0        Percent Skipped:  0
+xx largeTotal Terms:   269949    Skipped Terms: 20998    Percent Skipped:  7.77850631045123
+x large Total Terms:   269949    Skipped Terms: 67848    Percent Skipped:  25.1336363535334
+large 	Total Terms:   269949    Skipped Terms: 145031   Percent Skipped:  53.7253333036981
+small 	Total Terms:   269949    Skipped Terms: 218559   Percent Skipped:  80.9630708022626
+x small Total Terms:   269949    Skipped Terms: 250204   Percent Skipped:  92.6856554386199
+milli 	Total Terms:   269949    Skipped Terms: 262369   Percent Skipped:  97.1920622043423
+micro 	Total Terms:   269949    Skipped Terms: 266975   Percent Skipped:  98.8983104215982
+nano 	Total Terms:   269949    Skipped Terms: 268686   Percent Skipped:  99.5321338475045
+pico 	Total Terms:   269949    Skipped Terms: 269464   Percent Skipped:  99.820336433919

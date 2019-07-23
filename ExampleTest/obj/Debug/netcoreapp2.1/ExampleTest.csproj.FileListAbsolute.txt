@@ -1,0 +1,11 @@
+c:\prog\astronomy\VSOP87Generator\ExampleTest\bin\Debug\netcoreapp2.1\ExampleTest.deps.json
+c:\prog\astronomy\VSOP87Generator\ExampleTest\bin\Debug\netcoreapp2.1\ExampleTest.runtimeconfig.json
+c:\prog\astronomy\VSOP87Generator\ExampleTest\bin\Debug\netcoreapp2.1\ExampleTest.runtimeconfig.dev.json
+c:\prog\astronomy\VSOP87Generator\ExampleTest\bin\Debug\netcoreapp2.1\ExampleTest.dll
+c:\prog\astronomy\VSOP87Generator\ExampleTest\bin\Debug\netcoreapp2.1\ExampleTest.pdb
+c:\prog\astronomy\VSOP87Generator\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.csprojAssemblyReference.cache
+c:\prog\astronomy\VSOP87Generator\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.csproj.CoreCompileInputs.cache
+c:\prog\astronomy\VSOP87Generator\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.AssemblyInfoInputs.cache
+c:\prog\astronomy\VSOP87Generator\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.AssemblyInfo.cs
+c:\prog\astronomy\VSOP87Generator\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.dll
+c:\prog\astronomy\VSOP87Generator\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.pdb
