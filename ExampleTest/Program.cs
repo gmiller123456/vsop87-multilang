@@ -55,6 +55,16 @@ namespace ExampleTest
             t[1] = x[1] * Math.Cos(angle) - x[2] * Math.Sin(angle);
             t[2] = x[1] * Math.Sin(angle) + x[2] * Math.Cos(angle);
 
+/*
+Change to use matrix below from VSOP87.txt
+
+  X        +1.000000000000  +0.000000440360  -0.000000190919   X
+  Y     =  -0.000000479966  +0.917482137087  -0.397776982902   Y
+  Z FK5     0.000000000000  +0.397776982902  +0.917482137087   Z VSOP87A
+
+*/
+
+
             return t;
 
         }

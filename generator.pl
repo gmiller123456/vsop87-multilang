@@ -187,6 +187,6 @@ sub processFile(){
 	} else {
 		print $out "      return ".join("+",@variables).";\r\n";
 	}
-	print $out "   }\r\n";
+	print $out "   }\r\n\r\n";
 
 }
