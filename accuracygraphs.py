@@ -4,9 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-fig = plt.figure()
-ax = fig.add_subplot(1, 1, 1, axisbg="1.0")
-
 colors={};
 colors["xxlarge"]="red";
 colors["xlarge"]="magenta";
@@ -18,21 +15,26 @@ colors["micro"]="grey";
 colors["nano"]="green";
 colors["pico"]="cyan";
 
-count=0;
 f=open("data1000.txt","r")
+x=[];
+y=[];
+c=[];
 for l in f:
 	(jd,version,body,err)=l.rstrip().split(",")
 	if(body =="Jupiter"):
-		ax.scatter(jd, err, c=colors[version], edgecolors='none', s=10)
+		x.append(float(jd))
+		y.append(float(err))
+		c.append(colors[version])
 
-	count=count+1
-	if(count==1000):
-		count=0
-		print(jd)
+fig = plt.figure()
+#fig.suptitle('Error vs Full VSOP87', fontsize=14, fontweight='bold')
+ax = fig.add_subplot(111)
+ax.set_ylabel(" (Degrees)")
+ax.set_xlabel("Julian Day")
 
-
-plt.title('Matplot scatter plot')
-plt.legend(loc=2)
+ax.scatter(x,y,s=3,c=c,alpha=0.5)
+plt.title('Error vs Full VSOP87')
+plt.legend(labels=("test1","test2","test3","test4","test5"),loc=2)
 plt.show()
 
 print("done")
