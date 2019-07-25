@@ -1,14 +1,26 @@
+### Current Stauts
+Development has just begun. The main version which will be used to produce all other languages has been produced.  Some scripts to convert to other languages
+has also been produced.  Accuracy tests for the Moon still need to be performed before the massive production of all versions for all other languages.
+
 # About this Project
 The purpose of this project is to create versions of VSOP87 in many different languages.  The plan is to generate a initial version in C# truncated to different
 precisions, then convert the resulting files into other languages.  This project was inspired by the [Neoprogrammics Source Code Generator Tool](http://www.neoprogrammics.com/vsop87/source_code_generator_tool/).
 The goal of this project is to provide easier to use (readymade source files), include all bodies (e.g. the Moon), are truncated to different accuracy levels,
-and for more languages.
+and for more languages.  It will provide tests against the original VSOP87 test data for each programming language to validate correctness, as well as examples
+to show common useage.
 
 # What is VSOP87? Why use it?
 VSOP87 is one of many solutions available for predicting the positions of the planets (plus the Sun and the Moon) in our solar system.  The actual name is
 Variations Séculaires des Orbites Planétaires, and it was published in 1987 by the Bureau des Longitudes.  Even though there have been many other methods
 developed before and after VSOP87, it remains one of the most popular methods among amatuers.  It provides better accuracy than most amatuers require (.1 arcseconds)
 over a period of a few thousand years before and after the year 2000.
+
+# Which Version Should I Use?
+For the overwhelming majority of users, the VSOP87A_full version will be all that you need.  This is the full version, but should still be fast enough and small enough
+for most use cases.  Using the full version eliminates any questions of whether it will be accurate enough.  If, after trying the full version, the computation isn't
+fast enough, from there you should experiment with truncated versions.  The VSOP87A versions are the only versions which include the Moon.  VSOP87A doesn't include the
+moon directly, but does include the Earth and the Earth-Moon Barrycenter, and all provided code for the VSOP87A versions include a function to compute the Moon's position
+from the Earth and EMB.
 
 # Truncated versions
 Since the full VSOP87 provides more accuracy than most amateurs require, the algorithm can be shortened by eliminating terms.  This speeds up the computations, and
@@ -28,8 +40,6 @@ micro 	 |269949|266975|98.8 %
 nano 	 |269949|268686|99.5 %
 pico 	 |269949|269464|99.8 %
 
-
-
 # Accuracy
 
 Accuracy graphs are below.  They show the error in degrees of each body as viewed from Earth.  Each graph shows the error for one body for all truncated versions of
@@ -37,7 +47,10 @@ VSOP87.  The error is vs. the full version of VSOP87, so the inherent error in V
 of the graph, as the error of the pico version makes it difficult to see errors amongst the larger versions.  The Python script and data to reproduce the graphs is
 in the Accuracy folder, by regenerating them you can use the Matplotlib interface to explore the graphs further.
 
-The full VSOP87 accuracy is .1 arcseconds for Saturn, and better for all others.  For more details on accuracy, consult
+Since the error is computed from the geocenter, the Earth does not appear in the graphs below, nor does the Sun.  Graphs are also not present for the Moon, but graphs
+are available for the Earth-Moon Barrycenter (EMB), the error for the Moon will be a linear function of the EMB error.
+
+The full VSOP87 accuracy is .1 arcseconds for Saturn, and better for all others.  For more details on accuracy of the full theory consult
 [Planetary theories in rectangular and spherical variables - VSOP 87 solutions](http://articles.adsabs.harvard.edu/full/1988A%26A...202..309B).
 
 ### Mercury
