@@ -9,6 +9,9 @@ VSOP87.  The error is vs. the full version of VSOP87, so the inherent error in V
 of the graph, as the error of the pico version makes it difficult to see errors amongst the larger versions.  The Python script and data to reproduce the graphs is
 in the Accuracy folder, by regenerating them you can use the Matplotlib interface to explore the graphs further.
 
+The full VSOP87 accuracy is .1 arcseconds for Saturn, and better for all others.  For more details on accuracy, consult
+[Planetary theories in rectangular and spherical variables - VSOP 87 solutions](http://articles.adsabs.harvard.edu/full/1988A%26A...202..309B)
+
 ### Mercury
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/mercury.png)
 
