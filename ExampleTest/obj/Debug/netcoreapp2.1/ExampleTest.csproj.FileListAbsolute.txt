@@ -9,3 +9,14 @@ c:\prog\astronomy\VSOP87Generator\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTes
 c:\prog\astronomy\VSOP87Generator\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.AssemblyInfo.cs
 c:\prog\astronomy\VSOP87Generator\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.dll
 c:\prog\astronomy\VSOP87Generator\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.pdb
+C:\prog\temp\vsop87-multilang\ExampleTest\bin\Debug\netcoreapp2.1\ExampleTest.deps.json
+C:\prog\temp\vsop87-multilang\ExampleTest\bin\Debug\netcoreapp2.1\ExampleTest.runtimeconfig.json
+C:\prog\temp\vsop87-multilang\ExampleTest\bin\Debug\netcoreapp2.1\ExampleTest.runtimeconfig.dev.json
+C:\prog\temp\vsop87-multilang\ExampleTest\bin\Debug\netcoreapp2.1\ExampleTest.dll
+C:\prog\temp\vsop87-multilang\ExampleTest\bin\Debug\netcoreapp2.1\ExampleTest.pdb
+C:\prog\temp\vsop87-multilang\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.csprojAssemblyReference.cache
+C:\prog\temp\vsop87-multilang\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.csproj.CoreCompileInputs.cache
+C:\prog\temp\vsop87-multilang\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.AssemblyInfoInputs.cache
+C:\prog\temp\vsop87-multilang\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.AssemblyInfo.cs
+C:\prog\temp\vsop87-multilang\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.dll
+C:\prog\temp\vsop87-multilang\ExampleTest\obj\Debug\netcoreapp2.1\ExampleTest.pdb

@@ -78,7 +78,12 @@ public class vsop87a_full {
       temp[0]=(emb[0]-earth[0])*(1 + 1 / 0.01230073677);
       temp[1]=(emb[1]-earth[1])*(1 + 1 / 0.01230073677);
       temp[2]=(emb[2]-earth[2])*(1 + 1 / 0.01230073677);
-      return temp;
+
+      temp[0] += earth[0];
+      temp[1] += earth[1];
+      temp[2] += earth[2];
+
+        return temp;
    }
 
    static double earth_x(double t){
