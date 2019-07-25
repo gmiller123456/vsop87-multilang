@@ -28,8 +28,8 @@ while(my $l=<$f>){
 	
 	if($body eq "earth-moon"){$body="emb";}
 	
-	print "t=$version.get".ucfirst($body)."(jd2et($jd));\r\n";
-	print "check(t,$val1,$val2,$val3,$val4,$val5,$val6);\r\n";
+	print "check($version"."_full.get".ucfirst($body)."(jd2et($jd))";
+	print ",$val1,$val2,$val3,$val4,$val5,$val6);\r\n";
 	$l=<$f>;
 }
 
