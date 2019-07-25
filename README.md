@@ -9,38 +9,38 @@ VSOP87.  The error is vs. the full version of VSOP87, so the inherent error in V
 of the graph, as the error of the pico version makes it difficult to see errors amongst the larger versions.  The Python script and data to reproduce the graphs is
 in the Accuracy folder, by regenerating them you can use the Matplotlib interface to explore the graphs further.
 
-###Mercury
+### Mercury
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/mercury.png)
 
-###Venus
+### Venus
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/venus.png)
 
-###Earth-Moon Barrycenter
+### Earth-Moon Barrycenter
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/emb.png)
 
-###Earth-Moon Barrycenter (zoomed)
+### Earth-Moon Barrycenter (zoomed)
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/emb2.png)
 
-###Mars
+### Mars
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/mars.png)
 
-###Jupiter
+### Jupiter
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/jupiter.png)
 
-###Saturn
+### Saturn
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/saturn.png)
 
-###Saturn (zoomed)
+### Saturn (zoomed)
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/saturn2.png)
 
-###Uranus
+### Uranus
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/uranus.png)
 
-###Uranus (zoomed)
+### Uranus (zoomed)
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/uranus2.png)
 
-###Neptune
+### Neptune
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/neptune.png)
 
-###Neptune (zoomed)
+### Neptune (zoomed)
 ![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/neptune2.png)
