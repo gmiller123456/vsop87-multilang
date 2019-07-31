@@ -106,6 +106,7 @@ public class vsop87c_micro {
    static double earth_z(double t){
       return 0;
    }
+
    static double jupiter_x(double t){
       double jupiter_x_0=0.0;
       jupiter_x_0+=     5.19591755961 * Cos( 0.59954672200 +      529.93478257810*t);
@@ -264,6 +265,7 @@ public class vsop87c_micro {
 
       return jupiter_z_0+jupiter_z_1+jupiter_z_2;
    }
+
    static double mars_x(double t){
       double mars_x_0=0.0;
       mars_x_0+=     1.51664432758 * Cos( 6.20347631684 +     3340.85624418330*t);
@@ -343,6 +345,7 @@ public class vsop87c_micro {
 
       return mars_z_0+mars_z_1+mars_z_2;
    }
+
    static double mercury_x(double t){
       double mercury_x_0=0.0;
       mercury_x_0+=     0.37749277893 * Cos( 4.40259139579 +    26088.14695905770*t);
@@ -406,6 +409,7 @@ public class vsop87c_micro {
 
       return mercury_z_0+mercury_z_1;
    }
+
    static double neptune_x(double t){
       double neptune_x_0=0.0;
       neptune_x_0+=    30.05973100580 * Cos( 5.31188633083 +       38.37685312130*t);
@@ -535,6 +539,7 @@ public class vsop87c_micro {
 
       return neptune_z_0+neptune_z_1+neptune_z_2;
    }
+
    static double saturn_x(double t){
       double saturn_x_0=0.0;
       saturn_x_0+=     9.52312533591 * Cos( 0.87401491487 +      213.54291292150*t);
@@ -771,6 +776,7 @@ public class vsop87c_micro {
 
       return saturn_z_0+saturn_z_1+saturn_z_2;
    }
+
    static double uranus_x(double t){
       double uranus_x_0=0.0;
       uranus_x_0+=    19.16944479396 * Cos( 5.48129363987 +       75.02541605080*t);
@@ -995,6 +1001,7 @@ public class vsop87c_micro {
 
       return uranus_z_0+uranus_z_1+uranus_z_2;
    }
+
    static double venus_x(double t){
       double venus_x_0=0.0;
       venus_x_0+=     0.72268045621 * Cos( 3.17614669179 +    10213.52936369450*t);
@@ -1051,4 +1058,5 @@ public class vsop87c_micro {
 
       return venus_z_0+venus_z_1+venus_z_2;
    }
+
 }

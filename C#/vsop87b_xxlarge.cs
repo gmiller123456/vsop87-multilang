@@ -2666,6 +2666,7 @@ public class vsop87b_xxlarge {
 
       return earth_r_0+earth_r_1+earth_r_2+earth_r_3+earth_r_4+earth_r_5;
    }
+
    static double jupiter_l(double t){
       double jupiter_l_0=0.0;
       jupiter_l_0+=     0.59954691494 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -6353,6 +6354,7 @@ public class vsop87b_xxlarge {
 
       return jupiter_r_0+jupiter_r_1+jupiter_r_2+jupiter_r_3+jupiter_r_4+jupiter_r_5;
    }
+
    static double mars_l(double t){
       double mars_l_0=0.0;
       mars_l_0+=     6.20347711581 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -12659,6 +12661,7 @@ public class vsop87b_xxlarge {
 
       return mars_r_0+mars_r_1+mars_r_2+mars_r_3+mars_r_4+mars_r_5;
    }
+
    static double mercury_l(double t){
       double mercury_l_0=0.0;
       mercury_l_0+=     4.40250710144 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -16732,6 +16735,7 @@ public class vsop87b_xxlarge {
 
       return mercury_r_0+mercury_r_1+mercury_r_2+mercury_r_3+mercury_r_4;
    }
+
    static double neptune_l(double t){
       double neptune_l_0=0.0;
       neptune_l_0+=     5.31188633046 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -18803,6 +18807,7 @@ public class vsop87b_xxlarge {
 
       return neptune_r_0+neptune_r_1+neptune_r_2+neptune_r_3+neptune_r_4;
    }
+
    static double saturn_l(double t){
       double saturn_l_0=0.0;
       saturn_l_0+=     0.87401354025 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -25230,6 +25235,7 @@ public class vsop87b_xxlarge {
 
       return saturn_r_0+saturn_r_1+saturn_r_2+saturn_r_3+saturn_r_4+saturn_r_5;
    }
+
    static double uranus_l(double t){
       double uranus_l_0=0.0;
       uranus_l_0+=     5.48129294297 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -30549,6 +30555,7 @@ public class vsop87b_xxlarge {
 
       return uranus_r_0+uranus_r_1+uranus_r_2+uranus_r_3+uranus_r_4;
    }
+
    static double venus_l(double t){
       double venus_l_0=0.0;
       venus_l_0+=     3.17614666774 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -32307,4 +32314,5 @@ public class vsop87b_xxlarge {
 
       return venus_r_0+venus_r_1+venus_r_2+venus_r_3+venus_r_4+venus_r_5;
    }
+
 }

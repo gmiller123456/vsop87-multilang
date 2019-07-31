@@ -93,6 +93,7 @@ public class vsop87d_nano {
 
       return earth_r_0+earth_r_1;
    }
+
    static double jupiter_l(double t){
       double jupiter_l_0=0.0;
       jupiter_l_0+=     0.59954691495 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -136,6 +137,7 @@ public class vsop87d_nano {
 
       return jupiter_r_0+jupiter_r_1;
    }
+
    static double mars_l(double t){
       double mars_l_0=0.0;
       mars_l_0+=     6.20347711583 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -177,6 +179,7 @@ public class vsop87d_nano {
 
       return mars_r_0+mars_r_1;
    }
+
    static double mercury_l(double t){
       double mercury_l_0=0.0;
       mercury_l_0+=     4.40250710144 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -223,6 +226,7 @@ public class vsop87d_nano {
 
       return mercury_r_0+mercury_r_1;
    }
+
    static double neptune_l(double t){
       double neptune_l_0=0.0;
       neptune_l_0+=     5.31188633047 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -267,6 +271,7 @@ public class vsop87d_nano {
 
       return neptune_r_0+neptune_r_1;
    }
+
    static double saturn_l(double t){
       double saturn_l_0=0.0;
       saturn_l_0+=     0.87401354029 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -330,6 +335,7 @@ public class vsop87d_nano {
 
       return saturn_r_0+saturn_r_1+saturn_r_2;
    }
+
    static double uranus_l(double t){
       double uranus_l_0=0.0;
       uranus_l_0+=     5.48129294299 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -378,6 +384,7 @@ public class vsop87d_nano {
 
       return uranus_r_0+uranus_r_1;
    }
+
    static double venus_l(double t){
       double venus_l_0=0.0;
       venus_l_0+=     3.17614666774 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -408,4 +415,5 @@ public class vsop87d_nano {
 
       return venus_r_0;
    }
+
 }

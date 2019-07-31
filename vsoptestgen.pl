@@ -28,8 +28,15 @@ while(my $l=<$f>){
 	
 	if($body eq "earth-moon"){$body="emb";}
 	
-	print "check($version"."_full.get".ucfirst($body)."(jd2et($jd))";
-	print ",$val1,$val2,$val3,$val4,$val5,$val6);\r\n";
+	if($version eq "vsop87"){
+		print "check($version"."_full.get".ucfirst($body)."(jd2et($jd))";
+		print ",$val1,$val2,$val3,$val4,$val5,$val6);\r\n";
+	} else {
+		print "check($version"."_full.get".ucfirst($body)."(jd2et($jd))";
+		print ",$val1,$val2,$val3);\r\n";
+		print "check($version"."_full_velocities.get".ucfirst($body)."(jd2et($jd))";
+		print ",$val4,$val5,$val6);\r\n";
+	}
 	$l=<$f>;
 }
 

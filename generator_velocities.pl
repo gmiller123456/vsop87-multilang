@@ -97,6 +97,9 @@ sub generatePublicFunctions(){
 		print $out "      temp[0]=(emb[0]-earth[0])*(1 + 1 / 0.01230073677);\r\n";
 		print $out "      temp[1]=(emb[1]-earth[1])*(1 + 1 / 0.01230073677);\r\n";
 		print $out "      temp[2]=(emb[2]-earth[2])*(1 + 1 / 0.01230073677);\r\n";
+		print $out "      temp[0]=temp[0]+earth[0];\r\n";
+		print $out "      temp[1]=temp[1]+earth[1];\r\n";
+		print $out "      temp[2]=temp[2]+earth[2];\r\n";
 		print $out "      return temp;\r\n   }\r\n\r\n";
 	}
 }

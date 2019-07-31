@@ -78,6 +78,9 @@ public class vsop87a_nano {
       temp[0]=(emb[0]-earth[0])*(1 + 1 / 0.01230073677);
       temp[1]=(emb[1]-earth[1])*(1 + 1 / 0.01230073677);
       temp[2]=(emb[2]-earth[2])*(1 + 1 / 0.01230073677);
+      temp[0]=temp[0]+earth[0];
+      temp[1]=temp[1]+earth[1];
+      temp[2]=temp[2]+earth[2];
       return temp;
    }
 
@@ -110,6 +113,7 @@ public class vsop87a_nano {
 
       return earth_z_1;
    }
+
    static double emb_x(double t){
       double emb_x_0=0.0;
       emb_x_0+=     0.99982927460 * Cos( 1.75348568475 +     6283.07584999140*t);
@@ -139,6 +143,7 @@ public class vsop87a_nano {
 
       return emb_z_1;
    }
+
    static double jupiter_x(double t){
       double jupiter_x_0=0.0;
       jupiter_x_0+=     5.19663470114 * Cos( 0.59945082355 +      529.69096509460*t);
@@ -215,6 +220,7 @@ public class vsop87a_nano {
 
       return jupiter_z_0+jupiter_z_1;
    }
+
    static double mars_x(double t){
       double mars_x_0=0.0;
       mars_x_0+=     1.51769936383 * Cos( 6.20403346548 +     3340.61242669980*t);
@@ -257,6 +263,7 @@ public class vsop87a_nano {
 
       return mars_z_0+mars_z_1;
    }
+
    static double mercury_x(double t){
       double mercury_x_0=0.0;
       mercury_x_0+=     0.37546291728 * Cos( 4.39651506942 +    26087.90314157420*t);
@@ -300,6 +307,7 @@ public class vsop87a_nano {
 
       return mercury_z_0+mercury_z_1;
    }
+
    static double neptune_x(double t){
       double neptune_x_0=0.0;
       neptune_x_0+=    30.05890004476 * Cos( 5.31211340029 +       38.13303563780*t);
@@ -367,6 +375,7 @@ public class vsop87a_nano {
 
       return neptune_z_0+neptune_z_1;
    }
+
    static double saturn_x(double t){
       double saturn_x_0=0.0;
       saturn_x_0+=     9.51638335797 * Cos( 0.87441380794 +      213.29909543800*t);
@@ -468,6 +477,7 @@ public class vsop87a_nano {
 
       return saturn_z_0+saturn_z_1+saturn_z_2;
    }
+
    static double uranus_x(double t){
       double uranus_x_0=0.0;
       uranus_x_0+=    19.17370730359 * Cos( 5.48133416489 +       74.78159856730*t);
@@ -562,6 +572,7 @@ public class vsop87a_nano {
 
       return uranus_z_0+uranus_z_1;
    }
+
    static double venus_x(double t){
       double venus_x_0=0.0;
       venus_x_0+=     0.72211281391 * Cos( 3.17575836361 +    10213.28554621100*t);
@@ -590,4 +601,5 @@ public class vsop87a_nano {
 
       return venus_z_0+venus_z_1;
    }
+
 }

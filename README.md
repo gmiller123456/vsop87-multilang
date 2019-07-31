@@ -1,11 +1,11 @@
 ### Current Stauts
 Development has just begun. The main version which will be used to produce all other languages has been produced.  Some scripts to convert to other languages
-has also been produced.  Velocity functions have been generated, they need to be added to the tests and results verified.
+has also been produced.  Tests to validate correctness against the original VSOP87 have been added and validated.
 
 # About this Project
 The purpose of this project is to create versions of VSOP87 in many different languages.  The plan is to generate a initial version in C# truncated to different
 precisions, then convert the resulting files into other languages.  This project was inspired by the [Neoprogrammics Source Code Generator Tool](http://www.neoprogrammics.com/vsop87/source_code_generator_tool/).
-The goal of this project is to provide easier to use (readymade source files), include all bodies (e.g. the Moon), are truncated to different accuracy levels,
+The goal of this project is to provide easier to use (readymade source files), include all data (e.g. the Moon and velocities), are truncated to different accuracy levels,
 and for more languages.  It will provide tests against the original VSOP87 test data for each programming language to validate correctness, as well as examples
 to show common useage.
 
@@ -20,7 +20,7 @@ For the overwhelming majority of users, the VSOP87A_full version will be all tha
 for most use cases.  Using the full version eliminates any questions of whether it will be accurate enough.  If, after trying the full version, the computation isn't
 fast enough, from there you should experiment with truncated versions.  The VSOP87A versions are the only versions which include the Moon.  VSOP87A doesn't include the
 moon directly, but does include the Earth and the Earth-Moon Barrycenter, and all provided code for the VSOP87A versions include a function to compute the Moon's position
-from the Earth and EMB.
+from the Earth and EMB.  Using the versions that provide the velocities is necessary if you want to account for relativistic effects do to the motion of the observer.
 
 # Truncated versions
 Since the full VSOP87 provides more accuracy than most amateurs require, the algorithm can be shortened by eliminating terms.  This speeds up the computations, and

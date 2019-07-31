@@ -1196,6 +1196,7 @@ public class vsop87_large {
 
       return emb_p_0+emb_p_1+emb_p_2+emb_p_3+emb_p_4;
    }
+
    static double jupiter_a(double t){
       double jupiter_a_0=0.0;
       jupiter_a_0+=     5.20260319132 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -4152,6 +4153,7 @@ public class vsop87_large {
 
       return jupiter_p_0+jupiter_p_1+jupiter_p_2+jupiter_p_3;
    }
+
    static double mars_a(double t){
       double mars_a_0=0.0;
       mars_a_0+=     1.52367934191 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -6176,6 +6178,7 @@ public class vsop87_large {
 
       return mars_p_0+mars_p_1+mars_p_2+mars_p_3+mars_p_4;
    }
+
    static double mercury_a(double t){
       double mercury_a_0=0.0;
       mercury_a_0+=     0.38709830982 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -6780,6 +6783,7 @@ public class vsop87_large {
 
       return mercury_p_0+mercury_p_1+mercury_p_2+mercury_p_3;
    }
+
    static double neptune_a(double t){
       double neptune_a_0=0.0;
       neptune_a_0+=    30.11038686942 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -10884,6 +10888,7 @@ public class vsop87_large {
 
       return neptune_p_0+neptune_p_1+neptune_p_2+neptune_p_3;
    }
+
    static double saturn_a(double t){
       double saturn_a_0=0.0;
       saturn_a_0+=     9.55490959574 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -17029,6 +17034,7 @@ public class vsop87_large {
 
       return saturn_p_0+saturn_p_1+saturn_p_2+saturn_p_3+saturn_p_4;
    }
+
    static double uranus_a(double t){
       double uranus_a_0=0.0;
       uranus_a_0+=    19.21844606178 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -24690,6 +24696,7 @@ public class vsop87_large {
 
       return uranus_p_0+uranus_p_1+uranus_p_2+uranus_p_3;
    }
+
    static double venus_a(double t){
       double venus_a_0=0.0;
       venus_a_0+=     0.72332981996 * Cos( 0.00000000000 +        0.00000000000*t);
@@ -25485,4 +25492,5 @@ public class vsop87_large {
 
       return venus_p_0+venus_p_1+venus_p_2+venus_p_3+venus_p_4;
    }
+
 }
