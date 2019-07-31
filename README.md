@@ -1,6 +1,6 @@
 ### Current Stauts
 Development has just begun. The main version which will be used to produce all other languages has been produced.  Some scripts to convert to other languages
-has also been produced.  Accuracy tests for the Moon still need to be performed before the massive production of all versions for all other languages.
+has also been produced.  Velocity functions have been generated, they need to be added to the tests and results verified.
 
 # About this Project
 The purpose of this project is to create versions of VSOP87 in many different languages.  The plan is to generate a initial version in C# truncated to different
