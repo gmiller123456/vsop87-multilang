@@ -21,7 +21,7 @@ namespace VsopValidationTests
             if (t1 < 0) t1 += Math.PI;
             if (t2 < 0) t2 += Math.PI;
 
-            if (Math.Abs(t1-t2) > .000000001)
+            if (Math.Abs(t1-t2) > .0000000009)
             {
                 Console.WriteLine("Fail:"+a+" "+b);
             } else
