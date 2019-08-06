@@ -22,6 +22,17 @@ fast enough, from there you should experiment with truncated versions.  The VSOP
 moon directly, but does include the Earth and the Earth-Moon Barrycenter, and all provided code for the VSOP87A versions include a function to compute the Moon's position
 from the Earth and EMB.  Using the versions that provide the velocities is necessary if you want to account for relativistic effects do to the motion of the observer.
 
+There are several versions of the main theory.  The first is just called VSOP87, the remainder of them are appended with the letters A, B, C, D, E.  Each version
+provides the data in a slightly different form.
+
+Version|Mercury|Venus|Earth|EMB|Mars|Jupiter|Saturn|Uranus|Neptune|Sun|Coordinates
+VSOP87|Yes|Yes|No|Yes|Yes|Yes|Yes|Yes|Yes|Yes|No|Keperian Orbital Elements
+VSOP87A|Yes|Yes|Yes|Yes|Yes|Yes|Yes|Yes|Yes|No|Heliocentric J2000 Ecliptic Rectangular XYZ
+VSOP87B|Yes|Yes|Yes|No|Yes|Yes|Yes|Yes|Yes|No|Heliocentric J2000 Ecliptic Spherical LBR
+VSOP87C|Yes|Yes|Yes|No|Yes|Yes|Yes|Yes|Yes|No|Heliocentric Ecliptic of date Rectangular XYZ
+VSOP87D|Yes|Yes|Yes|No|Yes|Yes|Yes|Yes|Yes|No|Heliocentric Ecliptic of date Spherical LBR
+VSOP87E|Yes|Yes|Yes|No|Yes|Yes|Yes|Yes|Yes|Yes|Barycentric J2000 Ecliptic Rectangular XYZ
+
 # Truncated versions
 Since the full VSOP87 provides more accuracy than most amateurs require, the algorithm can be shortened by eliminating terms.  This speeds up the computations, and
 reduces the overall size of the code at the cost of accuracy.  For each programming language, this project supplies VSOP87 truncated at ten different levels.  The
