@@ -6,8 +6,7 @@ has also been produced.  Tests to validate correctness against the original VSOP
 The purpose of this project is to create versions of VSOP87 in many different languages.  The plan is to generate a initial version in C# truncated to different
 precisions, then convert the resulting files into other languages.  This project was inspired by the [Neoprogrammics Source Code Generator Tool](http://www.neoprogrammics.com/vsop87/source_code_generator_tool/).
 The goal of this project is to provide easier to use (readymade source files), include all data (e.g. the Moon and velocities), are truncated to different accuracy levels,
-and for more languages.  It will provide tests against the original VSOP87 test data for each programming language to validate correctness, as well as examples
-to show common useage.
+, for more languages, and have a more permissive license (public domain).  It will provide tests against the original VSOP87 test data for each programming language to validate correctness, as well as examples to show common useage.
 
 # What is VSOP87? Why use it?
 VSOP87 is one of many solutions available for predicting the positions of the planets (plus the Sun and the Moon) in our solar system.  The actual name is
