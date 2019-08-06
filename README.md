@@ -18,16 +18,14 @@ over a period of a few thousand years before and after the year 2000.
 # Which Version Should I Use?
 For the overwhelming majority of users, the VSOP87A_full version will be all that you need.  This is the full version, but should still be fast enough and small enough
 for most use cases.  Using the full version eliminates any questions of whether it will be accurate enough.  If, after trying the full version, the computation isn't
-fast enough, from there you should experiment with truncated versions.  The VSOP87A versions are the only versions which include the Moon.  VSOP87A doesn't include the
-moon directly, but does include the Earth and the Earth-Moon Barrycenter, and all provided code for the VSOP87A versions include a function to compute the Moon's position
-from the Earth and EMB.  Using the versions that provide the velocities is necessary if you want to account for relativistic effects do to the motion of the observer.
+fast enough, from there you should experiment with truncated versions.  The VSOP87A versions are the only versions which include both the Earth and Moon.  VSOP87A doesn't include the moon directly, but does include the Earth and the Earth-Moon Barrycenter, and all provided code for the VSOP87A versions include a function to compute the Moon's position from the Earth and EMB.  Using the versions that provide the velocities is necessary if you want to account for relativistic effects do to the motion of the observer.
 
 There are several versions of the main theory.  The first is just called VSOP87, the remainder of them are appended with the letters A, B, C, D, E.  Each version
 provides the data in a slightly different form.
 
 Version|Mercury|Venus|Earth|EMB|Mars|Jupiter|Saturn|Uranus|Neptune|Sun|Coordinates
 -------|-------|-----|-----|---|----|-------|------|------|-------|---|-----------
-VSOP87|Yes|Yes|No|Yes|Yes|Yes|Yes|Yes|Yes|Yes|No|Keperian Orbital Elements
+VSOP87|Yes|Yes|No|Yes|Yes|Yes|Yes|Yes|Yes|No|Keperian Orbital Elements
 VSOP87A|Yes|Yes|Yes|Yes|Yes|Yes|Yes|Yes|Yes|No|Heliocentric J2000 Ecliptic Rectangular XYZ
 VSOP87B|Yes|Yes|Yes|No|Yes|Yes|Yes|Yes|Yes|No|Heliocentric J2000 Ecliptic Spherical LBR
 VSOP87C|Yes|Yes|Yes|No|Yes|Yes|Yes|Yes|Yes|No|Heliocentric Ecliptic of date Rectangular XYZ
