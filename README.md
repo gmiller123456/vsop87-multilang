@@ -26,6 +26,7 @@ There are several versions of the main theory.  The first is just called VSOP87,
 provides the data in a slightly different form.
 
 Version|Mercury|Venus|Earth|EMB|Mars|Jupiter|Saturn|Uranus|Neptune|Sun|Coordinates
+-------|-------|-----|-----|---|----|-------|------|------|-------|---|-----------
 VSOP87|Yes|Yes|No|Yes|Yes|Yes|Yes|Yes|Yes|Yes|No|Keperian Orbital Elements
 VSOP87A|Yes|Yes|Yes|Yes|Yes|Yes|Yes|Yes|Yes|No|Heliocentric J2000 Ecliptic Rectangular XYZ
 VSOP87B|Yes|Yes|Yes|No|Yes|Yes|Yes|Yes|Yes|No|Heliocentric J2000 Ecliptic Spherical LBR
