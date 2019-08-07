@@ -3,7 +3,8 @@
 <body>
 Simple example to compute the geocentric position of them moon.  Note the reduction algorithm
 used is not rigorous, it ignores several factors, like annual abberation, which will result in
-a error of many arc seconds.<br><br>
+a error of many arc seconds.  This example requires vsop87a_full.js.<br><br>
+Result:
 <pre id="output"></pre>
 
 Values from JPL Horizons<br>
@@ -116,7 +117,7 @@ function convertUTCtoTAI(jd){
 
 function testMoon(){
 	const jd=2451545.000000; //Jan 1 2000, 12:00p UTC
-	let jdTAI = convertUTCtoTAI(jd);
+	const jdTAI = convertUTCtoTAI(jd);
 	let t = jd2et(jdTAI);
 	
 	//Get current position of Earth
@@ -126,20 +127,26 @@ function testMoon(){
 	let moon = vsop87a_full.getMoon(vsop87a_full.getEarth(t), vsop87a_full.getEmb(t));
 	moon = sub(moon, earth);
 
-	//Calculate time time to moon, and recalculate Moon position adjusted for light time
+	//Calculate light time to moon, then recalculate Moon position adjusted for light time
 	let distance = Math.sqrt(moon[0] * moon[0] + moon[1] * moon[1] + moon[2] * moon[2]);
 	distance*=1.496e+11 //Convert from AU to meters
 	display("Distance="+(distance)+" meters\r\n");
 	const lightTime=distance/299792458.0;
 	display("Light Time="+lightTime+" seconds\r\n");
 
-	jdTAI = convertUTCtoTAI(2451545.000000) - lightTime / 24.0 / 60.0 / 60.0;
-	t = jd2et(jdTAI);
+	//Convert light time to Julian Centuries, and subtract it from the original value of t
+	t-=lightTime / 24.0 / 60.0 / 60.0 / 365250.0;  
 	moon = vsop87a_full.getMoon(vsop87a_full.getEarth(t), vsop87a_full.getEmb(t));
+	
+	//Convert to Geocrntric position
 	moon = sub(moon, earth);
 
+	//Rotate ecliptic coordinates to J2000 coordinates
 	moon = rotvsop2J2000(moon);
+	
 	moon = toPolar(moon);
+	//moon now holds the RA and DEC, display them in decimal and verbose form
+
 	displayPolar(moon);
 
 	displayHms(moon[2]);
