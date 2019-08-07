@@ -1,11 +1,11 @@
 #!/usr/bin/perl
 use strict;
 use lib ".";
-use convert_visualbasicnet qw(processFile);
+use convert_java qw(processFile);
 
 my $sourceDir="C#/";
 
-#convert_visualbasicnet::processFile($sourceDir,"vsop87_pico.cs","VisualBasicNet/");
+#convert_java::processFile($sourceDir,"vsop87a_pico.cs","Java/");
 run();
 
 sub run(){
@@ -16,7 +16,7 @@ sub run(){
 	while(my $f=readdir($d)){
 		if($f=~/^\./){next;}
 		print "$f\r\n";
-		convert_visualbasicnet::processFile($sourceDir,$f,"VisualBasicNet/");
+		convert_java::processFile($sourceDir,$f,"Java/");
 	}
 
 
