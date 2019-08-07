@@ -1,10 +1,27 @@
 ﻿<html>
 <head></head>
 <body>
+Simple example to compute the geocentric position of them moon.  Note the reduction algorithm
+used is not rigorous, it ignores several factors, like annual abberation, which will result in
+a error of many arc seconds.<br><br>
+<pre id="output"></pre>
+
+Values from JPL Horizons<br>
+-10.90338<br>
+222.45893<br>
+14h 49m 50.14s<br>
+-10d 54' 12.2"<br>
+
+
 <script src="vsop87a_full.js"></script>
 <script>
 
 testMoon();
+
+function display(s){
+	const o=document.getElementById("output");
+	o.innerHTML=o.innerHTML+s;
+}
 
 //Converts a Julan Date to Julian centuries since J2000, which is what VSOP expects as input
 function jd2et(jd){
@@ -36,8 +53,8 @@ function displayPolar(b){
 	if(temp<0) temp+=2*Math.PI;
 	const ra=(temp * 180 / Math.PI);
 	const dec=(90 - b[1] * 180 / Math.PI);
-	console.log("RA:"+ra);
-	console.log("DEC:"+dec);
+	display("RA:"+ra + "\r\n");
+	display("DEC:"+dec + "\r\n");
 }
 
 function displayDms(d){
@@ -48,7 +65,7 @@ function displayDms(d){
 	let min = Math.trunc(t);
 	t -= min;
 	let sec = t * 60;
-	console.log(deg + "d " + min + "m " + sec);
+	display(deg + "d " + min + "' " + sec + "\"\r\n");
 }
 
 function displayHms(h){
@@ -60,7 +77,7 @@ function displayHms(h){
 	let min = Math.trunc(t);
 	t -= min;
 	let sec = t * 60;
-	console.log(hours + "h " + min + "m " + sec);
+	display(hours + "h " + min + "m " + sec + "s\r\n");
 }
 
 function displayCart(b){
@@ -112,9 +129,9 @@ function testMoon(){
 	//Calculate time time to moon, and recalculate Moon position adjusted for light time
 	let distance = Math.sqrt(moon[0] * moon[0] + moon[1] * moon[1] + moon[2] * moon[2]);
 	distance*=1.496e+11 //Convert from AU to meters
-	console.log("Distance="+(distance)+" meters");
+	display("Distance="+(distance)+" meters\r\n");
 	const lightTime=distance/299792458.0;
-	console.log("Light Time="+lightTime+" seconds");
+	display("Light Time="+lightTime+" seconds\r\n");
 
 	jdTAI = convertUTCtoTAI(2451545.000000) - lightTime / 24.0 / 60.0 / 60.0;
 	t = jd2et(jdTAI);
@@ -128,9 +145,6 @@ function testMoon(){
 	displayHms(moon[2]);
 	displayDms(moon[1]);
 
-	console.log("\r\nValues from JPL Horizons\r\n");
-	console.log("\r\n-10.90338\r\n222.45893\r\n");
-	console.log("\r\n14 49 50.14\r\n-10 54 12.2\r\n");
 }
 
 </script></body></html>
