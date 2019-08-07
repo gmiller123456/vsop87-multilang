@@ -1,11 +1,11 @@
 #!/usr/bin/perl
 use strict;
 use lib ".";
-use convert_java qw(processFile);
+use convert_javascript qw(processFile);
 
 my $sourceDir="C#/";
 
-#convert_java::processFile($sourceDir,"vsop87a_pico.cs","Java/");
+#convert_javascript::processFile($sourceDir,"vsop87a_pico.cs","Java/");
 run();
 
 sub run(){
@@ -16,7 +16,7 @@ sub run(){
 	while(my $f=readdir($d)){
 		if($f=~/^\./){next;}
 		print "$f\r\n";
-		convert_java::processFile($sourceDir,$f,"Java/");
+		convert_javascript::processFile($sourceDir,$f,"javascript/");
 	}
 
 

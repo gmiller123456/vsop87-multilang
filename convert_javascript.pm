@@ -29,6 +29,8 @@ sub processFile{
 		
 		if($l=~m/(\s+)double\[\] ([^\=]+)\=/){
 			$l=$1."const ".$2."=new Array();\r\n";
+		} elsif($l=~m/\=temp/){
+			#Pass through
 		} elsif($l=~m/(\s*)temp\[\d+\]\=([^\(].*)\;\r\n/){
 			$l=$1."temp.push($classname.".$2.");\r\n";
 		} elsif($l=~m/(\s*)temp\[\d+\]\=(.*)\;\r\n/){

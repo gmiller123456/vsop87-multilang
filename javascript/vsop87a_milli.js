@@ -78,9 +78,9 @@ class vsop87a_milli {
       temp.push((emb[0]-earth[0])*(1 + 1 / 0.01230073677));
       temp.push((emb[1]-earth[1])*(1 + 1 / 0.01230073677));
       temp.push((emb[2]-earth[2])*(1 + 1 / 0.01230073677));
-      temp.push(vsop87a_milli.temp[0]+earth[0]);
-      temp.push(vsop87a_milli.temp[1]+earth[1]);
-      temp.push(vsop87a_milli.temp[2]+earth[2]);
+      temp[0]=temp[0]+earth[0];
+      temp[1]=temp[1]+earth[1];
+      temp[2]=temp[2]+earth[2];
       return temp;
    }
 
