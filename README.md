@@ -1,6 +1,8 @@
 ### Current Stauts
-Development has just begun. The main version which will be used to produce all other languages has been produced.  Some scripts to convert to other languages
-has also been produced.  Tests to validate correctness against the original VSOP87 have been added and validated.
+Development has just begun. Versions for C#, Java, Visual Basic.Net, JavaScript and Python have been created.  These have passed all test cases provided by the
+VSOP87 authors, a validation program is also included for each language.  They should be ready for use.
+
+Still to come: more languages, documentation, and examples.
 
 # About this Project
 The purpose of this project is to create versions of VSOP87 in many different languages.  The plan is to generate a initial version in C# truncated to different
