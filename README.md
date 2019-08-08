@@ -65,37 +65,37 @@ The full VSOP87 accuracy is .1 arcseconds for Saturn, and better for all others.
 [Planetary theories in rectangular and spherical variables - VSOP 87 solutions](http://articles.adsabs.harvard.edu/full/1988A%26A...202..309B).
 
 ### Mercury
-![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/mercury.png)
+![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/utility/Accuracy/mercury.png)
 
 ### Venus
-![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/venus.png)
+![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/utility/Accuracy/venus.png)
 
 ### Earth-Moon Barrycenter
-![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/emb.png)
+![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/utility/Accuracy/emb.png)
 
 ### Earth-Moon Barrycenter (zoomed)
-![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/emb2.png)
+![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/utility/Accuracy/emb2.png)
 
 ### Mars
-![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/mars.png)
+![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/utility/Accuracy/mars.png)
 
 ### Jupiter
-![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/jupiter.png)
+![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/utility/Accuracy/jupiter.png)
 
 ### Saturn
-![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/saturn.png)
+![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/utility/Accuracy/saturn.png)
 
 ### Saturn (zoomed)
-![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/saturn2.png)
+![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/utility/Accuracy/saturn2.png)
 
 ### Uranus
-![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/uranus.png)
+![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/utility/Accuracy/uranus.png)
 
 ### Uranus (zoomed)
-![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/uranus2.png)
+![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/utility/Accuracy/uranus2.png)
 
 ### Neptune
-![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/neptune.png)
+![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/utility/Accuracy/neptune.png)
 
 ### Neptune (zoomed)
-![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/Accuracy/neptune2.png)
+![Mercury](https://raw.githubusercontent.com/gmiller123456/vsop87-multilang/master/utility/Accuracy/neptune2.png)
