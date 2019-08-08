@@ -1,5 +1,5 @@
 ### Current Stauts
-Development has just begun. Versions for C#, Java, Visual Basic.Net, JavaScript and Python have been created.  These have passed all test cases provided by the
+Development has just begun. Versions for C#, Java, Visual Basic.Net, JavaScript, Perl and Python have been created.  These have passed all test cases provided by the
 VSOP87 authors, a validation program is also included for each language.  They should be ready for use.
 
 Still to come: more languages, documentation, and examples.
