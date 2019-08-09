@@ -1,11 +1,20 @@
 ﻿<html>
 <head></head>
 <body>
+<h1>This example is still under development</h1>
 Simple example to compute the geocentric position of them moon.  Note the reduction algorithm
 used is not rigorous, it ignores several factors, like annual abberation, which will result in
 a error of many arc seconds.  This example requires vsop87a_full.js.<br><br>
 Result:
 <pre id="output"></pre>
+
+<pre>
+ Date__(UT)__HR:MN     R.A._(ICRF/J2000.0)_DEC R.A.__(a-apparent)__DEC Azi_(a-appr)_Elev L_Ap_Sid_Time   1-way_LT
+*****************************************************************************************************************
+$$SOE
+ 2000-Jan-01 12:00 Nm  14 51 12.35 -11 34 39.9 14 51 10.74 -11 34 29.8 146.3255  33.6752 12 58 46.7852   0.022173
+ 2000-Jan-01 12:00 Nm  222.80147   -11.57774   222.79477   -11.57495   146.3255  33.6752 12.9796625661   0.022173
+</pre>
 
 Values from JPL Horizons<br>
 -10.90338<br>
@@ -112,8 +121,90 @@ function rotvsop2J2000(x){
 //Converts a Julian Date in UTC to TIA
 function convertUTCtoTAI(jd){
 	//32 leap seconds is hard coded as of Jan 2000, should be updated from the IERS website for other times
-	return jd + (32.0 + 32.184) / 24.0 / 60.0 / 60.0
+	return jd + (32.0 + 32.184) / 24.0 / 60.0 / 60.0;
 }
+
+//Step 2: Convert Geodedic Lat Lon to geocentric XYZ position vector
+function convertGeodedicLatLonToITRFXYZ(lat,lon,height){
+	const a=6378136.6;
+	const f=1/298.25642;
+
+	const C=Math.sqrt(((Math.cos(lat)*Math.cos(lat)) + (1.0-f)*(1.0-f) * (Math.sin(lat)*Math.sin(lat))));
+
+	const S=(1-f)*(1-f)*C;
+	
+	const h=height;
+
+	let r=new Array();
+	r[0]=(a*C+h) * Math.cos(lat) * Math.cos(lon);
+	r[1]=(a*C+h) * Math.cos(lat) * Math.sin(lon);
+	r[2]=(a*S+h) * Math.sin(lat);
+	
+	return r;
+}
+
+getGMST(2458759.770833);
+
+function getGMST(ut1){
+	const D=ut1 - 2451545.0;
+	const T = D/36525.0;
+	
+	console.log(T);
+	
+	let GMST = (24110.54841 + 8640184.812866*T + 0.093104*T*T - 6.2E-6*T*T*T)/60.0 % 24.0;
+	//GMST = (18.697374558 + 24.06570982441908 * D) %360
+	console.log(GMST);
+	console.log(GMST/15.0);
+	
+	return GMST;
+	
+}
+//Step 3: Convert position vector to celestial "of date" system.
+//g(t)=R3(-GAST) r
+//(Remember to use UT1 for GAST, not ET)
+function convertITRFToGCRS(r,ut1){
+	
+	//GMST=(12.9796625661-274.236400)%360.0
+	//apply rotation matrix R3(-GMST);
+	
+	let GMST=getGMST(ut1);
+	GMST=-GMST*Math.PI/180.0;
+	let t=new Array();
+	t[0]=r[0]*Math.cos(GMST) + r[1]*Math.sin(GMST);
+	t[1]=r[0]*(-Math.sin(GMST)) + r[1]*Math.cos(GMST);
+	t[2]=r[2];
+	
+	return t;
+	
+	
+	/*R3
+	# cos(a) sin(a) 0
+	#-sin(a) cos(a) 0
+	#   0      0    1
+	*/
+}
+
+//Step 4: Convert from meters to AU
+//Multiply g(t) by 1.49597870691E+11
+function convertFromMetersToAU(r){
+	let t=new Array();
+	
+	t[0]=r[0]/1.49597870691E+11;
+	t[1]=r[1]/1.49597870691E+11;
+	t[2]=r[2]/1.49597870691E+11;
+	
+	return t;
+}
+
+function getObserverGeocentric(jd,lat,lon){
+	let r=convertGeodedicLatLonToITRFXYZ(lat, lon,0);
+	r=convertITRFToGCRS(r,jd);
+	r=convertFromMetersToAU(r);
+	
+	return r;
+}
+
+
 
 function testMoon(){
 	const jd=2451545.000000; //Jan 1 2000, 12:00p UTC
@@ -144,12 +235,23 @@ function testMoon(){
 	//Rotate ecliptic coordinates to J2000 coordinates
 	moon = rotvsop2J2000(moon);
 	
+	//Convert to topocentric
+	const lon=274.236400;
+	const lat=38.2464000;
+	observerXYZ=getObserverGeocentric(jd,lat,lon);
+	console.log(observerXYZ);
+	console.log(moon);
+	moon = sub(moon,observerXYZ);
+
 	moon = toPolar(moon);
 	//moon now holds the RA and DEC, display them in decimal and verbose form
+	
+	
+	
 
 	displayPolar(moon);
 
-	displayHms(moon[2]);
+	displayDms(moon[2]);
 	displayDms(moon[1]);
 
 }
