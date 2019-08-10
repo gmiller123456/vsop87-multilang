@@ -143,18 +143,11 @@ function convertGeodedicLatLonToITRFXYZ(lat,lon,height){
 	return r;
 }
 
-getGMST(2458759.770833);
-
 function getGMST(ut1){
 	const D=ut1 - 2451545.0;
 	const T = D/36525.0;
 	
-	console.log(T);
-	
-	let GMST = (24110.54841 + 8640184.812866*T + 0.093104*T*T - 6.2E-6*T*T*T)/60.0 % 24.0;
-	//GMST = (18.697374558 + 24.06570982441908 * D) %360
-	console.log(GMST);
-	console.log(GMST/15.0);
+	let GMST = (24110.54841 + 8640184.812866*T + 0.093104*T*T - 6.2E-6*T*T*T)/60.0/60.0 % 24.0;
 	
 	return GMST;
 	
@@ -168,7 +161,7 @@ function convertITRFToGCRS(r,ut1){
 	//apply rotation matrix R3(-GMST);
 	
 	let GMST=getGMST(ut1);
-	GMST=-GMST*Math.PI/180.0;
+	GMST=GMST*15.0*Math.PI/180.0;
 	let t=new Array();
 	t[0]=r[0]*Math.cos(GMST) + r[1]*Math.sin(GMST);
 	t[1]=r[0]*(-Math.sin(GMST)) + r[1]*Math.cos(GMST);
@@ -198,7 +191,9 @@ function convertFromMetersToAU(r){
 
 function getObserverGeocentric(jd,lat,lon){
 	let r=convertGeodedicLatLonToITRFXYZ(lat, lon,0);
+	console.log(r);
 	r=convertITRFToGCRS(r,jd);
+	console.log(r);
 	r=convertFromMetersToAU(r);
 	
 	return r;
@@ -232,16 +227,16 @@ function testMoon(){
 	//Convert to Geocrntric position
 	moon = sub(moon, earth);
 
-	//Rotate ecliptic coordinates to J2000 coordinates
-	moon = rotvsop2J2000(moon);
 	
 	//Convert to topocentric
-	const lon=274.236400;
-	const lat=38.2464000;
+	const lon=274.236400*Math.PI/180;
+	const lat=38.2464000*Math.PI/180;
 	observerXYZ=getObserverGeocentric(jd,lat,lon);
-	console.log(observerXYZ);
-	console.log(moon);
 	moon = sub(moon,observerXYZ);
+
+	//Rotate ecliptic coordinates to J2000 coordinates
+	moon = rotvsop2J2000(moon);
+
 
 	moon = toPolar(moon);
 	//moon now holds the RA and DEC, display them in decimal and verbose form
@@ -251,7 +246,7 @@ function testMoon(){
 
 	displayPolar(moon);
 
-	displayDms(moon[2]);
+	displayHms(moon[2]);
 	displayDms(moon[1]);
 
 }
