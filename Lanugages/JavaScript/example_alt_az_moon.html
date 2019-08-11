@@ -2,7 +2,7 @@
 <head></head>
 <body>
 <h1>This example is still under development</h1>
-Simple example to compute the geocentric position of them moon.  Note the reduction algorithm
+Simple example to compute the geocentric position of the moon.  Note the reduction algorithm
 used is not rigorous, it ignores several factors, like annual abberation, which will result in
 a error of many arc seconds.  This example requires vsop87a_full.js.<br><br>
 Result:
@@ -79,7 +79,8 @@ function displayDms(d){
 }
 
 function displayHms(h){
-	let t = h * 180 / Math.PI+360;
+	let t = h * 180 / Math.PI;
+	if(t<0)t+=360;
 	t /= 15.0;
 	let hours = Math.trunc(t);
 	t = Math.abs(t) - Math.abs(hours);
@@ -144,11 +145,13 @@ function convertGeodedicLatLonToITRFXYZ(lat,lon,height){
 }
 
 function getGMST(ut1){
-	const D=ut1 - 2451545.0;
+	const midnight=Math.trunc(ut1)+0.5;
+	const frac=(midnight-ut1)*24.0;
+
+	const D=midnight - 2451545.0;
 	const T = D/36525.0;
-	
-	let GMST = (24110.54841 + 8640184.812866*T + 0.093104*T*T - 6.2E-6*T*T*T)/60.0/60.0 % 24.0;
-	
+
+	let GMST = ((24110.54841 + 8640184.812866*T + 0.093104*T*T - 6.2E-6*T*T*T)/60.0/60.0 + frac) % 24.0;
 	return GMST;
 	
 }
@@ -156,25 +159,15 @@ function getGMST(ut1){
 //g(t)=R3(-GAST) r
 //(Remember to use UT1 for GAST, not ET)
 function convertITRFToGCRS(r,ut1){
-	
-	//GMST=(12.9796625661-274.236400)%360.0
-	//apply rotation matrix R3(-GMST);
-	
+
 	let GMST=getGMST(ut1);
 	GMST=GMST*15.0*Math.PI/180.0;
 	let t=new Array();
-	t[0]=r[0]*Math.cos(GMST) + r[1]*Math.sin(GMST);
-	t[1]=r[0]*(-Math.sin(GMST)) + r[1]*Math.cos(GMST);
+	t[0]=r[0]*Math.cos(GMST) + r[1]*(-Math.sin(GMST));
+	t[1]=r[0]*(Math.sin(GMST)) + r[1]*Math.cos(GMST);
 	t[2]=r[2];
-	
+
 	return t;
-	
-	
-	/*R3
-	# cos(a) sin(a) 0
-	#-sin(a) cos(a) 0
-	#   0      0    1
-	*/
 }
 
 //Step 4: Convert from meters to AU
@@ -191,9 +184,7 @@ function convertFromMetersToAU(r){
 
 function getObserverGeocentric(jd,lat,lon){
 	let r=convertGeodedicLatLonToITRFXYZ(lat, lon,0);
-	console.log(r);
 	r=convertITRFToGCRS(r,jd);
-	console.log(r);
 	r=convertFromMetersToAU(r);
 	
 	return r;
@@ -202,7 +193,8 @@ function getObserverGeocentric(jd,lat,lon){
 
 
 function testMoon(){
-	const jd=2451545.000000; //Jan 1 2000, 12:00p UTC
+	const jd=2451545.000000;
+
 	const jdTAI = convertUTCtoTAI(jd);
 	let t = jd2et(jdTAI);
 	
@@ -226,16 +218,16 @@ function testMoon(){
 	
 	//Convert to Geocrntric position
 	moon = sub(moon, earth);
-
 	
+	moon = rotvsop2J2000(moon);
+
 	//Convert to topocentric
 	const lon=274.236400*Math.PI/180;
 	const lat=38.2464000*Math.PI/180;
-	observerXYZ=getObserverGeocentric(jd,lat,lon);
+	observerXYZ=getObserverGeocentric(jdTAI,lat,lon);
 	moon = sub(moon,observerXYZ);
 
 	//Rotate ecliptic coordinates to J2000 coordinates
-	moon = rotvsop2J2000(moon);
 
 
 	moon = toPolar(moon);
