@@ -8,6 +8,8 @@ a error of many arc seconds.  This example requires vsop87a_full.js.<br><br>
 Result:
 <pre id="output"></pre>
 
+
+Values from JPL Horizons<br>
 <pre>
  Date__(UT)__HR:MN     R.A._(ICRF/J2000.0)_DEC R.A.__(a-apparent)__DEC Azi_(a-appr)_Elev L_Ap_Sid_Time   1-way_LT
 *****************************************************************************************************************
@@ -16,11 +18,6 @@ $$SOE
  2000-Jan-01 12:00 Nm  222.80147   -11.57774   222.79477   -11.57495   146.3255  33.6752 12.9796625661   0.022173
 </pre>
 
-Values from JPL Horizons<br>
--10.90338<br>
-222.45893<br>
-14h 49m 50.14s<br>
--10d 54' 12.2"<br>
 
 
 <script src="vsop87a_full.js"></script>
@@ -146,7 +143,7 @@ function convertGeodedicLatLonToITRFXYZ(lat,lon,height){
 
 function getGMST(ut1){
 	const midnight=Math.trunc(ut1)+0.5;
-	const frac=(midnight-ut1)*24.0;
+	const frac=(ut1-midnight)*24.0;
 
 	const D=midnight - 2451545.0;
 	const T = D/36525.0;
@@ -161,10 +158,10 @@ function getGMST(ut1){
 function convertITRFToGCRS(r,ut1){
 
 	let GMST=getGMST(ut1);
-	GMST=GMST*15.0*Math.PI/180.0;
+	GMST=-GMST*15.0*Math.PI/180.0;
 	let t=new Array();
-	t[0]=r[0]*Math.cos(GMST) + r[1]*(-Math.sin(GMST));
-	t[1]=r[0]*(Math.sin(GMST)) + r[1]*Math.cos(GMST);
+	t[0]=r[0]*Math.cos(GMST) + r[1]*(Math.sin(GMST));
+	t[1]=r[0]*(-Math.sin(GMST)) + r[1]*Math.cos(GMST);
 	t[2]=r[2];
 
 	return t;
