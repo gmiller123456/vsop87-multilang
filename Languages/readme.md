@@ -6,7 +6,7 @@ Java         |Yes         |Yes             |
 C            |Yes         |Yes             |
 C#           |Yes         |Yes             |
 Python       |Yes         |Yes             |
-C++          |            |                |
+C++          |Yes         |Yes             |
 VB.Net       |Yes         |Yes             |
 JavaScript   |Yes         |Yes             |In progress
 PHP          |            |                |
