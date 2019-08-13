@@ -2,13 +2,13 @@ Below is a list of the planned languages and their current status.
 
 Language     |Main Library|Validation Tests|Alt Az Example
 -------------|------------|----------------|--------------
-Java         |Yes         |Yes             |
-C            |Yes         |Yes             |
-C#           |Yes         |Yes             |
-Python       |Yes         |Yes             |
-C++          |Yes         |Yes             |
-VB.Net       |Yes         |Yes             |
-JavaScript   |Yes         |Yes             |In progress
+Java         |Yes         |Pass            |
+C            |Yes         |Pass            |
+C#           |Yes         |Pass            |
+Python       |Yes         |Pass            |
+C++          |Yes         |Pass            |
+VB.Net       |Yes         |Pass            |
+JavaScript   |Yes         |Pass            |In progress
 PHP          |            |                |
 Ruby         |            |                |
 Swift        |            |                |
@@ -16,7 +16,7 @@ Matlab/Octave|            |                |
 Groovy       |            |                |
 Go           |            |                |
 Pascal       |            |                |
-Perl         |Yes         |Yes             |
+Perl         |Yes         |Pass            |
 R            |            |                |
 Cobol        |            |                |
 Fortran      |            |                |
