@@ -1,11 +1,11 @@
 #!/usr/bin/perl
 use strict;
 use lib ".";
-use convert_perl qw(processFile);
+use convert_c qw(processFile);
 
-my $sourceDir="javascript/";
+my $sourceDir="../Lanugages/C#/";
 
-#convert_perl::processFile($sourceDir,"vsop87_full.js","Perl/");
+#convert_c::processFile($sourceDir,"vsop87a_full_velocities.cs","../Lanugages/C/");
 run();
 
 sub run(){
@@ -16,7 +16,7 @@ sub run(){
 	while(my $f=readdir($d)){
 		if($f=~/^\./){next;}
 		print "$f\r\n";
-		convert_perl::processFile($sourceDir,$f,"Perl/");
+		convert_c::processFile($sourceDir,$f,"../Lanugages/C/");
 	}
 
 
