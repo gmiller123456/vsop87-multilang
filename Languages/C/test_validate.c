@@ -3,21 +3,19 @@
 
 #define PI 3.14159265358979d
 
-double jd2et(double jd)
-{
+double jd2et(double jd){
     return (jd - 2451545.0d) / 365250.0d;
 
 }
 
-void check2(double a, double b)
-{
+void check2(double a, double b){
      double t1 = fmod(a,PI);
      double t2 = fmod(b,PI);
 
      if (t1 < 0) t1 += PI;
      if (t2 < 0) t2 += PI;
 
-     if (abs(t1-t2) > .0000000009d)
+     if (fabs(t1-t2) > .0000000009d)
      {
          printf("Fail: %2.15f %2.15f\r\n",a,b);
      } else
@@ -26,8 +24,7 @@ void check2(double a, double b)
      }
 }
 
- void check6(double r[],double a, double k, double q, double l, double h, double p)
- {
+ void check6(double r[],double a, double k, double q, double l, double h, double p) {
      check2(r[0],a);
      check2(r[1],l);
      check2(r[2],k);
@@ -36,14 +33,13 @@ void check2(double a, double b)
      check2(r[5],p);
  }
 
- void check3(double r[], double a, double b, double c)
- {
+ void check3(double r[], double a, double b, double c) {
      check2(r[0], a);
      check2(r[1], b);
      check2(r[2], c);
  }
- void main(int argc, char* args[])
- {
+ 
+ void main(int argc, char* args[]) {
     double r[6];
      vsop87_full_getMercury(jd2et(2451545.0d),r);
      check6(r, .3870982122d, .0446647518d, .0406161541d, 4.4026057779d, .2007208958d, .0456355031d);
