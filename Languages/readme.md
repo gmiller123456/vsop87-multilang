@@ -1,3 +1,5 @@
+Below is a list of the planned languages and their current status.
+
 Language     |Main Library|Validation Tests|Alt Az Example
 -------------|------------|----------------|--------------
 Java         |Yes         |Yes             |
