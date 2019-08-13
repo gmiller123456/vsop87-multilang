@@ -1,5 +1,16 @@
 #include <math.h>
 #include <stdio.h>
+#include "vsop87_full.h"
+#include "vsop87a_full.h"
+#include "vsop87b_full.h"
+#include "vsop87c_full.h"
+#include "vsop87d_full.h"
+#include "vsop87e_full.h"
+#include "vsop87a_full_velocities.h"
+#include "vsop87b_full_velocities.h"
+#include "vsop87c_full_velocities.h"
+#include "vsop87d_full_velocities.h"
+#include "vsop87e_full_velocities.h"
 
 #define PI 3.14159265358979d
 

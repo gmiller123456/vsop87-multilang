@@ -13,7 +13,9 @@ sub run(){
 	while(my $f=readdir($d)){
 		if($f=~/^\./){next;}
 		print "$f\r\n";
-		processFile($f,"../Languages/C/");
+		if($f=~m/\.c$/){
+			processFile($f,"../Languages/C/");
+		}
 	}
 	closedir($d);
 }
@@ -22,7 +24,7 @@ sub processFile{
 	my $file=shift;
 	my $dir=shift;
 	my $class=$file;
-	$class=~s/\.cpp//;
+	$class=~s/\.c//;
 	
 	my $f;
 	open($f,$dir.$file);
@@ -32,7 +34,6 @@ sub processFile{
 		if($l=~m/^void/){
 			$l=~s/\{/\;/;
 			$l=~s/\r*\n*//g;
-			$l=~s/$class\:\://;
 			push(@functions,"   ".$l);
 		}
 	}
@@ -42,6 +43,9 @@ sub processFile{
 	open($out,">$dir$outFile");
 
 
-if ndef $class\_h
+	print $out "#ifndef ".uc($class)."\r\n";
+	print $out "#define ".uc($class)."\r\n\r\n";
 	print $out join("\r\n",@functions);
+	print $out "\r\n#endif\r\n";
+
 }

@@ -1,37 +1,41 @@
+#ifndef VSOP87B_MILLI
+#define VSOP87B_MILLI
+
 class vsop87b_milli{
    public:
-   void getEarth(double t,double temp[]);
-   void getJupiter(double t,double temp[]);
-   void getMars(double t,double temp[]);
-   void getMercury(double t,double temp[]);
-   void getNeptune(double t,double temp[]);
-   void getSaturn(double t,double temp[]);
-   void getUranus(double t,double temp[]);
-   void getVenus(double t,double temp[]);
+   static void getEarth(double t,double temp[]);
+   static void getJupiter(double t,double temp[]);
+   static void getMars(double t,double temp[]);
+   static void getMercury(double t,double temp[]);
+   static void getNeptune(double t,double temp[]);
+   static void getSaturn(double t,double temp[]);
+   static void getUranus(double t,double temp[]);
+   static void getVenus(double t,double temp[]);
 
    private:
-   double earth_l(double t);
-   double earth_b(double t);
-   double earth_r(double t);
-   double jupiter_l(double t);
-   double jupiter_b(double t);
-   double jupiter_r(double t);
-   double mars_l(double t);
-   double mars_b(double t);
-   double mars_r(double t);
-   double mercury_l(double t);
-   double mercury_b(double t);
-   double mercury_r(double t);
-   double neptune_l(double t);
-   double neptune_b(double t);
-   double neptune_r(double t);
-   double saturn_l(double t);
-   double saturn_b(double t);
-   double saturn_r(double t);
-   double uranus_l(double t);
-   double uranus_b(double t);
-   double uranus_r(double t);
-   double venus_l(double t);
-   double venus_b(double t);
-   double venus_r(double t);
+   static double earth_l(double t);
+   static double earth_b(double t);
+   static double earth_r(double t);
+   static double jupiter_l(double t);
+   static double jupiter_b(double t);
+   static double jupiter_r(double t);
+   static double mars_l(double t);
+   static double mars_b(double t);
+   static double mars_r(double t);
+   static double mercury_l(double t);
+   static double mercury_b(double t);
+   static double mercury_r(double t);
+   static double neptune_l(double t);
+   static double neptune_b(double t);
+   static double neptune_r(double t);
+   static double saturn_l(double t);
+   static double saturn_b(double t);
+   static double saturn_r(double t);
+   static double uranus_l(double t);
+   static double uranus_b(double t);
+   static double uranus_r(double t);
+   static double venus_l(double t);
+   static double venus_b(double t);
+   static double venus_r(double t);
 };
+#endif

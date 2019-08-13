@@ -13,7 +13,9 @@ sub run(){
 	while(my $f=readdir($d)){
 		if($f=~/^\./){next;}
 		print "$f\r\n";
-		processFile($f,"../Languages/C++/");
+		if($f=~m/\.cpp$/){
+			processFile($f,"../Languages/C++/");
+		}
 	}
 	closedir($d);
 }
@@ -34,14 +36,14 @@ sub processFile{
 			$l=~s/\{/\;/;
 			$l=~s/\r*\n*//g;
 			$l=~s/$class\:\://;
-			push(@public,"   ".$l);
+			push(@public,"   static ".$l);
 		}
 
 		if($l=~m/^double/){
 			$l=~s/\{/\;/;
 			$l=~s/\r*\n*//g;
 			$l=~s/$class\:\://;
-			push(@private,"   ".$l);
+			push(@private,"   static ".$l);
 		}
 	
 	}
@@ -50,9 +52,12 @@ sub processFile{
 	my $out;
 	open($out,">$dir$outFile");
 
+	print $out "#ifndef ".uc($class)."\r\n";
+	print $out "#define ".uc($class)."\r\n\r\n";
 	print $out "class $class\{\r\n   public:\r\n";
 	print $out join("\r\n",@public);
 	print $out "\r\n\r\n   private:\r\n";
 	print $out join("\r\n",@private);
-	print $out "\r\n};\r\n"
+	print $out "\r\n};\r\n";
+	print $out "#endif\r\n";
 }

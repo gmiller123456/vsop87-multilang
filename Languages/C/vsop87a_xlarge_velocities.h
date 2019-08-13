@@ -1,0 +1,14 @@
+#ifndef VSOP87A_XLARGE_VELOCITIES
+#define VSOP87A_XLARGE_VELOCITIES
+
+   void vsop87a_xlarge_velocities_getEarth(double t,double temp[]);
+   void vsop87a_xlarge_velocities_getEmb(double t,double temp[]);
+   void vsop87a_xlarge_velocities_getJupiter(double t,double temp[]);
+   void vsop87a_xlarge_velocities_getMars(double t,double temp[]);
+   void vsop87a_xlarge_velocities_getMercury(double t,double temp[]);
+   void vsop87a_xlarge_velocities_getNeptune(double t,double temp[]);
+   void vsop87a_xlarge_velocities_getSaturn(double t,double temp[]);
+   void vsop87a_xlarge_velocities_getUranus(double t,double temp[]);
+   void vsop87a_xlarge_velocities_getVenus(double t,double temp[]);
+   void vsop87a_xlarge_velocities_getMoon(double earth[], double emb[],double temp[]);
+#endif
