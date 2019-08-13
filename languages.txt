@@ -1,24 +1,26 @@
-* Java
-  C
-* C#
-* Python
-  C++
-* VB.Net
-* JavaScript
-  PHP
-  Ruby
-  Swift
-  Matlab/Octave
-  Groovy
-  Go
-  Pascal
-* Perl
-  R
-  Cobol
-  Fortran
-  Rust
-  Kotlin
-  Arduino
-  OpenCL
-  OpenGLES
-  Objective C
+Language     |Main Library|Validation Tests|Alt Az Example
+-------------|------------|----------------|--------------
+Java         |Yes         |Yes             |
+C            |Yes         |Yes             |
+C#           |Yes         |Yes             |
+Python       |Yes         |Yes             |
+C++          |            |                |
+VB.Net       |Yes         |Yes             |
+JavaScript   |Yes         |Yes             |
+PHP          |            |                |
+Ruby         |            |                |
+Swift        |            |                |
+Matlab/Octave|            |                |
+Groovy       |            |                |
+Go           |            |                |
+Pascal       |            |                |
+Perl         |Yes         |Yes             |
+R            |            |                |
+Cobol        |            |                |
+Fortran      |            |                |
+Rust         |            |                |
+Kotlin       |            |                |
+Arduino      |            |                |
+OpenCL       |            |                |
+OpenGLES     |            |                |
+Objective C  |            |                |
