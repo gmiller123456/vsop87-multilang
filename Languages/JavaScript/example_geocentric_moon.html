@@ -110,15 +110,19 @@ function rotvsop2J2000(x){
 }
 
 //Converts a Julian Date in UTC to TIA
-function convertUTCtoTAI(jd){
+function convertUTCtoTT(jd){
 	//32 leap seconds is hard coded as of Jan 2000, should be updated from the IERS website for other times
+	
+	//TAI = UTC + leap seconds (e.g. 32)
+	//TT=TAI + 32.184
+	
 	return jd + (32.0 + 32.184) / 24.0 / 60.0 / 60.0
 }
 
 function testMoon(){
 	const jd=2451545.000000; //Jan 1 2000, 12:00p UTC
-	const jdTAI = convertUTCtoTAI(jd);
-	let t = jd2et(jdTAI);
+	const jdTT = convertUTCtoTT(jd);
+	let t = jd2et(jdTT);
 	
 	//Get current position of Earth
 	const earth = vsop87a_full.getEarth(t);

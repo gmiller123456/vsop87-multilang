@@ -36,7 +36,7 @@ function jd2et(jd){
 
 }
 
-//Converts cartesian XYZ coordinates to polar (e.g. Right Accention and Declication)
+//Converts cartesian XYZ coordinates to polar (e.g. J2000 xyz to Right Accention and Declication)
 function toPolar(xyz){
 	let t = new Array();
 	t[0] = Math.sqrt(xyz[0] * xyz[0] + xyz[1] * xyz[1] + xyz[2] * xyz[2]);
@@ -117,8 +117,12 @@ function rotvsop2J2000(x){
 }
 
 //Converts a Julian Date in UTC to TIA
-function convertUTCtoTAI(jd){
+function convertUTCtoTT(jd){
 	//32 leap seconds is hard coded as of Jan 2000, should be updated from the IERS website for other times
+	
+	//TAI = UTC + leap seconds (e.g. 32)
+	//TT=TAI + 32.184
+
 	return jd + (32.0 + 32.184) / 24.0 / 60.0 / 60.0;
 }
 
@@ -187,12 +191,30 @@ function getObserverGeocentric(jd,lat,lon){
 	return r;
 }
 
+function convertRaDecToAltAz(jd,lat,lon,ra,dec){
+	/* From Meeus Astronomical Algorithms P93
+	H=GMST - lon - ra
+	tan(A)=sin(H)/(cos(H)*sin(lat)-tan(dec)*cos(lat));
+	sin(h)=sin(lat)*sin(dec)+cos(lat)*cos(dec)*cos(H);
+	*/
+	const GMST=getGMST(jd)*15.0*Math.PI/180.0;
+	const H=GMST + lon - ra;
+	console.log((GMST + lon)*180.0/Math.PI*24.0 % 24.0 + 24.0)
+	const A=Math.atan2(Math.sin(H),(Math.cos(H)*Math.sin(lat)-Math.tan(dec)*Math.cos(lat)));
+	const h=Math.asin(Math.sin(lat)*Math.sin(dec)+Math.cos(lat)*Math.cos(dec)*Math.cos(H));
+	
+	let t=new Array();
+	t[0]=A;
+	t[1]=h;
+	
+	return t;
+}
 
 
 function testMoon(){
 	const jd=2451545.000000;
 
-	const jdTAI = convertUTCtoTAI(jd);
+	const jdTAI = convertUTCtoTT(jd);
 	let t = jd2et(jdTAI);
 	
 	//Get current position of Earth
@@ -216,6 +238,7 @@ function testMoon(){
 	//Convert to Geocrntric position
 	moon = sub(moon, earth);
 	
+	//Rotate ecliptic coordinates to J2000 coordinates
 	moon = rotvsop2J2000(moon);
 
 	//Convert to topocentric
@@ -224,19 +247,17 @@ function testMoon(){
 	observerXYZ=getObserverGeocentric(jdTAI,lat,lon);
 	moon = sub(moon,observerXYZ);
 
-	//Rotate ecliptic coordinates to J2000 coordinates
-
-
-	moon = toPolar(moon);
-	//moon now holds the RA and DEC, display them in decimal and verbose form
+	//Convert to RA DEC
+	moonRaDec = toPolar(moon);
 	
-	
-	
+	displayPolar(moonRaDec);
 
-	displayPolar(moon);
-
-	displayHms(moon[2]);
-	displayDms(moon[1]);
+	displayHms(moonRaDec[2]);
+	displayDms(moonRaDec[1]);
+	
+	moonAltAz=convertRaDecToAltAz(jdTAI,lat*Math.PI/180.0,lon*Math.PI/180.0,moonRaDec[2],moonRaDec[1]);
+	displayDms(moonAltAz[0]);
+	displayDms(moonAltAz[1]);
 
 }
 
