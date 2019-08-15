@@ -25,6 +25,19 @@ $$SOE
 
 testMoon();
 
+/*
+console.log(getGMST(2446896.306250));
+var jd=2446896.306250;
+var lon=77.06555555555555*Math.PI/180.0;
+var lat=(38 + 55.0/60.0 + 17.0/60.0/60.0) * Math.PI/180.0
+var dec=(-6.0-43.0/60.0-11.61/60.0/60.0) * Math.PI/180.0
+var ra=(23+9.0/60.0+ 16.641/60.0/60.0) * 15 * Math.PI/180.0
+
+var a=convertRaDecToAltAz(jd,lat,lon,ra,dec);
+displayDms(a[0]);
+displayDms(a[1]);
+*/
+
 function display(s){
 	const o=document.getElementById("output");
 	o.innerHTML=o.innerHTML+s;
@@ -153,6 +166,7 @@ function getGMST(ut1){
 	const T = D/36525.0;
 
 	let GMST = ((24110.54841 + 8640184.812866*T + 0.093104*T*T - 6.2E-6*T*T*T)/60.0/60.0 + frac) % 24.0;
+	if(GMST<0)GMST+=24.0;
 	return GMST;
 	
 }
@@ -198,11 +212,17 @@ function convertRaDecToAltAz(jd,lat,lon,ra,dec){
 	sin(h)=sin(lat)*sin(dec)+cos(lat)*cos(dec)*cos(H);
 	*/
 	const GMST=getGMST(jd)*15.0*Math.PI/180.0;
-	const H=GMST + lon - ra;
-	console.log((GMST + lon)*180.0/Math.PI*24.0 % 24.0 + 24.0)
+	let H=GMST + lon - ra;
+
+	if(H<0){H+=2*Math.PI;}
+	console.log(((GMST + lon)*180/Math.PI/15)%24);
+
 	const A=Math.atan2(Math.sin(H),(Math.cos(H)*Math.sin(lat)-Math.tan(dec)*Math.cos(lat)));
 	const h=Math.asin(Math.sin(lat)*Math.sin(dec)+Math.cos(lat)*Math.cos(dec)*Math.cos(H));
 	
+	console.log("Az:"+(180+A*180.0/Math.PI));
+	console.log("Alt:"+h*180.0/Math.PI);
+
 	let t=new Array();
 	t[0]=A;
 	t[1]=h;
@@ -255,7 +275,7 @@ function testMoon(){
 	displayHms(moonRaDec[2]);
 	displayDms(moonRaDec[1]);
 	
-	moonAltAz=convertRaDecToAltAz(jdTAI,lat*Math.PI/180.0,lon*Math.PI/180.0,moonRaDec[2],moonRaDec[1]);
+	moonAltAz=convertRaDecToAltAz(jd,lat,lon,moonRaDec[2],moonRaDec[1]);
 	displayDms(moonAltAz[0]);
 	displayDms(moonAltAz[1]);
 
