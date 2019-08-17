@@ -54,8 +54,9 @@ class astrolib{
 	//Requires vsop87a_full.js, if you wish to use a different version of VSOP87, replace the class name vsop87a_full below
 	static getBody(bodyNum,et){
 		switch(bodyNum){
-			case 0: //Sun is at the center for vsop87a
-				return [0,0,0];
+			case 0: 
+				return [0,0,0]; //Sun is at the center for vsop87a
+				//return vsop87e_full.getSun(et);  // "E" is the only version the Sun is not always at [0,0,0]
 			case 1:
 				return vsop87a_full.getMercury(et);
 			case 2:
@@ -155,7 +156,7 @@ class astrolib{
 
 	//Converts a Julian Date in UTC to Terrestrial Time (TT)
 	static convertUTCtoTT(jd){
-		//32 leap seconds is hard coded as of Jan 2000, should be updated from the IERS website for other times
+		//Leap seconds are hard coded, should be updated from the IERS website for other times
 		
 		//TAI = UTC + leap seconds (e.g. 32)
 		//TT=TAI + 32.184
@@ -167,6 +168,7 @@ class astrolib{
 	//Convert Geodedic Lat Lon to geocentric XYZ position vector
 	//All angles are input as radians
 	static convertGeodedicLatLonToITRFXYZ(lat,lon,height){
+		//Algorithm from Explanatory Supplement to the Astronomical Almanac 3rd ed. P294
 		const a=6378136.6;
 		const f=1/298.25642;
 
@@ -199,6 +201,7 @@ class astrolib{
 	//(Remember to use UT1 for GAST, not ET)
 	//All angles are input and output as radians
 	static convertITRFToGCRS(r,ut1){
+		//This is a simple rotation matrix implemenation about the Z axis, rotation angle is -GMST
 
 		let GMST=astrolib.getGMST(ut1);
 		GMST=-GMST*15.0*Math.PI/180.0;
@@ -252,6 +255,67 @@ class astrolib{
 		t[1]=a;
 		
 		return t;
+	}
+
+	void iau2006_precession_matrix(jd,prec_matrix){
+		double t,psi,omega,chi,eps0,c1,c2,c3,c4,s1,s2,s3,s4;
+
+		const eps0 = 84381.406 * ACS_TO_RAD;
+		const t =(jd - 2451545.0)/36525.0;
+
+		const psi = ((5038.481507 +
+			(-1.0790069 +
+			(-0.00114045 +
+			(0.000132851 - 0.0000000951*t) * t) * t) * t) * t) * ACS_TO_RAD;
+
+		const omega = eps0 +
+			((-0.025754 +
+			(0.0512623 +
+			(-0.00772503 +
+			(-0.000000467 + 0.0000003337*t) * t) * t) * t) * t) * ACS_TO_RAD;
+
+		const chi = ((10.556403 +
+			(-2.3814292 +
+			(-0.00121197 +
+			(0.000170663 - 0.0000000560*t) * t) * t) * t) * t) * ACS_TO_RAD;
+
+		const s1=Math.sin(eps0);
+		const c1=Math.cos(eps0);
+		//sincos(eps0, &s1, &c1);
+
+		const s2=Math.sin(psi);
+		const c2=Math.cos(psi);
+		//sincos(psi, &s2, &c2);
+		s2 *= -1.0;
+
+		const s3=Math.sin(omega);
+		const c3=Math.cos(omega);
+		//sincos(omega, &s3, &c3);
+		s3 *= -1.0;
+
+		const s4=Math.sin(chi);
+		const c4=Math.cin(chi);
+		//sincos(chi, &s4, &c4);
+
+		prec_matrix[0][0] = (c4 * c2)-(s2 * s4 * c3);
+		prec_matrix[0][1] = (c4 * s2 * c1)+(s4 * c3 * c2 * c1)-(s1 * s4 * s3);
+		prec_matrix[0][2] = (c4 * s2 * s1)+(s4 * c3 * c2 * s1)+(c1 * s4 * s3);
+
+		prec_matrix[1][0] = -(s4 * c2)-(s2 * c4 * c3);
+		prec_matrix[1][1] = -(s4 * s2 * c1)+(c4 * c3 * c2 * c1)-(s1 * c4 * s3);
+		prec_matrix[1][2] = -(s4 * s2 * s1)+(c4 * c3 * c2 * s1)+(c1 * c4 * s3);
+
+		prec_matrix[2][0] = s2 * s3;
+		prec_matrix[2][1] = -(s3 * c2 * c1)-(s1 * c3);
+		prec_matrix[2][2] = -(s3 * c2 * s1)+(c3 * c1);
+
+
+		/* Just transpose the matrix for precession to J2000 */
+		//if (toJ2000) {
+		//	swap(&prec_matrix[0][1], &prec_matrix[1][0]);
+		//	swap(&prec_matrix[0][2], &prec_matrix[2][0]);
+		//	swap(&prec_matrix[1][2], &prec_matrix[2][1]);
+		//}
 	}
 
 }

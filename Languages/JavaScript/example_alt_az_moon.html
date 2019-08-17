@@ -2,7 +2,7 @@
 <head></head>
 <body>
 Simple example to compute the topocentric alt/az position of the moon.  Note the reduction algorithm
-used is not rigorous, it ignores several factors which will result in significant errors compared to other results.  However most
+used is not rigorous, it ignores several factors which will result in significant errors compared to other results.  However the largest
 of these errors are due to the movement of the observer (e.g. precession, aberation), so they do not have much effect on the
 objects' positions relative to each other.  E.g.  The first two entries in the table below are the Sun and Moon at the center
 of the Aug 17, 2017 solar eclipse.  Although the Al/Az positions differ by more than half a degree (the size of the sun and the moon),
@@ -33,7 +33,9 @@ const testPositions=[
 	[new Date(Date.UTC(2000,0, 1,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,222.80147, -11.57774, 146.3255,  33.6752],
 	[new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.MOON,38.2464000,274.236400,249.19588, -20.90403, 261.7692, -24.3259],
 	[new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,246.94086, -20.63461, 225.8216,  16.1806],
-	[new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.26304, -21.16206, 176.8474,  30.5797],
+
+	[new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.26297, -21.16207, 176.5762,  30.5684],
+
 	[new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.27987, -21.15939, 232.6292,  10.1502],
 	[new Date(Date.UTC(2010,8,25,0,0,0,0)),astrolib.SATURN,38.2464000,274.236400,187.14592 , -0.73332, 269.7883,  -1.0113]
 ];
@@ -43,7 +45,27 @@ for(let i=0;i<testPositions.length;i++){
 }
 
 
-function display(testData,RaDec,AltAz){1
+function testPosition(testData){
+
+	const date=testData[0];
+	const body=testData[1];
+	//All angles passed to Astrolib need to be in radians!!!!!
+	const lat=testData[2]*Math.PI/180;
+	const lon=testData[3]*Math.PI/180;
+
+	//Convert the JavaScript date to a Julian Date
+	const jd=astrolib.convertDateToJulianDate(date);
+
+	//Get the RA/Dec.  This call accounts for light time and parallax
+	const RaDec=astrolib.getBodyRaDec(jd,body,lat,lon);
+	
+	//Use RA/Dec from above to compute Alt/Az
+	const AltAz=astrolib.convertRaDecToAltAz(jd,lat,lon,RaDec[2],RaDec[1]);
+
+	display(testData,RaDec,AltAz);
+}
+
+function display(testData,RaDec,AltAz){
 	const o=document.getElementById("output");
 	let row=o.insertRow();
 	let c=row.insertCell();
@@ -83,33 +105,5 @@ function display(testData,RaDec,AltAz){1
 	c=row.insertCell();
 	c.innerHTML="&nbsp;";
 	c.colSpan=5;
-
 }
-
-
-function testPosition(testData){
-	//All angles passed to Astrolib need to be in radians!!!!!
-//	const lon=274.236400*Math.PI/180;
-//	const lat=38.2464000*Math.PI/180;
-
-	const date=testData[0];
-	const body=testData[1];
-	const lat=testData[2]*Math.PI/180;
-	const lon=testData[3]*Math.PI/180;
-
-	//Convert the JavaScript date to a Julian Date
-	const jd=astrolib.convertDateToJulianDate(date);
-
-	//Get the RA/Dec.  This call accounts for light time and parallax
-	const RaDec=astrolib.getBodyRaDec(jd,body,lat,lon);
-	
-	//Use RA/Dec from above to compute Alt/Az
-	const AltAz=astrolib.convertRaDecToAltAz(jd,lat,lon,RaDec[2],RaDec[1]);
-
-	display(testData,RaDec,AltAz);
-}
-
-
-
-
 </script></body></html>
