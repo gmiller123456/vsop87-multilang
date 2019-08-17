@@ -1,64 +1,112 @@
 ﻿<html>
 <head></head>
 <body>
-<h1>This example is still under development</h1>
-Simple example to compute the geocentric position of the moon.  Note the reduction algorithm
-used is not rigorous, it ignores several factors, like annual abberation, which will result in
-a error of many arc seconds.  This example requires vsop87a_full.js.<br><br>
-Result:
-<pre id="output"></pre>
-
-
-Values from JPL Horizons<br>
-<pre>
- Date__(UT)__HR:MN     R.A._(ICRF/J2000.0)_DEC R.A.__(a-apparent)__DEC Azi_(a-appr)_Elev L_Ap_Sid_Time   1-way_LT
-*****************************************************************************************************************
-$$SOE
- 2000-Jan-01 12:00 Nm  14 51 12.35 -11 34 39.9 14 51 10.74 -11 34 29.8 146.3255  33.6752 12 58 46.7852   0.022173
- 2000-Jan-01 12:00 Nm  222.80147   -11.57774   222.79477   -11.57495   146.3255  33.6752 12.9796625661   0.022173
-</pre>
-
+Simple example to compute the topocentric alt/az position of the moon.  Note the reduction algorithm
+used is not rigorous, it ignores several factors which will result in significant errors compared to other results.  However most
+of these errors are due to the movement of the observer (e.g. precession, aberation), so they do not have much effect on the
+objects' positions relative to each other.  E.g.  The first two entries in the table below are the Sun and Moon at the center
+of the Aug 17, 2017 solar eclipse.  Although the Al/Az positions differ by more than half a degree (the size of the sun and the moon),
+they still relatively agree with each other.  The Alt/Az positoins from JPL include precession, so switching to the VSOP87C version will
+provide better agreement with those numbers, but the "C" version does not include positons for the Moon.
+<br>
+<br>This example requires vsop87a_full.js and astrolib.js.<br><br>
+<table id="output" border=1 cellspacing=0></table>
 
 
 <script src="vsop87a_full.js"></script>
-<script src="example_lib.js"></script>
+<script src="astrolib.js"></script>
 <script>
 
-testPosition((new Date(Date.UTC(2000,0,1,12,0,0,0))));
+
+/*
+const d=astrolib.convertDateToJulianDate(new Date(Date.UTC(2020,3,11,16,0,0,0)));
+console.log(astrolib.toHmsString(astrolib.getGMST(d)*15.0*Math.PI/180.0));
+console.log(astrolib.toHmsString(astrolib.getGMST(2457936.5)*15.0*Math.PI/180.0));
+*/
+
+//Test data is from JPL Horizons, all for Louisville, KY USA
+//Format of the data: Date, Body, Latitude, Longitude, RA, DEC, Az, Alt
+const testPositions=[
+	[new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.SUN,36.9664, -87.6709,150.78827, 11.94484, 197.9394,  63.8956],
+	[new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.MOON,36.9664,-87.6709,150.78837, 11.94480, 197.9392,  63.8956],
+
+	[new Date(Date.UTC(2000,0, 1,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,222.80147, -11.57774, 146.3255,  33.6752],
+	[new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.MOON,38.2464000,274.236400,249.19588, -20.90403, 261.7692, -24.3259],
+	[new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,246.94086, -20.63461, 225.8216,  16.1806],
+	[new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.26304, -21.16206, 176.8474,  30.5797],
+	[new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.27987, -21.15939, 232.6292,  10.1502],
+	[new Date(Date.UTC(2010,8,25,0,0,0,0)),astrolib.SATURN,38.2464000,274.236400,187.14592 , -0.73332, 269.7883,  -1.0113]
+];
+
+for(let i=0;i<testPositions.length;i++){
+	testPosition(testPositions[i]);
+}
 
 
-function display(s){
+function display(testData,RaDec,AltAz){1
 	const o=document.getElementById("output");
-	o.innerHTML=o.innerHTML+s;
+	let row=o.insertRow();
+	let c=row.insertCell();
+	c.colSpan=4;
+	c.innerHTML=testData[0];
+	row.insertCell().innerHTML=astrolib.bodies[testData[1]];
+
+	row=o.insertRow();
+	row.insertCell().innerHTML="Source";
+	row.insertCell().innerHTML="RA";
+	row.insertCell().innerHTML="Dec";
+	row.insertCell().innerHTML="Az";
+	row.insertCell().innerHTML="Alt";
+
+	row=o.insertRow();
+	row.insertCell().innerHTML="JPL";
+	row.insertCell().innerHTML=testData[4];
+	row.insertCell().innerHTML=testData[5];
+	row.insertCell().innerHTML=testData[6];
+	row.insertCell().innerHTML=testData[7];
+
+	row=o.insertRow();
+	row.insertCell().innerHTML="VSOP87";
+	row.insertCell().innerHTML=RaDec[2] * 180.0/Math.PI;
+	row.insertCell().innerHTML=RaDec[1] * 180.0/Math.PI;
+	row.insertCell().innerHTML=AltAz[0] * 180.0/Math.PI;
+	row.insertCell().innerHTML=AltAz[1] * 180.0/Math.PI;
+
+	row=o.insertRow();
+	row.insertCell().innerHTML="Diff";
+	row.insertCell().innerHTML=Math.abs(testData[4] - RaDec[2] * 180.0/Math.PI);
+	row.insertCell().innerHTML=Math.abs(testData[5] - RaDec[1] * 180.0/Math.PI);
+	row.insertCell().innerHTML=Math.abs(testData[6] - AltAz[0] * 180.0/Math.PI);
+	row.insertCell().innerHTML=Math.abs(testData[7] - AltAz[1] * 180.0/Math.PI);
+
+	row=o.insertRow();
+	c=row.insertCell();
+	c.innerHTML="&nbsp;";
+	c.colSpan=5;
+
 }
 
 
-function displayRADec(b){
-	let temp=b[2];
-	if(temp<0) temp+=2*Math.PI;
-	const ra=(temp * 180 / Math.PI);
-	const dec=(b[1] * 180 / Math.PI);
-	display("RA:"+ra + "\r\n");
-	display("DEC:"+dec + "\r\n");
-}
+function testPosition(testData){
+	//All angles passed to Astrolib need to be in radians!!!!!
+//	const lon=274.236400*Math.PI/180;
+//	const lat=38.2464000*Math.PI/180;
 
-function testPosition(date){
-	//All angles need to be in radians!!!!!
-	const lon=274.236400*Math.PI/180;
-	const lat=38.2464000*Math.PI/180;
+	const date=testData[0];
+	const body=testData[1];
+	const lat=testData[2]*Math.PI/180;
+	const lon=testData[3]*Math.PI/180;
 
+	//Convert the JavaScript date to a Julian Date
 	const jd=astrolib.convertDateToJulianDate(date);
-	const moonRaDec=astrolib.getBodyRaDec(jd,10,lat,lon);
-	
-	displayRADec(moonRaDec);
 
-	display("RA :"+astrolib.toHmsString(moonRaDec[2]));
-	display("DEC:"+astrolib.toDmsString(moonRaDec[1]));
+	//Get the RA/Dec.  This call accounts for light time and parallax
+	const RaDec=astrolib.getBodyRaDec(jd,body,lat,lon);
 	
-	//Convert to Alt Az using the topocentric RA and Dec coordinates
-	moonAltAz=astrolib.convertRaDecToAltAz(jd,lat,lon,moonRaDec[2],moonRaDec[1]);
-	display("Alt: "+(moonAltAz[1] * 180 / Math.PI)+"\r\n");
-	display("AZ : "+(moonAltAz[0] * 180 / Math.PI)+"\r\n");
+	//Use RA/Dec from above to compute Alt/Az
+	const AltAz=astrolib.convertRaDecToAltAz(jd,lat,lon,RaDec[2],RaDec[1]);
+
+	display(testData,RaDec,AltAz);
 }
 
 

@@ -5,13 +5,14 @@ Released as public domain
 */
 
 class astrolib{
+
 	//Returns an array containing the distance, declination, and right ascension (in that order) in radians.
-	//BodyNum is passed to getBody() function below, see it for which body number to supply.
+	//BodyNum is passed to getBody() function below, see it for which body number to supply.  Constants appear at the end of this file
 	//The positions are adjusted for the parallax of the Earth, and the offset of the observer from the Earth's center
 	//All input and output angles are in radians!
 	static getBodyRaDec(jd,bodyNum,lat,lon){
-		const jdTAI = astrolib.convertUTCtoTT(jd);
-		let t = astrolib.convertJDToJulianCenturiesSinceJ2000(jdTAI);
+		const jdTT = astrolib.convertUTCtoTT(jd);
+		let t = astrolib.convertJDToJulianCenturiesSinceJ2000(jdTT);
 		
 		//Get current position of Earth
 		const earth = astrolib.getBody(3,t);
@@ -37,13 +38,14 @@ class astrolib{
 		body = astrolib.rotvsop2J2000(body);
 
 		//Convert to topocentric
-		const observerXYZ=astrolib.getObserverGeocentric(jdTAI,lat,lon);
+		const observerXYZ=astrolib.getObserverGeocentric(jdTT,lat,lon);
 		body = astrolib.sub(body,observerXYZ);
 
 		//Convert to topocentric RA DEC by converting from cartesian coordinates to polar coordinates
 		let RaDec = astrolib.toPolar(body);
 		
-		RaDec[1]=Math.PI/2.0-RaDec[1];  //Offset to make 0 the equator, and the poles +/-90 deg
+		RaDec[1]=Math.PI/2.0-RaDec[1];  //Dec.  Offset to make 0 the equator, and the poles +/-90 deg
+		if(RaDec[2]<0){RaDec[2]+=2*Math.PI;} //Ensure RA is positive
 		
 		return(RaDec);
 	}
@@ -71,9 +73,11 @@ class astrolib{
 			case 8:
 				return vsop87a_full.getNeptune(et);
 			case 9:
+				//return [0,0,0]; //Vsop87a is the only version which can compute the moon
 				return vsop87a_full.getEmb(et);
 			case 10:
-				return vsop87a_full.getMoon(vsop87a_full.getEarth(et), vsop87a_full.getEmb(et))
+				//return [0,0,0]; //Vsop87a is the only version which can compute the moon
+				return vsop87a_full.getMoon(vsop87a_full.getEarth(et), vsop87a_full.getEmb(et));
 		}
 	}
 
@@ -156,7 +160,8 @@ class astrolib{
 		//TAI = UTC + leap seconds (e.g. 32)
 		//TT=TAI + 32.184
 
-		return jd + (32.0 + 32.184) / 24.0 / 60.0 / 60.0;
+		//return jd + (32.0 + 32.184) / 24.0 / 60.0 / 60.0;
+		return jd + (37.0 + 32.184) / 24.0 / 60.0 / 60.0;
 	}
 
 	//Convert Geodedic Lat Lon to geocentric XYZ position vector
@@ -183,7 +188,8 @@ class astrolib{
 	static getGMST(ut1){
 		const D=ut1 - 2451545.0;
 		const T = D/36525.0;
-		const gmst = 280.46061837 + 360.98564736629*D + 0.000387933*T*T - T*T*T/38710000.0;
+		let gmst = (280.46061837 + 360.98564736629*D + 0.000387933*T*T - T*T*T/38710000.0) %360.0;
+		if(gmst<0){gmst+=360;}
 		return gmst/15;
 
 	}
@@ -235,8 +241,11 @@ class astrolib{
 		const sina=Math.sin(dec)*Math.sin(lat)+Math.cos(dec)*Math.cos(h)*Math.cos(lat);
 		const a=Math.asin(sina);
 
-		const cosAz=(Math.sin(dec)-Math.sin(a)*Math.sin(lat))/(Math.cos(a)*Math.cos(lat));
-		const Az=Math.acos(cosAz);
+		//const cosAz=(Math.sin(dec)-Math.sin(a)*Math.sin(lat))/(Math.cos(a)*Math.cos(lat));
+		const cosAz=(Math.sin(dec)*Math.cos(lat)-Math.cos(dec)*Math.cos(h)*Math.sin(lat))/Math.cos(a);
+		let Az=Math.acos(cosAz);
+
+		if(Math.sin(h)>0){Az=2.0*Math.PI-Az;}
 
 		let t=new Array();
 		t[0]=Az;
@@ -246,3 +255,17 @@ class astrolib{
 	}
 
 }
+
+astrolib.SUN=0;
+astrolib.MERCURY=1;
+astrolib.VENUS=2;
+astrolib.EARTH=3;
+astrolib.MARS=4;
+astrolib.JUPITER=5;
+astrolib.SATURN=6;
+astrolib.URANUS=7;
+astrolib.NEPTUNE=8;
+astrolib.EMB=9;
+astrolib.MOON=10;
+
+astrolib.bodies=["Sun","Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune","Earth-Moon Barrycenter","Moon"];
