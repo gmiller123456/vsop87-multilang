@@ -5,7 +5,7 @@ Simple example to compute the topocentric alt/az position of the moon.  Note the
 used is not rigorous, it ignores several factors which will result in significant errors compared to other results.  However the largest
 of these errors are due to the movement of the observer (e.g. precession, aberation), so they do not have much effect on the
 objects' positions relative to each other.  E.g.  The first two entries in the table below are the Sun and Moon at the center
-of the Aug 17, 2017 solar eclipse.  Although the Al/Az positions differ by more than half a degree (the size of the sun and the moon),
+of the Aug 17, 2017 solar eclipse.  Although the Al/Az positions differ from the JPL values by more than half a degree (the size of the sun and the moon),
 they still relatively agree with each other.  The Alt/Az positoins from JPL include precession, so switching to the VSOP87C version will
 provide better agreement with those numbers, but the "C" version does not include positons for the Moon.
 <br>
@@ -24,26 +24,85 @@ console.log(astrolib.toHmsString(astrolib.getGMST(d)*15.0*Math.PI/180.0));
 console.log(astrolib.toHmsString(astrolib.getGMST(2457936.5)*15.0*Math.PI/180.0));
 */
 
-//Test data is from JPL Horizons, all for Louisville, KY USA
-//Format of the data: Date, Body, Latitude, Longitude, RA, DEC, Az, Alt
-const testPositions=[
-	[new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.SUN,36.9664, -87.6709,150.78827, 11.94484, 197.9394,  63.8956],
-	[new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.MOON,36.9664,-87.6709,150.78837, 11.94480, 197.9392,  63.8956],
+precess(astrolib.convertDateToJulianDate(new Date(Date.UTC(2000,0, 1,12,0,0,0))),0,0);
+runTests();
 
-	[new Date(Date.UTC(2000,0, 1,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,222.80147, -11.57774, 146.3255,  33.6752],
-	[new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.MOON,38.2464000,274.236400,249.19588, -20.90403, 261.7692, -24.3259],
-	[new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,246.94086, -20.63461, 225.8216,  16.1806],
+function runTests(){
+	//Test data is from JPL Horizons, all for Louisville, KY USA
+	//Format of the data: Date, Body, Latitude, Longitude, RA, DEC, Az, Alt
+	const testPositions=[
+		[new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.SUN,36.9664, -87.6709,150.78827, 11.94484, 197.9394,  63.8956],
+		[new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.MOON,36.9664,-87.6709,150.78837, 11.94480, 197.9392,  63.8956],
 
-	[new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.26297, -21.16207, 176.5762,  30.5684],
+		[new Date(Date.UTC(2000,0, 1,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,222.80147, -11.57774, 146.3255,  33.6752],
+		[new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.MOON,38.2464000,274.236400,249.19588, -20.90403, 261.7692, -24.3259],
+		[new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,246.94086, -20.63461, 225.8216,  16.1806],
 
-	[new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.27987, -21.15939, 232.6292,  10.1502],
-	[new Date(Date.UTC(2010,8,25,0,0,0,0)),astrolib.SATURN,38.2464000,274.236400,187.14592 , -0.73332, 269.7883,  -1.0113]
-];
+		[new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.26297, -21.16207, 176.5762,  30.5684],
 
-for(let i=0;i<testPositions.length;i++){
-	testPosition(testPositions[i]);
+		[new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.27987, -21.15939, 232.6292,  10.1502],
+		[new Date(Date.UTC(2010,8,25,0,0,0,0)),astrolib.SATURN,38.2464000,274.236400,187.14592 , -0.73332, 269.7883,  -1.0113]
+	];
+
+	for(let i=0;i<testPositions.length;i++){
+		testPosition(testPositions[i]);
+	}
 }
 
+function precess(jd,ra,dec){
+	const T0=(jd - 2451545.0) / 365250.0;
+	const t=(jd - 2451545.0) / 365250.0;
+
+     AS2R=0.4848136811095359949E-5;
+
+     TAS2R = t*AS2R
+     W = 2306.2181+(1.39656-0.000139*T0)*T0
+
+     zeta = (W+((0.30188-0.000344*T0)+0.017998*t)*t)*TAS2R
+
+     eta = (W+((1.09468+0.000066*T0)+0.018203*t)*t)*TAS2R
+
+     theta = ((2004.3109+(-0.85330-0.000217*T0)*T0)+
+             ((-0.42665-0.000217*T0)-0.041833*t)*t)*TAS2R
+
+	A = Math.cos (dec) * Math.sin (ra + zeta);
+	B = Math.cos (theta) * Math.cos (dec) * Math.cos (ra + zeta) - Math.sin (theta) * Math.sin (dec);
+	C = Math.sin (theta) * Math.cos (dec) * Math.cos (ra + zeta) + Math.cos (theta) * Math.sin (dec);
+
+	pra = Math.atan2 (A,B) + eta;
+	pdec = Math.asin (C);
+
+	const r=new Array();
+	r[0]=pra;
+	r[1]=pdec;
+	//r[0]=ra;
+	//r[1]=dec;
+	return r;
+	
+}
+
+function precess2(jd,ra,dec){
+	const T=(jd - 2451545.0) / 365250.0;
+	const m=(3.07496+0.00186*T)/15.0/60.0/60.0*Math.PI/180;
+	const n=(1.33621-0.00057*T)/15.0/60.0/60.0*Math.PI/180;
+	const n2=(20.0431-0.0085*T)/60.0/60.0*Math.PI/180;
+
+//console.log(m*180.0/Math.PI*15*60*60);
+//console.log(n*180.0/Math.PI*15*60*60);
+//console.log(n2*180.0/Math.PI);
+
+
+	const dr=m+n*Math.sin(ra)*Math.tan(dec);
+	const dd=n2*Math.cos(ra);
+
+	const r=new Array();
+	r[0]=ra+dr;
+	r[1]=dec+dd;
+	console.log(dr*60*60+","+dd*60*60*15);
+	console.log(r);
+	return r;
+
+}
 
 function testPosition(testData){
 
@@ -58,9 +117,12 @@ function testPosition(testData){
 
 	//Get the RA/Dec.  This call accounts for light time and parallax
 	const RaDec=astrolib.getBodyRaDec(jd,body,lat,lon);
-	
+
+	const meanRaDec=precess(jd,RaDec[2],RaDec[1]);
+
 	//Use RA/Dec from above to compute Alt/Az
-	const AltAz=astrolib.convertRaDecToAltAz(jd,lat,lon,RaDec[2],RaDec[1]);
+	//const AltAz=astrolib.convertRaDecToAltAz(jd,lat,lon,RaDec[2],RaDec[1]);
+	const AltAz=astrolib.convertRaDecToAltAz(jd,lat,lon,meanRaDec[0],meanRaDec[1]);
 
 	display(testData,RaDec,AltAz);
 }

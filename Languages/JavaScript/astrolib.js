@@ -257,8 +257,9 @@ class astrolib{
 		return t;
 	}
 
-	void iau2006_precession_matrix(jd,prec_matrix){
-		double t,psi,omega,chi,eps0,c1,c2,c3,c4,s1,s2,s3,s4;
+	static iau2006_precession_matrix(jd){
+		//double t,psi,omega,chi,eps0,c1,c2,c3,c4,s1,s2,s3,s4;
+		const ACS_TO_RAD=4.84814e-6;
 
 		const eps0 = 84381.406 * ACS_TO_RAD;
 		const t =(jd - 2451545.0)/36525.0;
@@ -283,19 +284,24 @@ class astrolib{
 		const c1=Math.cos(eps0);
 		//sincos(eps0, &s1, &c1);
 
-		const s2=Math.sin(psi);
+		let s2=Math.sin(psi);
 		const c2=Math.cos(psi);
 		//sincos(psi, &s2, &c2);
 		s2 *= -1.0;
 
-		const s3=Math.sin(omega);
+		let s3=Math.sin(omega);
 		const c3=Math.cos(omega);
 		//sincos(omega, &s3, &c3);
 		s3 *= -1.0;
 
 		const s4=Math.sin(chi);
-		const c4=Math.cin(chi);
+		const c4=Math.cos(chi);
 		//sincos(chi, &s4, &c4);
+
+		let prec_matrix=new Array();
+		prec_matrix[0]=new Array();
+		prec_matrix[1]=new Array();
+		prec_matrix[2]=new Array();
 
 		prec_matrix[0][0] = (c4 * c2)-(s2 * s4 * c3);
 		prec_matrix[0][1] = (c4 * s2 * c1)+(s4 * c3 * c2 * c1)-(s1 * s4 * s3);
@@ -308,6 +314,8 @@ class astrolib{
 		prec_matrix[2][0] = s2 * s3;
 		prec_matrix[2][1] = -(s3 * c2 * c1)-(s1 * c3);
 		prec_matrix[2][2] = -(s3 * c2 * s1)+(c3 * c1);
+
+		return prec_matrix;
 
 
 		/* Just transpose the matrix for precession to J2000 */

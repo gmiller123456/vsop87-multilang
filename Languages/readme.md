@@ -8,7 +8,7 @@ C#           |Yes         |Pass            |
 Python       |Yes         |Pass            |
 C++          |Yes         |Pass            |
 VB.Net       |Yes         |Pass            |
-JavaScript   |Yes         |Pass            |Working
+JavaScript   |Yes         |Pass            |In Progress
 PHP          |            |                |
 Ruby         |            |                |
 Swift        |            |                |
