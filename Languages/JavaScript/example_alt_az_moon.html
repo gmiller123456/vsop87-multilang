@@ -30,14 +30,14 @@ function runTests(){
 	//Test data is from JPL Horizons, all for Louisville, KY USA
 	//Format of the data: Date, Body, Latitude, Longitude, RA, DEC, Az, Alt
 	
-	//testPosition(new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.SUN,36.9664, -87.6709,150.78827, 11.94484, 197.9394,  63.8956);
-	//testPosition(new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.MOON,36.9664,-87.6709,150.78837, 11.94480, 197.9392,  63.8956);
+	testPosition(new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.SUN,36.9664, -87.6709,150.78827, 11.94484, 197.9394,  63.8956);
+	testPosition(new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.MOON,36.9664,-87.6709,150.78837, 11.94480, 197.9392,  63.8956);
 	testPosition(new Date(Date.UTC(2000,0, 1,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,222.80147, -11.57774, 146.3255,  33.6752);
-	//testPosition(new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.MOON,38.2464000,274.236400,249.19588, -20.90403, 261.7692, -24.3259);
-	//testPosition(new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,246.94086, -20.63461, 225.8216,  16.1806);
-	//testPosition(new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.26297, -21.16207, 176.5762,  30.5684);
-	//testPosition(new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.27987, -21.15939, 232.6292,  10.1502);
-	//testPosition(new Date(Date.UTC(2010,8,25,0,0,0,0)),astrolib.SATURN,38.2464000,274.236400,187.14592 , -0.73332, 269.7883,  -1.0113);
+	testPosition(new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.MOON,38.2464000,274.236400,249.19588, -20.90403, 261.7692, -24.3259);
+	testPosition(new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,246.94086, -20.63461, 225.8216,  16.1806);
+	testPosition(new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.26297, -21.16207, 176.5762,  30.5684);
+	testPosition(new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.27987, -21.15939, 232.6292,  10.1502);
+	testPosition(new Date(Date.UTC(2010,8,25,0,0,0,0)),astrolib.SATURN,38.2464000,274.236400,187.14592 , -0.73332, 269.7883,  -1.0113);
 }
 
 function testPosition(date,body,lat,lon,ra,dec,alt,az){
