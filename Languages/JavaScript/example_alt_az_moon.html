@@ -29,32 +29,22 @@ runTests();
 function runTests(){
 	//Test data is from JPL Horizons, all for Louisville, KY USA
 	//Format of the data: Date, Body, Latitude, Longitude, RA, DEC, Az, Alt
-	const testPositions=[
-		[new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.SUN,36.9664, -87.6709,150.78827, 11.94484, 197.9394,  63.8956],
-		[new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.MOON,36.9664,-87.6709,150.78837, 11.94480, 197.9392,  63.8956],
-
-		[new Date(Date.UTC(2000,0, 1,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,222.80147, -11.57774, 146.3255,  33.6752],
-		[new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.MOON,38.2464000,274.236400,249.19588, -20.90403, 261.7692, -24.3259],
-		[new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,246.94086, -20.63461, 225.8216,  16.1806],
-
-		[new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.26297, -21.16207, 176.5762,  30.5684],
-
-		[new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.27987, -21.15939, 232.6292,  10.1502],
-		[new Date(Date.UTC(2010,8,25,0,0,0,0)),astrolib.SATURN,38.2464000,274.236400,187.14592 , -0.73332, 269.7883,  -1.0113]
-	];
-
-	for(let i=0;i<testPositions.length;i++){
-		testPosition(testPositions[i]);
-	}
+	
+	//testPosition(new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.SUN,36.9664, -87.6709,150.78827, 11.94484, 197.9394,  63.8956);
+	//testPosition(new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.MOON,36.9664,-87.6709,150.78837, 11.94480, 197.9392,  63.8956);
+	testPosition(new Date(Date.UTC(2000,0, 1,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,222.80147, -11.57774, 146.3255,  33.6752);
+	//testPosition(new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.MOON,38.2464000,274.236400,249.19588, -20.90403, 261.7692, -24.3259);
+	//testPosition(new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,246.94086, -20.63461, 225.8216,  16.1806);
+	//testPosition(new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.26297, -21.16207, 176.5762,  30.5684);
+	//testPosition(new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.27987, -21.15939, 232.6292,  10.1502);
+	//testPosition(new Date(Date.UTC(2010,8,25,0,0,0,0)),astrolib.SATURN,38.2464000,274.236400,187.14592 , -0.73332, 269.7883,  -1.0113);
 }
 
-function testPosition(testData){
+function testPosition(date,body,lat,lon,ra,dec,alt,az){
 
-	const date=testData[0];
-	const body=testData[1];
 	//All angles passed to Astrolib need to be in radians!!!!!
-	const lat=testData[2]*Math.PI/180;
-	const lon=testData[3]*Math.PI/180;
+	lat=lat*Math.PI/180;
+	lon=lon*Math.PI/180;
 
 	//Convert the JavaScript date to a Julian Date
 	const jd=astrolib.convertDateToJulianDate(date);
@@ -65,16 +55,16 @@ function testPosition(testData){
 	//Use RA/Dec from above to compute Alt/Az
 	const AltAz=astrolib.convertRaDecToAltAz(jd,lat,lon,RaDec[2],RaDec[1]);
 
-	display(testData,RaDec,AltAz);
+	display(date,body,ra,dec,alt,az,RaDec,AltAz);
 }
 
-function display(testData,RaDec,AltAz){
+function display(date,body,ra,dec,alt,az,RaDec,AltAz){
 	const o=document.getElementById("output");
 	let row=o.insertRow();
 	let c=row.insertCell();
 	c.colSpan=4;
-	c.innerHTML=testData[0];
-	row.insertCell().innerHTML=astrolib.bodies[testData[1]];
+	c.innerHTML=date;
+	row.insertCell().innerHTML=astrolib.bodies[body];
 
 	row=o.insertRow();
 	row.insertCell().innerHTML="Source";
@@ -85,10 +75,10 @@ function display(testData,RaDec,AltAz){
 
 	row=o.insertRow();
 	row.insertCell().innerHTML="JPL";
-	row.insertCell().innerHTML=testData[4];
-	row.insertCell().innerHTML=testData[5];
-	row.insertCell().innerHTML=testData[6];
-	row.insertCell().innerHTML=testData[7];
+	row.insertCell().innerHTML=ra;
+	row.insertCell().innerHTML=dec;
+	row.insertCell().innerHTML=alt;
+	row.insertCell().innerHTML=az;
 
 	row=o.insertRow();
 	row.insertCell().innerHTML="VSOP87";
@@ -99,10 +89,10 @@ function display(testData,RaDec,AltAz){
 
 	row=o.insertRow();
 	row.insertCell().innerHTML="Diff";
-	row.insertCell().innerHTML=Math.abs(testData[4] - RaDec[2] * 180.0/Math.PI);
-	row.insertCell().innerHTML=Math.abs(testData[5] - RaDec[1] * 180.0/Math.PI);
-	row.insertCell().innerHTML=Math.abs(testData[6] - AltAz[0] * 180.0/Math.PI);
-	row.insertCell().innerHTML=Math.abs(testData[7] - AltAz[1] * 180.0/Math.PI);
+	row.insertCell().innerHTML=Math.abs(ra - RaDec[2] * 180.0/Math.PI);
+	row.insertCell().innerHTML=Math.abs(dec - RaDec[1] * 180.0/Math.PI);
+	row.insertCell().innerHTML=Math.abs(alt - AltAz[0] * 180.0/Math.PI);
+	row.insertCell().innerHTML=Math.abs(az - AltAz[1] * 180.0/Math.PI);
 
 	row=o.insertRow();
 	c=row.insertCell();

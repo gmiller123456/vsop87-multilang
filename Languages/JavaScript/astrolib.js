@@ -12,25 +12,23 @@ class astrolib{
 	//All input and output angles are in radians!
 	static getBodyRaDec(jd,bodyNum,lat,lon){
 		const jdTT = astrolib.convertUTCtoTT(jd);
-		let t = astrolib.convertJDToJulianCenturiesSinceJ2000(jdTT);
+		let t = astrolib.convertJDToJulianMilleniaSinceJ2000(jdTT);
 		
 		//Get current position of Earth
 		const earth = astrolib.getBody(3,t);
-		
 		//Get current position of body
 		let body = astrolib.getBody(bodyNum,t);
 
 		//Calculate light time to body
 		body = astrolib.sub(body, earth);
 		let distance = Math.sqrt(body[0] * body[0] + body[1] * body[1] + body[2] * body[2]);
-		distance*=1.496e+11 //Convert from AU to meters
+		distance*=1.496e+11; //Convert from AU to meters
 		const lightTime=distance/299792458.0;
 
-		//Convert light time to Julian Centuries, and subtract it from the original value of t
+		//Convert light time to Julian Millenia, and subtract it from the original value of t
 		t-=lightTime / 24.0 / 60.0 / 60.0 / 365250.0;  
 		//Recalculate body position adjusted for light time
 		body = astrolib.getBody(bodyNum,t);
-		
 		//Convert to Geocrntric position
 		body = astrolib.sub(body, earth);
 		
@@ -39,6 +37,7 @@ class astrolib{
 
 		//Convert to topocentric
 		const observerXYZ=astrolib.getObserverGeocentric(jdTT,lat,lon);
+
 		body = astrolib.sub(body,observerXYZ);
 
 		//Convert to topocentric RA DEC by converting from cartesian coordinates to polar coordinates
@@ -88,8 +87,8 @@ class astrolib{
 	}
 
 
-	//Converts a Julan Date to Julian centuries since J2000, which is what VSOP expects as input
-	static convertJDToJulianCenturiesSinceJ2000(jd){
+	//Converts a Julan Date to Julian Millenia since J2000, which is what VSOP expects as input
+	static convertJDToJulianMilleniaSinceJ2000(jd){
 		return (jd - 2451545.0) / 365250.0;
 	}
 
@@ -239,6 +238,7 @@ class astrolib{
 	//All angles are input and output as radians
 	static convertRaDecToAltAz(jd,lat,lon,ra,dec){
 		const GMST=astrolib.getGMST(jd)*Math.PI/180.0*15.0;
+console.log(GMST);
 		let h=GMST + lon - ra;
 		
 		const sina=Math.sin(dec)*Math.sin(lat)+Math.cos(dec)*Math.cos(h)*Math.cos(lat);
