@@ -3,7 +3,7 @@
 classdef vsop87d_xlarge_velocities
    methods(Static)
    function retval=getEarth(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_xlarge_velocities.earth_l(t) / 365250.0;
       temp(1+1)=vsop87d_xlarge_velocities.earth_b(t) / 365250.0;
       temp(2+1)=vsop87d_xlarge_velocities.earth_r(t) / 365250.0;
@@ -11,7 +11,7 @@ classdef vsop87d_xlarge_velocities
    end
 
    function retval=getJupiter(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_xlarge_velocities.jupiter_l(t) / 365250.0;
       temp(1+1)=vsop87d_xlarge_velocities.jupiter_b(t) / 365250.0;
       temp(2+1)=vsop87d_xlarge_velocities.jupiter_r(t) / 365250.0;
@@ -19,7 +19,7 @@ classdef vsop87d_xlarge_velocities
    end
 
    function retval=getMars(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_xlarge_velocities.mars_l(t) / 365250.0;
       temp(1+1)=vsop87d_xlarge_velocities.mars_b(t) / 365250.0;
       temp(2+1)=vsop87d_xlarge_velocities.mars_r(t) / 365250.0;
@@ -27,7 +27,7 @@ classdef vsop87d_xlarge_velocities
    end
 
    function retval=getMercury(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_xlarge_velocities.mercury_l(t) / 365250.0;
       temp(1+1)=vsop87d_xlarge_velocities.mercury_b(t) / 365250.0;
       temp(2+1)=vsop87d_xlarge_velocities.mercury_r(t) / 365250.0;
@@ -35,7 +35,7 @@ classdef vsop87d_xlarge_velocities
    end
 
    function retval=getNeptune(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_xlarge_velocities.neptune_l(t) / 365250.0;
       temp(1+1)=vsop87d_xlarge_velocities.neptune_b(t) / 365250.0;
       temp(2+1)=vsop87d_xlarge_velocities.neptune_r(t) / 365250.0;
@@ -43,7 +43,7 @@ classdef vsop87d_xlarge_velocities
    end
 
    function retval=getSaturn(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_xlarge_velocities.saturn_l(t) / 365250.0;
       temp(1+1)=vsop87d_xlarge_velocities.saturn_b(t) / 365250.0;
       temp(2+1)=vsop87d_xlarge_velocities.saturn_r(t) / 365250.0;
@@ -51,7 +51,7 @@ classdef vsop87d_xlarge_velocities
    end
 
    function retval=getUranus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_xlarge_velocities.uranus_l(t) / 365250.0;
       temp(1+1)=vsop87d_xlarge_velocities.uranus_b(t) / 365250.0;
       temp(2+1)=vsop87d_xlarge_velocities.uranus_r(t) / 365250.0;
@@ -59,7 +59,7 @@ classdef vsop87d_xlarge_velocities
    end
 
    function retval=getVenus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_xlarge_velocities.venus_l(t) / 365250.0;
       temp(1+1)=vsop87d_xlarge_velocities.venus_b(t) / 365250.0;
       temp(2+1)=vsop87d_xlarge_velocities.venus_r(t) / 365250.0;

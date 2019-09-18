@@ -3,7 +3,7 @@
 classdef vsop87d_milli
    methods(Static)
    function retval=getEarth(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_milli.earth_l(t);
       temp(1+1)=vsop87d_milli.earth_b(t);
       temp(2+1)=vsop87d_milli.earth_r(t);
@@ -11,7 +11,7 @@ classdef vsop87d_milli
    end
 
    function retval=getJupiter(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_milli.jupiter_l(t);
       temp(1+1)=vsop87d_milli.jupiter_b(t);
       temp(2+1)=vsop87d_milli.jupiter_r(t);
@@ -19,7 +19,7 @@ classdef vsop87d_milli
    end
 
    function retval=getMars(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_milli.mars_l(t);
       temp(1+1)=vsop87d_milli.mars_b(t);
       temp(2+1)=vsop87d_milli.mars_r(t);
@@ -27,7 +27,7 @@ classdef vsop87d_milli
    end
 
    function retval=getMercury(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_milli.mercury_l(t);
       temp(1+1)=vsop87d_milli.mercury_b(t);
       temp(2+1)=vsop87d_milli.mercury_r(t);
@@ -35,7 +35,7 @@ classdef vsop87d_milli
    end
 
    function retval=getNeptune(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_milli.neptune_l(t);
       temp(1+1)=vsop87d_milli.neptune_b(t);
       temp(2+1)=vsop87d_milli.neptune_r(t);
@@ -43,7 +43,7 @@ classdef vsop87d_milli
    end
 
    function retval=getSaturn(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_milli.saturn_l(t);
       temp(1+1)=vsop87d_milli.saturn_b(t);
       temp(2+1)=vsop87d_milli.saturn_r(t);
@@ -51,7 +51,7 @@ classdef vsop87d_milli
    end
 
    function retval=getUranus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_milli.uranus_l(t);
       temp(1+1)=vsop87d_milli.uranus_b(t);
       temp(2+1)=vsop87d_milli.uranus_r(t);
@@ -59,7 +59,7 @@ classdef vsop87d_milli
    end
 
    function retval=getVenus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87d_milli.venus_l(t);
       temp(1+1)=vsop87d_milli.venus_b(t);
       temp(2+1)=vsop87d_milli.venus_r(t);

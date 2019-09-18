@@ -3,7 +3,7 @@
 classdef vsop87a_xsmall_velocities
    methods(Static)
    function retval=getEarth(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall_velocities.earth_x(t) / 365250.0;
       temp(1+1)=vsop87a_xsmall_velocities.earth_y(t) / 365250.0;
       temp(2+1)=vsop87a_xsmall_velocities.earth_z(t) / 365250.0;
@@ -11,7 +11,7 @@ classdef vsop87a_xsmall_velocities
    end
 
    function retval=getEmb(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall_velocities.emb_x(t) / 365250.0;
       temp(1+1)=vsop87a_xsmall_velocities.emb_y(t) / 365250.0;
       temp(2+1)=vsop87a_xsmall_velocities.emb_z(t) / 365250.0;
@@ -19,7 +19,7 @@ classdef vsop87a_xsmall_velocities
    end
 
    function retval=getJupiter(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall_velocities.jupiter_x(t) / 365250.0;
       temp(1+1)=vsop87a_xsmall_velocities.jupiter_y(t) / 365250.0;
       temp(2+1)=vsop87a_xsmall_velocities.jupiter_z(t) / 365250.0;
@@ -27,7 +27,7 @@ classdef vsop87a_xsmall_velocities
    end
 
    function retval=getMars(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall_velocities.mars_x(t) / 365250.0;
       temp(1+1)=vsop87a_xsmall_velocities.mars_y(t) / 365250.0;
       temp(2+1)=vsop87a_xsmall_velocities.mars_z(t) / 365250.0;
@@ -35,7 +35,7 @@ classdef vsop87a_xsmall_velocities
    end
 
    function retval=getMercury(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall_velocities.mercury_x(t) / 365250.0;
       temp(1+1)=vsop87a_xsmall_velocities.mercury_y(t) / 365250.0;
       temp(2+1)=vsop87a_xsmall_velocities.mercury_z(t) / 365250.0;
@@ -43,7 +43,7 @@ classdef vsop87a_xsmall_velocities
    end
 
    function retval=getNeptune(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall_velocities.neptune_x(t) / 365250.0;
       temp(1+1)=vsop87a_xsmall_velocities.neptune_y(t) / 365250.0;
       temp(2+1)=vsop87a_xsmall_velocities.neptune_z(t) / 365250.0;
@@ -51,7 +51,7 @@ classdef vsop87a_xsmall_velocities
    end
 
    function retval=getSaturn(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall_velocities.saturn_x(t) / 365250.0;
       temp(1+1)=vsop87a_xsmall_velocities.saturn_y(t) / 365250.0;
       temp(2+1)=vsop87a_xsmall_velocities.saturn_z(t) / 365250.0;
@@ -59,7 +59,7 @@ classdef vsop87a_xsmall_velocities
    end
 
    function retval=getUranus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall_velocities.uranus_x(t) / 365250.0;
       temp(1+1)=vsop87a_xsmall_velocities.uranus_y(t) / 365250.0;
       temp(2+1)=vsop87a_xsmall_velocities.uranus_z(t) / 365250.0;
@@ -67,7 +67,7 @@ classdef vsop87a_xsmall_velocities
    end
 
    function retval=getVenus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall_velocities.venus_x(t) / 365250.0;
       temp(1+1)=vsop87a_xsmall_velocities.venus_y(t) / 365250.0;
       temp(2+1)=vsop87a_xsmall_velocities.venus_z(t) / 365250.0;
@@ -75,7 +75,7 @@ classdef vsop87a_xsmall_velocities
    end
 
    function retval=getMoon(earth, emb)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall_velocities.(emb(0+1)-earth(0+1))*(1 + 1 / 0.01230073677);
       temp(1+1)=vsop87a_xsmall_velocities.(emb(1+1)-earth(1+1))*(1 + 1 / 0.01230073677);
       temp(2+1)=vsop87a_xsmall_velocities.(emb(2+1)-earth(2+1))*(1 + 1 / 0.01230073677);

@@ -3,7 +3,7 @@
 classdef vsop87_nano
    methods(Static)
    function retval=getEmb(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_nano.emb_a(t);
       temp(1+1)=vsop87_nano.emb_l(t);
       temp(2+1)=vsop87_nano.emb_k(t);
@@ -14,7 +14,7 @@ classdef vsop87_nano
    end
 
    function retval=getJupiter(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_nano.jupiter_a(t);
       temp(1+1)=vsop87_nano.jupiter_l(t);
       temp(2+1)=vsop87_nano.jupiter_k(t);
@@ -25,7 +25,7 @@ classdef vsop87_nano
    end
 
    function retval=getMars(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_nano.mars_a(t);
       temp(1+1)=vsop87_nano.mars_l(t);
       temp(2+1)=vsop87_nano.mars_k(t);
@@ -36,7 +36,7 @@ classdef vsop87_nano
    end
 
    function retval=getMercury(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_nano.mercury_a(t);
       temp(1+1)=vsop87_nano.mercury_l(t);
       temp(2+1)=vsop87_nano.mercury_k(t);
@@ -47,7 +47,7 @@ classdef vsop87_nano
    end
 
    function retval=getNeptune(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_nano.neptune_a(t);
       temp(1+1)=vsop87_nano.neptune_l(t);
       temp(2+1)=vsop87_nano.neptune_k(t);
@@ -58,7 +58,7 @@ classdef vsop87_nano
    end
 
    function retval=getSaturn(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_nano.saturn_a(t);
       temp(1+1)=vsop87_nano.saturn_l(t);
       temp(2+1)=vsop87_nano.saturn_k(t);
@@ -69,7 +69,7 @@ classdef vsop87_nano
    end
 
    function retval=getUranus(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_nano.uranus_a(t);
       temp(1+1)=vsop87_nano.uranus_l(t);
       temp(2+1)=vsop87_nano.uranus_k(t);
@@ -80,7 +80,7 @@ classdef vsop87_nano
    end
 
    function retval=getVenus(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_nano.venus_a(t);
       temp(1+1)=vsop87_nano.venus_l(t);
       temp(2+1)=vsop87_nano.venus_k(t);

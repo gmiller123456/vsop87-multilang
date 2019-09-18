@@ -24,8 +24,8 @@ sub processFile{
 			$l="classdef $classname\r\n   methods(Static)\r\n";
 		}
 		
-		$l=~s/new double\[3\]/cell\(3,1\)/;
-		$l=~s/new double\[6\]/cell\(6,1\)/;
+		$l=~s/new double\[3\]/\[0 0 0\]/;
+		$l=~s/new double\[6\]/[0 0 0 0 0 0]/;
 		$l=~s/double\[\] temp\=/temp\=/;
 		$l=~s/temp\[(\d)\]\=/temp\($1+1\)\=$classname\./g;
 		$l=~s/temp\[(\d)\]/temp\($1+1\)/g;

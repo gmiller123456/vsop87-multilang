@@ -12,7 +12,7 @@ JavaScript   |Yes         |Pass            |In Progress
 PHP          |            |                |
 Ruby         |            |                |
 Swift        |            |                |
-Matlab/Octave|            |                |
+Matlab/Octave|Yes         |Pass            |
 Groovy       |            |                |
 Go           |            |                |
 Pascal       |            |                |

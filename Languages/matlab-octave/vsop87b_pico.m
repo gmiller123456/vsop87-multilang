@@ -3,7 +3,7 @@
 classdef vsop87b_pico
    methods(Static)
    function retval=getEarth(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87b_pico.earth_l(t);
       temp(1+1)=vsop87b_pico.earth_b(t);
       temp(2+1)=vsop87b_pico.earth_r(t);
@@ -11,7 +11,7 @@ classdef vsop87b_pico
    end
 
    function retval=getJupiter(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87b_pico.jupiter_l(t);
       temp(1+1)=vsop87b_pico.jupiter_b(t);
       temp(2+1)=vsop87b_pico.jupiter_r(t);
@@ -19,7 +19,7 @@ classdef vsop87b_pico
    end
 
    function retval=getMars(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87b_pico.mars_l(t);
       temp(1+1)=vsop87b_pico.mars_b(t);
       temp(2+1)=vsop87b_pico.mars_r(t);
@@ -27,7 +27,7 @@ classdef vsop87b_pico
    end
 
    function retval=getMercury(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87b_pico.mercury_l(t);
       temp(1+1)=vsop87b_pico.mercury_b(t);
       temp(2+1)=vsop87b_pico.mercury_r(t);
@@ -35,7 +35,7 @@ classdef vsop87b_pico
    end
 
    function retval=getNeptune(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87b_pico.neptune_l(t);
       temp(1+1)=vsop87b_pico.neptune_b(t);
       temp(2+1)=vsop87b_pico.neptune_r(t);
@@ -43,7 +43,7 @@ classdef vsop87b_pico
    end
 
    function retval=getSaturn(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87b_pico.saturn_l(t);
       temp(1+1)=vsop87b_pico.saturn_b(t);
       temp(2+1)=vsop87b_pico.saturn_r(t);
@@ -51,7 +51,7 @@ classdef vsop87b_pico
    end
 
    function retval=getUranus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87b_pico.uranus_l(t);
       temp(1+1)=vsop87b_pico.uranus_b(t);
       temp(2+1)=vsop87b_pico.uranus_r(t);
@@ -59,7 +59,7 @@ classdef vsop87b_pico
    end
 
    function retval=getVenus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87b_pico.venus_l(t);
       temp(1+1)=vsop87b_pico.venus_b(t);
       temp(2+1)=vsop87b_pico.venus_r(t);

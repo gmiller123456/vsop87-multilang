@@ -3,7 +3,7 @@
 classdef vsop87_small
    methods(Static)
    function retval=getEmb(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_small.emb_a(t);
       temp(1+1)=vsop87_small.emb_l(t);
       temp(2+1)=vsop87_small.emb_k(t);
@@ -14,7 +14,7 @@ classdef vsop87_small
    end
 
    function retval=getJupiter(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_small.jupiter_a(t);
       temp(1+1)=vsop87_small.jupiter_l(t);
       temp(2+1)=vsop87_small.jupiter_k(t);
@@ -25,7 +25,7 @@ classdef vsop87_small
    end
 
    function retval=getMars(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_small.mars_a(t);
       temp(1+1)=vsop87_small.mars_l(t);
       temp(2+1)=vsop87_small.mars_k(t);
@@ -36,7 +36,7 @@ classdef vsop87_small
    end
 
    function retval=getMercury(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_small.mercury_a(t);
       temp(1+1)=vsop87_small.mercury_l(t);
       temp(2+1)=vsop87_small.mercury_k(t);
@@ -47,7 +47,7 @@ classdef vsop87_small
    end
 
    function retval=getNeptune(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_small.neptune_a(t);
       temp(1+1)=vsop87_small.neptune_l(t);
       temp(2+1)=vsop87_small.neptune_k(t);
@@ -58,7 +58,7 @@ classdef vsop87_small
    end
 
    function retval=getSaturn(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_small.saturn_a(t);
       temp(1+1)=vsop87_small.saturn_l(t);
       temp(2+1)=vsop87_small.saturn_k(t);
@@ -69,7 +69,7 @@ classdef vsop87_small
    end
 
    function retval=getUranus(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_small.uranus_a(t);
       temp(1+1)=vsop87_small.uranus_l(t);
       temp(2+1)=vsop87_small.uranus_k(t);
@@ -80,7 +80,7 @@ classdef vsop87_small
    end
 
    function retval=getVenus(t)
-      temp=cell(6,1);
+      temp=[0 0 0 0 0 0];
       temp(0+1)=vsop87_small.venus_a(t);
       temp(1+1)=vsop87_small.venus_l(t);
       temp(2+1)=vsop87_small.venus_k(t);

@@ -3,7 +3,7 @@
 classdef vsop87c_xlarge
    methods(Static)
    function retval=getEarth(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87c_xlarge.earth_x(t);
       temp(1+1)=vsop87c_xlarge.earth_y(t);
       temp(2+1)=vsop87c_xlarge.earth_z(t);
@@ -11,7 +11,7 @@ classdef vsop87c_xlarge
    end
 
    function retval=getJupiter(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87c_xlarge.jupiter_x(t);
       temp(1+1)=vsop87c_xlarge.jupiter_y(t);
       temp(2+1)=vsop87c_xlarge.jupiter_z(t);
@@ -19,7 +19,7 @@ classdef vsop87c_xlarge
    end
 
    function retval=getMars(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87c_xlarge.mars_x(t);
       temp(1+1)=vsop87c_xlarge.mars_y(t);
       temp(2+1)=vsop87c_xlarge.mars_z(t);
@@ -27,7 +27,7 @@ classdef vsop87c_xlarge
    end
 
    function retval=getMercury(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87c_xlarge.mercury_x(t);
       temp(1+1)=vsop87c_xlarge.mercury_y(t);
       temp(2+1)=vsop87c_xlarge.mercury_z(t);
@@ -35,7 +35,7 @@ classdef vsop87c_xlarge
    end
 
    function retval=getNeptune(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87c_xlarge.neptune_x(t);
       temp(1+1)=vsop87c_xlarge.neptune_y(t);
       temp(2+1)=vsop87c_xlarge.neptune_z(t);
@@ -43,7 +43,7 @@ classdef vsop87c_xlarge
    end
 
    function retval=getSaturn(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87c_xlarge.saturn_x(t);
       temp(1+1)=vsop87c_xlarge.saturn_y(t);
       temp(2+1)=vsop87c_xlarge.saturn_z(t);
@@ -51,7 +51,7 @@ classdef vsop87c_xlarge
    end
 
    function retval=getUranus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87c_xlarge.uranus_x(t);
       temp(1+1)=vsop87c_xlarge.uranus_y(t);
       temp(2+1)=vsop87c_xlarge.uranus_z(t);
@@ -59,7 +59,7 @@ classdef vsop87c_xlarge
    end
 
    function retval=getVenus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87c_xlarge.venus_x(t);
       temp(1+1)=vsop87c_xlarge.venus_y(t);
       temp(2+1)=vsop87c_xlarge.venus_z(t);

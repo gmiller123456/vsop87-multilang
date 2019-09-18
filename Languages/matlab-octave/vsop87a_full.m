@@ -3,7 +3,7 @@
 classdef vsop87a_full
    methods(Static)
    function retval=getEarth(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_full.earth_x(t);
       temp(1+1)=vsop87a_full.earth_y(t);
       temp(2+1)=vsop87a_full.earth_z(t);
@@ -11,7 +11,7 @@ classdef vsop87a_full
    end
 
    function retval=getEmb(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_full.emb_x(t);
       temp(1+1)=vsop87a_full.emb_y(t);
       temp(2+1)=vsop87a_full.emb_z(t);
@@ -19,7 +19,7 @@ classdef vsop87a_full
    end
 
    function retval=getJupiter(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_full.jupiter_x(t);
       temp(1+1)=vsop87a_full.jupiter_y(t);
       temp(2+1)=vsop87a_full.jupiter_z(t);
@@ -27,7 +27,7 @@ classdef vsop87a_full
    end
 
    function retval=getMars(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_full.mars_x(t);
       temp(1+1)=vsop87a_full.mars_y(t);
       temp(2+1)=vsop87a_full.mars_z(t);
@@ -35,7 +35,7 @@ classdef vsop87a_full
    end
 
    function retval=getMercury(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_full.mercury_x(t);
       temp(1+1)=vsop87a_full.mercury_y(t);
       temp(2+1)=vsop87a_full.mercury_z(t);
@@ -43,7 +43,7 @@ classdef vsop87a_full
    end
 
    function retval=getNeptune(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_full.neptune_x(t);
       temp(1+1)=vsop87a_full.neptune_y(t);
       temp(2+1)=vsop87a_full.neptune_z(t);
@@ -51,7 +51,7 @@ classdef vsop87a_full
    end
 
    function retval=getSaturn(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_full.saturn_x(t);
       temp(1+1)=vsop87a_full.saturn_y(t);
       temp(2+1)=vsop87a_full.saturn_z(t);
@@ -59,7 +59,7 @@ classdef vsop87a_full
    end
 
    function retval=getUranus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_full.uranus_x(t);
       temp(1+1)=vsop87a_full.uranus_y(t);
       temp(2+1)=vsop87a_full.uranus_z(t);
@@ -67,7 +67,7 @@ classdef vsop87a_full
    end
 
    function retval=getVenus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_full.venus_x(t);
       temp(1+1)=vsop87a_full.venus_y(t);
       temp(2+1)=vsop87a_full.venus_z(t);
@@ -75,7 +75,7 @@ classdef vsop87a_full
    end
 
    function retval=getMoon(earth, emb)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_full.(emb(0+1)-earth(0+1))*(1 + 1 / 0.01230073677);
       temp(1+1)=vsop87a_full.(emb(1+1)-earth(1+1))*(1 + 1 / 0.01230073677);
       temp(2+1)=vsop87a_full.(emb(2+1)-earth(2+1))*(1 + 1 / 0.01230073677);

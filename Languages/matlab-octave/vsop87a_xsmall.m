@@ -3,7 +3,7 @@
 classdef vsop87a_xsmall
    methods(Static)
    function retval=getEarth(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall.earth_x(t);
       temp(1+1)=vsop87a_xsmall.earth_y(t);
       temp(2+1)=vsop87a_xsmall.earth_z(t);
@@ -11,7 +11,7 @@ classdef vsop87a_xsmall
    end
 
    function retval=getEmb(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall.emb_x(t);
       temp(1+1)=vsop87a_xsmall.emb_y(t);
       temp(2+1)=vsop87a_xsmall.emb_z(t);
@@ -19,7 +19,7 @@ classdef vsop87a_xsmall
    end
 
    function retval=getJupiter(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall.jupiter_x(t);
       temp(1+1)=vsop87a_xsmall.jupiter_y(t);
       temp(2+1)=vsop87a_xsmall.jupiter_z(t);
@@ -27,7 +27,7 @@ classdef vsop87a_xsmall
    end
 
    function retval=getMars(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall.mars_x(t);
       temp(1+1)=vsop87a_xsmall.mars_y(t);
       temp(2+1)=vsop87a_xsmall.mars_z(t);
@@ -35,7 +35,7 @@ classdef vsop87a_xsmall
    end
 
    function retval=getMercury(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall.mercury_x(t);
       temp(1+1)=vsop87a_xsmall.mercury_y(t);
       temp(2+1)=vsop87a_xsmall.mercury_z(t);
@@ -43,7 +43,7 @@ classdef vsop87a_xsmall
    end
 
    function retval=getNeptune(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall.neptune_x(t);
       temp(1+1)=vsop87a_xsmall.neptune_y(t);
       temp(2+1)=vsop87a_xsmall.neptune_z(t);
@@ -51,7 +51,7 @@ classdef vsop87a_xsmall
    end
 
    function retval=getSaturn(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall.saturn_x(t);
       temp(1+1)=vsop87a_xsmall.saturn_y(t);
       temp(2+1)=vsop87a_xsmall.saturn_z(t);
@@ -59,7 +59,7 @@ classdef vsop87a_xsmall
    end
 
    function retval=getUranus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall.uranus_x(t);
       temp(1+1)=vsop87a_xsmall.uranus_y(t);
       temp(2+1)=vsop87a_xsmall.uranus_z(t);
@@ -67,7 +67,7 @@ classdef vsop87a_xsmall
    end
 
    function retval=getVenus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall.venus_x(t);
       temp(1+1)=vsop87a_xsmall.venus_y(t);
       temp(2+1)=vsop87a_xsmall.venus_z(t);
@@ -75,7 +75,7 @@ classdef vsop87a_xsmall
    end
 
    function retval=getMoon(earth, emb)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87a_xsmall.(emb(0+1)-earth(0+1))*(1 + 1 / 0.01230073677);
       temp(1+1)=vsop87a_xsmall.(emb(1+1)-earth(1+1))*(1 + 1 / 0.01230073677);
       temp(2+1)=vsop87a_xsmall.(emb(2+1)-earth(2+1))*(1 + 1 / 0.01230073677);

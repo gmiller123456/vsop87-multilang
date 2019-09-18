@@ -3,7 +3,7 @@
 classdef vsop87e_milli
    methods(Static)
    function retval=getEarth(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87e_milli.earth_x(t);
       temp(1+1)=vsop87e_milli.earth_y(t);
       temp(2+1)=vsop87e_milli.earth_z(t);
@@ -11,7 +11,7 @@ classdef vsop87e_milli
    end
 
    function retval=getJupiter(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87e_milli.jupiter_x(t);
       temp(1+1)=vsop87e_milli.jupiter_y(t);
       temp(2+1)=vsop87e_milli.jupiter_z(t);
@@ -19,7 +19,7 @@ classdef vsop87e_milli
    end
 
    function retval=getMars(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87e_milli.mars_x(t);
       temp(1+1)=vsop87e_milli.mars_y(t);
       temp(2+1)=vsop87e_milli.mars_z(t);
@@ -27,7 +27,7 @@ classdef vsop87e_milli
    end
 
    function retval=getMercury(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87e_milli.mercury_x(t);
       temp(1+1)=vsop87e_milli.mercury_y(t);
       temp(2+1)=vsop87e_milli.mercury_z(t);
@@ -35,7 +35,7 @@ classdef vsop87e_milli
    end
 
    function retval=getNeptune(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87e_milli.neptune_x(t);
       temp(1+1)=vsop87e_milli.neptune_y(t);
       temp(2+1)=vsop87e_milli.neptune_z(t);
@@ -43,7 +43,7 @@ classdef vsop87e_milli
    end
 
    function retval=getSaturn(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87e_milli.saturn_x(t);
       temp(1+1)=vsop87e_milli.saturn_y(t);
       temp(2+1)=vsop87e_milli.saturn_z(t);
@@ -51,7 +51,7 @@ classdef vsop87e_milli
    end
 
    function retval=getUranus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87e_milli.uranus_x(t);
       temp(1+1)=vsop87e_milli.uranus_y(t);
       temp(2+1)=vsop87e_milli.uranus_z(t);
@@ -59,7 +59,7 @@ classdef vsop87e_milli
    end
 
    function retval=getVenus(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87e_milli.venus_x(t);
       temp(1+1)=vsop87e_milli.venus_y(t);
       temp(2+1)=vsop87e_milli.venus_z(t);
@@ -67,7 +67,7 @@ classdef vsop87e_milli
    end
 
    function retval=getSun(t)
-      temp=cell(3,1);
+      temp=[0 0 0];
       temp(0+1)=vsop87e_milli.sun_x(t);
       temp(1+1)=vsop87e_milli.sun_y(t);
       temp(2+1)=vsop87e_milli.sun_z(t);
