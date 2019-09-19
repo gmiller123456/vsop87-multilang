@@ -1,11 +1,11 @@
 #!/usr/bin/perl
 use strict;
 use lib ".";
-use convert_matlab qw(processFile);
+use convert_php qw(processFile);
 
-my $sourceDir="../Languages/C#/";
+my $sourceDir="../Languages/Perl/";
 
-#convert_matlab::processFile($sourceDir,"vsop87_nano.cs","../Languages/matlab-octave/");
+#convert_php::processFile($sourceDir,"vsop87a_nano_velocities.pm","../Languages/PHP/");
 run();
 
 sub run(){
@@ -16,7 +16,7 @@ sub run(){
 	while(my $f=readdir($d)){
 		if($f=~/^\./){next;}
 		print "$f\r\n";
-		convert_matlab::processFile($sourceDir,$f,"../Languages/matlab-octave/");
+		convert_php::processFile($sourceDir,$f,"../Languages/PHP/");
 	}
 
 

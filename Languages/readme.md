@@ -9,7 +9,7 @@ Python       |Yes         |Pass            |
 C++          |Yes         |Pass            |
 VB.Net       |Yes         |Pass            |
 JavaScript   |Yes         |Pass            |In Progress
-PHP          |            |                |
+PHP          |Yes         |Pass            |
 Ruby         |            |                |
 Swift        |            |                |
 Matlab/Octave|Yes         |Pass            |
