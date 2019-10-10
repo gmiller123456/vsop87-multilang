@@ -1,12 +1,13 @@
 #!/usr/bin/perl
 use strict;
 use lib ".";
-use convert_php qw(processFile);
+use convert_pascal qw(processFile);
 
-my $sourceDir="../Languages/Perl/";
+my $sourceDir="../Languages/C#/";
 
-#convert_php::processFile($sourceDir,"vsop87a_nano_velocities.pm","../Languages/PHP/");
-run();
+convert_pascal::processFile($sourceDir,"vsop87a_nano.cs","../Languages/Pascal/");
+#convert_pascal::processFile($sourceDir,"vsop87a_nano_velocities.cs","../Languages/Pascal/");
+#run();
 
 sub run(){
 
@@ -16,7 +17,7 @@ sub run(){
 	while(my $f=readdir($d)){
 		if($f=~/^\./){next;}
 		print "$f\r\n";
-		convert_php::processFile($sourceDir,$f,"../Languages/PHP/");
+		convert_pascal::processFile($sourceDir,$f,"../Languages/Pascal/");
 	}
 
 
