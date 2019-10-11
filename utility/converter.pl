@@ -5,9 +5,10 @@ use convert_pascal qw(processFile);
 
 my $sourceDir="../Languages/C#/";
 
-convert_pascal::processFile($sourceDir,"vsop87a_nano.cs","../Languages/Pascal/");
+#convert_pascal::processFile($sourceDir,"vsop87_nano.cs","../Languages/Pascal/");
 #convert_pascal::processFile($sourceDir,"vsop87a_nano_velocities.cs","../Languages/Pascal/");
-#run();
+#convert_pascal::processFile($sourceDir,"vsop87a_nano_velocities.cs","../Languages/Pascal/");
+run();
 
 sub run(){
 

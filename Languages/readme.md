@@ -15,7 +15,7 @@ Swift        |            |                |
 Matlab/Octave|Yes         |Pass            |
 Groovy       |            |                |
 Go           |            |                |
-Pascal       |            |                |
+Pascal       |Yes         |Link Issues     |
 Perl         |Yes         |Pass            |
 R            |            |                |
 Cobol        |            |                |
@@ -23,6 +23,4 @@ Fortran      |            |                |
 Rust         |            |                |
 Kotlin       |            |                |
 Arduino      |            |                |
-OpenCL       |            |                |
-OpenGLES     |            |                |
 Objective C  |            |                |
