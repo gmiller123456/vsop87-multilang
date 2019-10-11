@@ -22,5 +22,5 @@ Cobol        |            |                |
 Fortran      |            |                |
 Rust         |            |                |
 Kotlin       |            |                |
-Arduino      |            |                |
+Arduino      |Yes         |.000009km       |
 Objective C  |            |                |
