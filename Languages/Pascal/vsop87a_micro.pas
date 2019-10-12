@@ -3,16 +3,16 @@ unit vsop87a_micro;
 interface
 uses Math;
 
-procedure vsop87a_micro_getEarth(t: Double;temp: array of Double);
-procedure vsop87a_micro_getEmb(t: Double;temp: array of Double);
-procedure vsop87a_micro_getJupiter(t: Double;temp: array of Double);
-procedure vsop87a_micro_getMars(t: Double;temp: array of Double);
-procedure vsop87a_micro_getMercury(t: Double;temp: array of Double);
-procedure vsop87a_micro_getNeptune(t: Double;temp: array of Double);
-procedure vsop87a_micro_getSaturn(t: Double;temp: array of Double);
-procedure vsop87a_micro_getUranus(t: Double;temp: array of Double);
-procedure vsop87a_micro_getVenus(t: Double;temp: array of Double);
-procedure vsop87a_micro_getMoon(earth: array of Double; emb: array of Double;temp: array of Double);
+procedure vsop87a_micro_getEarth(t: Double;var temp: array of Double);
+procedure vsop87a_micro_getEmb(t: Double;var temp: array of Double);
+procedure vsop87a_micro_getJupiter(t: Double;var temp: array of Double);
+procedure vsop87a_micro_getMars(t: Double;var temp: array of Double);
+procedure vsop87a_micro_getMercury(t: Double;var temp: array of Double);
+procedure vsop87a_micro_getNeptune(t: Double;var temp: array of Double);
+procedure vsop87a_micro_getSaturn(t: Double;var temp: array of Double);
+procedure vsop87a_micro_getUranus(t: Double;var temp: array of Double);
+procedure vsop87a_micro_getVenus(t: Double;var temp: array of Double);
+procedure vsop87a_micro_getMoon(var earth: array of Double; var emb: array of Double;var temp: array of Double);
 
 implementation
 
@@ -993,70 +993,70 @@ begin
    vsop87a_micro_venus_z := venus_z_0+venus_z_1;
 end;
 
-procedure vsop87a_micro_getEarth(t: Double;temp: array of Double);
+procedure vsop87a_micro_getEarth(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_micro_earth_x(t);
    temp[1]:=vsop87a_micro_earth_y(t);
    temp[2]:=vsop87a_micro_earth_z(t);
 end;
 
-procedure vsop87a_micro_getEmb(t: Double;temp: array of Double);
+procedure vsop87a_micro_getEmb(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_micro_emb_x(t);
    temp[1]:=vsop87a_micro_emb_y(t);
    temp[2]:=vsop87a_micro_emb_z(t);
 end;
 
-procedure vsop87a_micro_getJupiter(t: Double;temp: array of Double);
+procedure vsop87a_micro_getJupiter(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_micro_jupiter_x(t);
    temp[1]:=vsop87a_micro_jupiter_y(t);
    temp[2]:=vsop87a_micro_jupiter_z(t);
 end;
 
-procedure vsop87a_micro_getMars(t: Double;temp: array of Double);
+procedure vsop87a_micro_getMars(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_micro_mars_x(t);
    temp[1]:=vsop87a_micro_mars_y(t);
    temp[2]:=vsop87a_micro_mars_z(t);
 end;
 
-procedure vsop87a_micro_getMercury(t: Double;temp: array of Double);
+procedure vsop87a_micro_getMercury(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_micro_mercury_x(t);
    temp[1]:=vsop87a_micro_mercury_y(t);
    temp[2]:=vsop87a_micro_mercury_z(t);
 end;
 
-procedure vsop87a_micro_getNeptune(t: Double;temp: array of Double);
+procedure vsop87a_micro_getNeptune(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_micro_neptune_x(t);
    temp[1]:=vsop87a_micro_neptune_y(t);
    temp[2]:=vsop87a_micro_neptune_z(t);
 end;
 
-procedure vsop87a_micro_getSaturn(t: Double;temp: array of Double);
+procedure vsop87a_micro_getSaturn(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_micro_saturn_x(t);
    temp[1]:=vsop87a_micro_saturn_y(t);
    temp[2]:=vsop87a_micro_saturn_z(t);
 end;
 
-procedure vsop87a_micro_getUranus(t: Double;temp: array of Double);
+procedure vsop87a_micro_getUranus(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_micro_uranus_x(t);
    temp[1]:=vsop87a_micro_uranus_y(t);
    temp[2]:=vsop87a_micro_uranus_z(t);
 end;
 
-procedure vsop87a_micro_getVenus(t: Double;temp: array of Double);
+procedure vsop87a_micro_getVenus(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_micro_venus_x(t);
    temp[1]:=vsop87a_micro_venus_y(t);
    temp[2]:=vsop87a_micro_venus_z(t);
 end;
 
-procedure vsop87a_micro_getMoon(earth: array of Double; emb: array of Double;temp: array of Double);
+procedure vsop87a_micro_getMoon(var earth: array of Double; var emb: array of Double;var temp: array of Double);
 begin
    temp[0]:=(emb[0]-earth[0])*(1 + 1 / 0.01230073677);
    temp[1]:=(emb[1]-earth[1])*(1 + 1 / 0.01230073677);

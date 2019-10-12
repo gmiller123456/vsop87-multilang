@@ -50,7 +50,7 @@ sub processFile{
 			$l=~s/^void/procedure/;
 			my $t=$l;
 			$t=~s/\{/\;/;
-			$t=~s/double +([a-zA-Z_0-9]+)\[\]/$1: array of Double/g;
+			$t=~s/double +([a-zA-Z_0-9]+)\[\]/var $1: array of Double/g;
 			$t=~s/double +([a-zA-Z_0-9]+)/$1: Double/g;
 			$t=~s/Double\,/Double\;/g;
 			push (@functions,$t);
@@ -72,7 +72,7 @@ sub processFile{
 		
 		
 		
-		$l=~s/Double +([a-zA-Z_0-9]+)\[\]/$1: array of Double/g;
+		$l=~s/Double +([a-zA-Z_0-9]+)\[\]/var $1: array of Double/g;
 		$l=~s/Double +([a-zA-Z_0-9]+)/$1: Double/g;
 		$l=~s/Double\,/Double\;/g;
 		$l=~s/([a-zA-Z_0-9]+)\=/$1\:\=/g;
@@ -119,7 +119,7 @@ sub processFile{
 	#Move variable declarations to before 'begin' statement
 	@lines=split(/\r\n/,$text);
 	for(my $x=0;$x<scalar @lines;$x++){
-		if($lines[$x]=~m/ var /){
+		if($lines[$x]=~m/ var / && index($lines[$x],"procedure")==-1){
 			my $y=$x;
 			my $temp="";
 			while(index($temp,"begin")==-1){

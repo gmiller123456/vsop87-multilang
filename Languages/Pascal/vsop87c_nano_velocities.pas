@@ -3,14 +3,14 @@ unit vsop87c_nano_velocities;
 interface
 uses Math;
 
-procedure vsop87c_nano_velocities_getEarth(t: Double;temp: array of Double);
-procedure vsop87c_nano_velocities_getJupiter(t: Double;temp: array of Double);
-procedure vsop87c_nano_velocities_getMars(t: Double;temp: array of Double);
-procedure vsop87c_nano_velocities_getMercury(t: Double;temp: array of Double);
-procedure vsop87c_nano_velocities_getNeptune(t: Double;temp: array of Double);
-procedure vsop87c_nano_velocities_getSaturn(t: Double;temp: array of Double);
-procedure vsop87c_nano_velocities_getUranus(t: Double;temp: array of Double);
-procedure vsop87c_nano_velocities_getVenus(t: Double;temp: array of Double);
+procedure vsop87c_nano_velocities_getEarth(t: Double;var temp: array of Double);
+procedure vsop87c_nano_velocities_getJupiter(t: Double;var temp: array of Double);
+procedure vsop87c_nano_velocities_getMars(t: Double;var temp: array of Double);
+procedure vsop87c_nano_velocities_getMercury(t: Double;var temp: array of Double);
+procedure vsop87c_nano_velocities_getNeptune(t: Double;var temp: array of Double);
+procedure vsop87c_nano_velocities_getSaturn(t: Double;var temp: array of Double);
+procedure vsop87c_nano_velocities_getUranus(t: Double;var temp: array of Double);
+procedure vsop87c_nano_velocities_getVenus(t: Double;var temp: array of Double);
 
 implementation
 
@@ -650,56 +650,56 @@ begin
    vsop87c_nano_velocities_venus_z := venus_z_0+venus_z_1;
 end;
 
-procedure vsop87c_nano_velocities_getEarth(t: Double;temp: array of Double);
+procedure vsop87c_nano_velocities_getEarth(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87c_nano_velocities_earth_x(t) / 365250.0;
    temp[1]:=vsop87c_nano_velocities_earth_y(t) / 365250.0;
    temp[2]:=vsop87c_nano_velocities_earth_z(t) / 365250.0;
 end;
 
-procedure vsop87c_nano_velocities_getJupiter(t: Double;temp: array of Double);
+procedure vsop87c_nano_velocities_getJupiter(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87c_nano_velocities_jupiter_x(t) / 365250.0;
    temp[1]:=vsop87c_nano_velocities_jupiter_y(t) / 365250.0;
    temp[2]:=vsop87c_nano_velocities_jupiter_z(t) / 365250.0;
 end;
 
-procedure vsop87c_nano_velocities_getMars(t: Double;temp: array of Double);
+procedure vsop87c_nano_velocities_getMars(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87c_nano_velocities_mars_x(t) / 365250.0;
    temp[1]:=vsop87c_nano_velocities_mars_y(t) / 365250.0;
    temp[2]:=vsop87c_nano_velocities_mars_z(t) / 365250.0;
 end;
 
-procedure vsop87c_nano_velocities_getMercury(t: Double;temp: array of Double);
+procedure vsop87c_nano_velocities_getMercury(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87c_nano_velocities_mercury_x(t) / 365250.0;
    temp[1]:=vsop87c_nano_velocities_mercury_y(t) / 365250.0;
    temp[2]:=vsop87c_nano_velocities_mercury_z(t) / 365250.0;
 end;
 
-procedure vsop87c_nano_velocities_getNeptune(t: Double;temp: array of Double);
+procedure vsop87c_nano_velocities_getNeptune(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87c_nano_velocities_neptune_x(t) / 365250.0;
    temp[1]:=vsop87c_nano_velocities_neptune_y(t) / 365250.0;
    temp[2]:=vsop87c_nano_velocities_neptune_z(t) / 365250.0;
 end;
 
-procedure vsop87c_nano_velocities_getSaturn(t: Double;temp: array of Double);
+procedure vsop87c_nano_velocities_getSaturn(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87c_nano_velocities_saturn_x(t) / 365250.0;
    temp[1]:=vsop87c_nano_velocities_saturn_y(t) / 365250.0;
    temp[2]:=vsop87c_nano_velocities_saturn_z(t) / 365250.0;
 end;
 
-procedure vsop87c_nano_velocities_getUranus(t: Double;temp: array of Double);
+procedure vsop87c_nano_velocities_getUranus(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87c_nano_velocities_uranus_x(t) / 365250.0;
    temp[1]:=vsop87c_nano_velocities_uranus_y(t) / 365250.0;
    temp[2]:=vsop87c_nano_velocities_uranus_z(t) / 365250.0;
 end;
 
-procedure vsop87c_nano_velocities_getVenus(t: Double;temp: array of Double);
+procedure vsop87c_nano_velocities_getVenus(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87c_nano_velocities_venus_x(t) / 365250.0;
    temp[1]:=vsop87c_nano_velocities_venus_y(t) / 365250.0;

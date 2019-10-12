@@ -3,14 +3,14 @@ unit vsop87_pico;
 interface
 uses Math;
 
-procedure vsop87_pico_getEmb(t: Double;temp: array of Double);
-procedure vsop87_pico_getJupiter(t: Double;temp: array of Double);
-procedure vsop87_pico_getMars(t: Double;temp: array of Double);
-procedure vsop87_pico_getMercury(t: Double;temp: array of Double);
-procedure vsop87_pico_getNeptune(t: Double;temp: array of Double);
-procedure vsop87_pico_getSaturn(t: Double;temp: array of Double);
-procedure vsop87_pico_getUranus(t: Double;temp: array of Double);
-procedure vsop87_pico_getVenus(t: Double;temp: array of Double);
+procedure vsop87_pico_getEmb(t: Double;var temp: array of Double);
+procedure vsop87_pico_getJupiter(t: Double;var temp: array of Double);
+procedure vsop87_pico_getMars(t: Double;var temp: array of Double);
+procedure vsop87_pico_getMercury(t: Double;var temp: array of Double);
+procedure vsop87_pico_getNeptune(t: Double;var temp: array of Double);
+procedure vsop87_pico_getSaturn(t: Double;var temp: array of Double);
+procedure vsop87_pico_getUranus(t: Double;var temp: array of Double);
+procedure vsop87_pico_getVenus(t: Double;var temp: array of Double);
 
 implementation
 
@@ -446,7 +446,7 @@ begin
    vsop87_pico_venus_p := venus_p_0;
 end;
 
-procedure vsop87_pico_getEmb(t: Double;temp: array of Double);
+procedure vsop87_pico_getEmb(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87_pico_emb_a(t);
    temp[1]:=vsop87_pico_emb_l(t);
@@ -456,7 +456,7 @@ begin
    temp[5]:=vsop87_pico_emb_p(t);
 end;
 
-procedure vsop87_pico_getJupiter(t: Double;temp: array of Double);
+procedure vsop87_pico_getJupiter(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87_pico_jupiter_a(t);
    temp[1]:=vsop87_pico_jupiter_l(t);
@@ -466,7 +466,7 @@ begin
    temp[5]:=vsop87_pico_jupiter_p(t);
 end;
 
-procedure vsop87_pico_getMars(t: Double;temp: array of Double);
+procedure vsop87_pico_getMars(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87_pico_mars_a(t);
    temp[1]:=vsop87_pico_mars_l(t);
@@ -476,7 +476,7 @@ begin
    temp[5]:=vsop87_pico_mars_p(t);
 end;
 
-procedure vsop87_pico_getMercury(t: Double;temp: array of Double);
+procedure vsop87_pico_getMercury(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87_pico_mercury_a(t);
    temp[1]:=vsop87_pico_mercury_l(t);
@@ -486,7 +486,7 @@ begin
    temp[5]:=vsop87_pico_mercury_p(t);
 end;
 
-procedure vsop87_pico_getNeptune(t: Double;temp: array of Double);
+procedure vsop87_pico_getNeptune(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87_pico_neptune_a(t);
    temp[1]:=vsop87_pico_neptune_l(t);
@@ -496,7 +496,7 @@ begin
    temp[5]:=vsop87_pico_neptune_p(t);
 end;
 
-procedure vsop87_pico_getSaturn(t: Double;temp: array of Double);
+procedure vsop87_pico_getSaturn(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87_pico_saturn_a(t);
    temp[1]:=vsop87_pico_saturn_l(t);
@@ -506,7 +506,7 @@ begin
    temp[5]:=vsop87_pico_saturn_p(t);
 end;
 
-procedure vsop87_pico_getUranus(t: Double;temp: array of Double);
+procedure vsop87_pico_getUranus(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87_pico_uranus_a(t);
    temp[1]:=vsop87_pico_uranus_l(t);
@@ -516,7 +516,7 @@ begin
    temp[5]:=vsop87_pico_uranus_p(t);
 end;
 
-procedure vsop87_pico_getVenus(t: Double;temp: array of Double);
+procedure vsop87_pico_getVenus(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87_pico_venus_a(t);
    temp[1]:=vsop87_pico_venus_l(t);

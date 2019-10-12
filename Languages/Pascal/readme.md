@@ -1,2 +1,1 @@
-I attempted a test using Free Pascal.  It seems to have issues linking against the full versions though they compile fine, so I cannot
-run tests against the full version.
+Tested using Free Pascal.  It is not capable of linking the full VSOP87 due to the number of constants.  The validation works tests OK using the "small" version to a precision of 0.000009au.

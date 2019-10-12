@@ -3,15 +3,15 @@ unit vsop87e_pico_velocities;
 interface
 uses Math;
 
-procedure vsop87e_pico_velocities_getEarth(t: Double;temp: array of Double);
-procedure vsop87e_pico_velocities_getJupiter(t: Double;temp: array of Double);
-procedure vsop87e_pico_velocities_getMars(t: Double;temp: array of Double);
-procedure vsop87e_pico_velocities_getMercury(t: Double;temp: array of Double);
-procedure vsop87e_pico_velocities_getNeptune(t: Double;temp: array of Double);
-procedure vsop87e_pico_velocities_getSaturn(t: Double;temp: array of Double);
-procedure vsop87e_pico_velocities_getUranus(t: Double;temp: array of Double);
-procedure vsop87e_pico_velocities_getVenus(t: Double;temp: array of Double);
-procedure vsop87e_pico_velocities_getSun(t: Double;temp: array of Double);
+procedure vsop87e_pico_velocities_getEarth(t: Double;var temp: array of Double);
+procedure vsop87e_pico_velocities_getJupiter(t: Double;var temp: array of Double);
+procedure vsop87e_pico_velocities_getMars(t: Double;var temp: array of Double);
+procedure vsop87e_pico_velocities_getMercury(t: Double;var temp: array of Double);
+procedure vsop87e_pico_velocities_getNeptune(t: Double;var temp: array of Double);
+procedure vsop87e_pico_velocities_getSaturn(t: Double;var temp: array of Double);
+procedure vsop87e_pico_velocities_getUranus(t: Double;var temp: array of Double);
+procedure vsop87e_pico_velocities_getVenus(t: Double;var temp: array of Double);
+procedure vsop87e_pico_velocities_getSun(t: Double;var temp: array of Double);
 
 implementation
 
@@ -388,63 +388,63 @@ begin
    vsop87e_pico_velocities_venus_z := venus_z_0;
 end;
 
-procedure vsop87e_pico_velocities_getEarth(t: Double;temp: array of Double);
+procedure vsop87e_pico_velocities_getEarth(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87e_pico_velocities_earth_x(t) / 365250.0;
    temp[1]:=vsop87e_pico_velocities_earth_y(t) / 365250.0;
    temp[2]:=vsop87e_pico_velocities_earth_z(t) / 365250.0;
 end;
 
-procedure vsop87e_pico_velocities_getJupiter(t: Double;temp: array of Double);
+procedure vsop87e_pico_velocities_getJupiter(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87e_pico_velocities_jupiter_x(t) / 365250.0;
    temp[1]:=vsop87e_pico_velocities_jupiter_y(t) / 365250.0;
    temp[2]:=vsop87e_pico_velocities_jupiter_z(t) / 365250.0;
 end;
 
-procedure vsop87e_pico_velocities_getMars(t: Double;temp: array of Double);
+procedure vsop87e_pico_velocities_getMars(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87e_pico_velocities_mars_x(t) / 365250.0;
    temp[1]:=vsop87e_pico_velocities_mars_y(t) / 365250.0;
    temp[2]:=vsop87e_pico_velocities_mars_z(t) / 365250.0;
 end;
 
-procedure vsop87e_pico_velocities_getMercury(t: Double;temp: array of Double);
+procedure vsop87e_pico_velocities_getMercury(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87e_pico_velocities_mercury_x(t) / 365250.0;
    temp[1]:=vsop87e_pico_velocities_mercury_y(t) / 365250.0;
    temp[2]:=vsop87e_pico_velocities_mercury_z(t) / 365250.0;
 end;
 
-procedure vsop87e_pico_velocities_getNeptune(t: Double;temp: array of Double);
+procedure vsop87e_pico_velocities_getNeptune(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87e_pico_velocities_neptune_x(t) / 365250.0;
    temp[1]:=vsop87e_pico_velocities_neptune_y(t) / 365250.0;
    temp[2]:=vsop87e_pico_velocities_neptune_z(t) / 365250.0;
 end;
 
-procedure vsop87e_pico_velocities_getSaturn(t: Double;temp: array of Double);
+procedure vsop87e_pico_velocities_getSaturn(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87e_pico_velocities_saturn_x(t) / 365250.0;
    temp[1]:=vsop87e_pico_velocities_saturn_y(t) / 365250.0;
    temp[2]:=vsop87e_pico_velocities_saturn_z(t) / 365250.0;
 end;
 
-procedure vsop87e_pico_velocities_getUranus(t: Double;temp: array of Double);
+procedure vsop87e_pico_velocities_getUranus(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87e_pico_velocities_uranus_x(t) / 365250.0;
    temp[1]:=vsop87e_pico_velocities_uranus_y(t) / 365250.0;
    temp[2]:=vsop87e_pico_velocities_uranus_z(t) / 365250.0;
 end;
 
-procedure vsop87e_pico_velocities_getVenus(t: Double;temp: array of Double);
+procedure vsop87e_pico_velocities_getVenus(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87e_pico_velocities_venus_x(t) / 365250.0;
    temp[1]:=vsop87e_pico_velocities_venus_y(t) / 365250.0;
    temp[2]:=vsop87e_pico_velocities_venus_z(t) / 365250.0;
 end;
 
-procedure vsop87e_pico_velocities_getSun(t: Double;temp: array of Double);
+procedure vsop87e_pico_velocities_getSun(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87e_pico_velocities_sun_x(t) / 365250.0;
    temp[1]:=vsop87e_pico_velocities_sun_y(t) / 365250.0;

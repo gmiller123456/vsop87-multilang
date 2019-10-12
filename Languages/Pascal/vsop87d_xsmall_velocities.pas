@@ -3,14 +3,14 @@ unit vsop87d_xsmall_velocities;
 interface
 uses Math;
 
-procedure vsop87d_xsmall_velocities_getEarth(t: Double;temp: array of Double);
-procedure vsop87d_xsmall_velocities_getJupiter(t: Double;temp: array of Double);
-procedure vsop87d_xsmall_velocities_getMars(t: Double;temp: array of Double);
-procedure vsop87d_xsmall_velocities_getMercury(t: Double;temp: array of Double);
-procedure vsop87d_xsmall_velocities_getNeptune(t: Double;temp: array of Double);
-procedure vsop87d_xsmall_velocities_getSaturn(t: Double;temp: array of Double);
-procedure vsop87d_xsmall_velocities_getUranus(t: Double;temp: array of Double);
-procedure vsop87d_xsmall_velocities_getVenus(t: Double;temp: array of Double);
+procedure vsop87d_xsmall_velocities_getEarth(t: Double;var temp: array of Double);
+procedure vsop87d_xsmall_velocities_getJupiter(t: Double;var temp: array of Double);
+procedure vsop87d_xsmall_velocities_getMars(t: Double;var temp: array of Double);
+procedure vsop87d_xsmall_velocities_getMercury(t: Double;var temp: array of Double);
+procedure vsop87d_xsmall_velocities_getNeptune(t: Double;var temp: array of Double);
+procedure vsop87d_xsmall_velocities_getSaturn(t: Double;var temp: array of Double);
+procedure vsop87d_xsmall_velocities_getUranus(t: Double;var temp: array of Double);
+procedure vsop87d_xsmall_velocities_getVenus(t: Double;var temp: array of Double);
 
 implementation
 
@@ -2486,56 +2486,56 @@ begin
    vsop87d_xsmall_velocities_venus_r := venus_r_0+venus_r_1+venus_r_2;
 end;
 
-procedure vsop87d_xsmall_velocities_getEarth(t: Double;temp: array of Double);
+procedure vsop87d_xsmall_velocities_getEarth(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87d_xsmall_velocities_earth_l(t) / 365250.0;
    temp[1]:=vsop87d_xsmall_velocities_earth_b(t) / 365250.0;
    temp[2]:=vsop87d_xsmall_velocities_earth_r(t) / 365250.0;
 end;
 
-procedure vsop87d_xsmall_velocities_getJupiter(t: Double;temp: array of Double);
+procedure vsop87d_xsmall_velocities_getJupiter(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87d_xsmall_velocities_jupiter_l(t) / 365250.0;
    temp[1]:=vsop87d_xsmall_velocities_jupiter_b(t) / 365250.0;
    temp[2]:=vsop87d_xsmall_velocities_jupiter_r(t) / 365250.0;
 end;
 
-procedure vsop87d_xsmall_velocities_getMars(t: Double;temp: array of Double);
+procedure vsop87d_xsmall_velocities_getMars(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87d_xsmall_velocities_mars_l(t) / 365250.0;
    temp[1]:=vsop87d_xsmall_velocities_mars_b(t) / 365250.0;
    temp[2]:=vsop87d_xsmall_velocities_mars_r(t) / 365250.0;
 end;
 
-procedure vsop87d_xsmall_velocities_getMercury(t: Double;temp: array of Double);
+procedure vsop87d_xsmall_velocities_getMercury(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87d_xsmall_velocities_mercury_l(t) / 365250.0;
    temp[1]:=vsop87d_xsmall_velocities_mercury_b(t) / 365250.0;
    temp[2]:=vsop87d_xsmall_velocities_mercury_r(t) / 365250.0;
 end;
 
-procedure vsop87d_xsmall_velocities_getNeptune(t: Double;temp: array of Double);
+procedure vsop87d_xsmall_velocities_getNeptune(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87d_xsmall_velocities_neptune_l(t) / 365250.0;
    temp[1]:=vsop87d_xsmall_velocities_neptune_b(t) / 365250.0;
    temp[2]:=vsop87d_xsmall_velocities_neptune_r(t) / 365250.0;
 end;
 
-procedure vsop87d_xsmall_velocities_getSaturn(t: Double;temp: array of Double);
+procedure vsop87d_xsmall_velocities_getSaturn(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87d_xsmall_velocities_saturn_l(t) / 365250.0;
    temp[1]:=vsop87d_xsmall_velocities_saturn_b(t) / 365250.0;
    temp[2]:=vsop87d_xsmall_velocities_saturn_r(t) / 365250.0;
 end;
 
-procedure vsop87d_xsmall_velocities_getUranus(t: Double;temp: array of Double);
+procedure vsop87d_xsmall_velocities_getUranus(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87d_xsmall_velocities_uranus_l(t) / 365250.0;
    temp[1]:=vsop87d_xsmall_velocities_uranus_b(t) / 365250.0;
    temp[2]:=vsop87d_xsmall_velocities_uranus_r(t) / 365250.0;
 end;
 
-procedure vsop87d_xsmall_velocities_getVenus(t: Double;temp: array of Double);
+procedure vsop87d_xsmall_velocities_getVenus(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87d_xsmall_velocities_venus_l(t) / 365250.0;
    temp[1]:=vsop87d_xsmall_velocities_venus_b(t) / 365250.0;

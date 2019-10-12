@@ -3,16 +3,16 @@ unit vsop87a_xlarge;
 interface
 uses Math;
 
-procedure vsop87a_xlarge_getEarth(t: Double;temp: array of Double);
-procedure vsop87a_xlarge_getEmb(t: Double;temp: array of Double);
-procedure vsop87a_xlarge_getJupiter(t: Double;temp: array of Double);
-procedure vsop87a_xlarge_getMars(t: Double;temp: array of Double);
-procedure vsop87a_xlarge_getMercury(t: Double;temp: array of Double);
-procedure vsop87a_xlarge_getNeptune(t: Double;temp: array of Double);
-procedure vsop87a_xlarge_getSaturn(t: Double;temp: array of Double);
-procedure vsop87a_xlarge_getUranus(t: Double;temp: array of Double);
-procedure vsop87a_xlarge_getVenus(t: Double;temp: array of Double);
-procedure vsop87a_xlarge_getMoon(earth: array of Double; emb: array of Double;temp: array of Double);
+procedure vsop87a_xlarge_getEarth(t: Double;var temp: array of Double);
+procedure vsop87a_xlarge_getEmb(t: Double;var temp: array of Double);
+procedure vsop87a_xlarge_getJupiter(t: Double;var temp: array of Double);
+procedure vsop87a_xlarge_getMars(t: Double;var temp: array of Double);
+procedure vsop87a_xlarge_getMercury(t: Double;var temp: array of Double);
+procedure vsop87a_xlarge_getNeptune(t: Double;var temp: array of Double);
+procedure vsop87a_xlarge_getSaturn(t: Double;var temp: array of Double);
+procedure vsop87a_xlarge_getUranus(t: Double;var temp: array of Double);
+procedure vsop87a_xlarge_getVenus(t: Double;var temp: array of Double);
+procedure vsop87a_xlarge_getMoon(var earth: array of Double; var emb: array of Double;var temp: array of Double);
 
 implementation
 
@@ -32574,70 +32574,70 @@ begin
    vsop87a_xlarge_venus_z := venus_z_0+venus_z_1+venus_z_2+venus_z_3+venus_z_4+venus_z_5;
 end;
 
-procedure vsop87a_xlarge_getEarth(t: Double;temp: array of Double);
+procedure vsop87a_xlarge_getEarth(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_xlarge_earth_x(t);
    temp[1]:=vsop87a_xlarge_earth_y(t);
    temp[2]:=vsop87a_xlarge_earth_z(t);
 end;
 
-procedure vsop87a_xlarge_getEmb(t: Double;temp: array of Double);
+procedure vsop87a_xlarge_getEmb(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_xlarge_emb_x(t);
    temp[1]:=vsop87a_xlarge_emb_y(t);
    temp[2]:=vsop87a_xlarge_emb_z(t);
 end;
 
-procedure vsop87a_xlarge_getJupiter(t: Double;temp: array of Double);
+procedure vsop87a_xlarge_getJupiter(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_xlarge_jupiter_x(t);
    temp[1]:=vsop87a_xlarge_jupiter_y(t);
    temp[2]:=vsop87a_xlarge_jupiter_z(t);
 end;
 
-procedure vsop87a_xlarge_getMars(t: Double;temp: array of Double);
+procedure vsop87a_xlarge_getMars(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_xlarge_mars_x(t);
    temp[1]:=vsop87a_xlarge_mars_y(t);
    temp[2]:=vsop87a_xlarge_mars_z(t);
 end;
 
-procedure vsop87a_xlarge_getMercury(t: Double;temp: array of Double);
+procedure vsop87a_xlarge_getMercury(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_xlarge_mercury_x(t);
    temp[1]:=vsop87a_xlarge_mercury_y(t);
    temp[2]:=vsop87a_xlarge_mercury_z(t);
 end;
 
-procedure vsop87a_xlarge_getNeptune(t: Double;temp: array of Double);
+procedure vsop87a_xlarge_getNeptune(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_xlarge_neptune_x(t);
    temp[1]:=vsop87a_xlarge_neptune_y(t);
    temp[2]:=vsop87a_xlarge_neptune_z(t);
 end;
 
-procedure vsop87a_xlarge_getSaturn(t: Double;temp: array of Double);
+procedure vsop87a_xlarge_getSaturn(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_xlarge_saturn_x(t);
    temp[1]:=vsop87a_xlarge_saturn_y(t);
    temp[2]:=vsop87a_xlarge_saturn_z(t);
 end;
 
-procedure vsop87a_xlarge_getUranus(t: Double;temp: array of Double);
+procedure vsop87a_xlarge_getUranus(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_xlarge_uranus_x(t);
    temp[1]:=vsop87a_xlarge_uranus_y(t);
    temp[2]:=vsop87a_xlarge_uranus_z(t);
 end;
 
-procedure vsop87a_xlarge_getVenus(t: Double;temp: array of Double);
+procedure vsop87a_xlarge_getVenus(t: Double;var temp: array of Double);
 begin
    temp[0]:=vsop87a_xlarge_venus_x(t);
    temp[1]:=vsop87a_xlarge_venus_y(t);
    temp[2]:=vsop87a_xlarge_venus_z(t);
 end;
 
-procedure vsop87a_xlarge_getMoon(earth: array of Double; emb: array of Double;temp: array of Double);
+procedure vsop87a_xlarge_getMoon(var earth: array of Double; var emb: array of Double;var temp: array of Double);
 begin
    temp[0]:=(emb[0]-earth[0])*(1 + 1 / 0.01230073677);
    temp[1]:=(emb[1]-earth[1])*(1 + 1 / 0.01230073677);

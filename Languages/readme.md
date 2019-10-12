@@ -15,12 +15,12 @@ Swift        |            |                |
 Matlab/Octave|Yes         |Pass            |
 Groovy       |            |                |
 Go           |            |                |
-Pascal       |Yes         |Link Issues     |
+Pascal       |Yes         |0.000009au      |
 Perl         |Yes         |Pass            |
 R            |            |                |
 Cobol        |            |                |
 Fortran      |            |                |
 Rust         |            |                |
 Kotlin       |            |                |
-Arduino      |Yes         |.000009km       |
+Arduino      |Yes         |0.000009au      |
 Objective C  |            |                |
