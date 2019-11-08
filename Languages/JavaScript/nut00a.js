@@ -3,6 +3,10 @@ const ERFA_DJC=36525.0;
 const ERFA_TURNAS=1296000.0;
 const ERFA_DAS2R=(4.848136811095359935899141e-6);
 
+function fmod(a,b){
+      return a % b;
+}
+
 function eraNut00a(date1, date2)
 {
    var i;
@@ -13,6 +17,7 @@ function eraNut00a(date1, date2)
 
 /* Units of 0.1 microarcsecond to radians */
    const U2R = ERFA_DAS2R / 1e7;
+   const ERFA_DJ00=2451545.0;
 
 /* ------------------------- */
 /* Luni-Solar nutation model */
@@ -1610,19 +1615,18 @@ function eraNut00a(date1, date2)
    for (i = NLS-1; i >= 0; i--) {
 
    /* Argument and functions. */
-      arg = fmod(xls[i].nl  * el +
-                 xls[i].nlp * elp +
-                 xls[i].nf  * f +
-                 xls[i].nd  * d +
-                 xls[i].nom * om, ERFA_D2PI);
-      sarg = sin(arg);
-      carg = cos(arg);
+      arg = fmod(xls[i][0]  * el +
+                 xls[i][1] * elp +
+                 xls[i][2]  * f +
+                 xls[i][3] * d +
+                 xls[i][4] * om, ERFA_D2PI);
+      sarg = Math.sin(arg);
+      carg = Math.cos(arg);
 
    /* Term. */
-      dp += (xls[i].sp + xls[i].spt * t) * sarg + xls[i].cp * carg;
-      de += (xls[i].ce + xls[i].cet * t) * carg + xls[i].se * sarg;
+      dp += (xls[i][5] + xls[i][6] * t) * sarg + xls[i][7] * carg;
+      de += (xls[i][8] + xls[i][9] * t) * carg + xls[i][10] * sarg;
    }
-
 /* Convert from 0.1 microarcsec units to radians. */
    dpsils = dp * U2R;
    depsls = de * U2R;
@@ -1674,28 +1678,27 @@ function eraNut00a(date1, date2)
    for (i = NPL-1; i >= 0; i--) {
 
    /* Argument and functions. */
-      arg = fmod(xpl[i].nl  * al   +
-                 xpl[i].nf  * af   +
-                 xpl[i].nd  * ad   +
-                 xpl[i].nom * aom  +
-                 xpl[i].nme * alme +
-                 xpl[i].nve * alve +
-                 xpl[i].nea * alea +
-                 xpl[i].nma * alma +
-                 xpl[i].nju * alju +
-                 xpl[i].nsa * alsa +
-                 xpl[i].nur * alur +
-                 xpl[i].nne * alne +
-                 xpl[i].npa * apa, ERFA_D2PI);
-      sarg = sin(arg);
-      carg = cos(arg);
+      arg = fmod(xpl[i][0]  * al   +
+                 xpl[i][1] * af   +
+                 xpl[i][2] * ad   +
+                 xpl[i][3] * aom  +
+                 xpl[i][4] * alme +
+                 xpl[i][5] * alve +
+                 xpl[i][6] * alea +
+                 xpl[i][7] * alma +
+                 xpl[i][8] * alju +
+                 xpl[i][9] * alsa +
+                 xpl[i][10] * alur +
+                 xpl[i][11] * alne +
+                 xpl[i][12] * apa, ERFA_D2PI);
+      sarg = Math.sin(arg);
+      carg = Math.cos(arg);
 
    /* Term. */
-      dp += xpl[i].sp * sarg + xpl[i].cp * carg;
-      de += xpl[i].se * sarg + xpl[i].ce * carg;
+      dp += xpl[i][13] * sarg + xpl[i][14] * carg;
+      de += xpl[i][15] * sarg + xpl[i][16] * carg;
 
    }
-
 /* Convert from 0.1 microarcsec units to radians. */
    dpsipl = dp * U2R;
    depspl = de * U2R;
