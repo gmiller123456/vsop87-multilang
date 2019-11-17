@@ -35,8 +35,16 @@ class astrolib{
 		//Rotate ecliptic coordinates to J2000 coordinates
 		body = astrolib.rotvsop2J2000(body);
 
+		//TODO: rotate body for precession, nutation and bias
+		let precession=astrolib.iau2006_precession_matrix(jd);
+		body=astrolib.vecMatrixMul(body,precession);
+
 		//Convert to topocentric
-		const observerXYZ=astrolib.getObserverGeocentric(jdTT,lat,lon);
+		let observerXYZ=astrolib.getObserverGeocentric(jdTT,lat,lon);
+
+		//TODO: rotate observerXYZ for precession, nutation and bias
+		const precessionInv=astrolib.transpose(precession);
+		observerXYZ=astrolib.vecMatrixMul(observerXYZ,precessionInv);
 
 		body = astrolib.sub(body,observerXYZ);
 
@@ -47,6 +55,26 @@ class astrolib{
 		if(RaDec[2]<0){RaDec[2]+=2*Math.PI;} //Ensure RA is positive
 		
 		return(RaDec);
+	}
+
+	static transpose(m){
+		let t=new Array();
+		for(let i=0;i<m.length;i++){
+			t[i]=new Array();
+			for(let j=0;j<m[i].length;j++){
+				t[i][j]=m[j][i];
+			}
+		}
+		return t;
+	}
+
+	static vecMatrixMul(v,m){
+		let t=new Array();
+		t[0]=v[0]*m[0][0]+v[1]*m[0][1]+v[2]*m[0][2];
+		t[1]=v[0]*m[1][0]+v[1]*m[1][1]+v[2]*m[1][2];
+		t[2]=v[0]*m[2][0]+v[1]*m[2][1]+v[2]*m[2][2];
+
+		return t;
 	}
 
 	//Returns a body's cartesian coordinates centered on the Sun.
@@ -238,7 +266,6 @@ class astrolib{
 	//All angles are input and output as radians
 	static convertRaDecToAltAz(jd,lat,lon,ra,dec){
 		const GMST=astrolib.getGMST(jd)*Math.PI/180.0*15.0;
-console.log(GMST);
 		let h=GMST + lon - ra;
 		
 		const sina=Math.sin(dec)*Math.sin(lat)+Math.cos(dec)*Math.cos(h)*Math.cos(lat);
