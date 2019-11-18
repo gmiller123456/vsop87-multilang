@@ -36,7 +36,7 @@ class astrolib{
 		body = astrolib.rotvsop2J2000(body);
 
 		//TODO: rotate body for precession, nutation and bias
-		let precession=astrolib.iau2006_precession_matrix(jd);
+		let precession=astrolib.era2006_precession_matrix(jd);
 		body=astrolib.vecMatrixMul(body,precession);
 
 		//Convert to topocentric
@@ -284,22 +284,15 @@ class astrolib{
 		return t;
 	}
 
-	static iau2006_precession_matrix(jd){
-		//double t,psi,omega,chi,eps0,c1,c2,c3,c4,s1,s2,s3,s4;
+	static era2006_precession_matrix(jd){
 		const ACS_TO_RAD=4.84814e-6;
 
 		const eps0 = 84381.406 * ACS_TO_RAD;
 		const t =(jd - 2451545.0)/36525.0;
 
-		const psi = ((5038.481507 +
-			(-1.0790069 +
-			(-0.00114045 +
-			(0.000132851 - 0.0000000951*t) * t) * t) * t) * t) * ACS_TO_RAD;
+		const psi = ((5038.481507 +	(-1.0790069 + (-0.00114045 + (0.000132851 - 0.0000000951*t) * t) * t) * t) * t) * ACS_TO_RAD;
 
-		const omega = eps0 +
-			((-0.025754 +
-			(0.0512623 +
-			(-0.00772503 +
+		const omega = eps0 + ((-0.025754 + (0.0512623 +	(-0.00772503 +
 			(-0.000000467 + 0.0000003337*t) * t) * t) * t) * t) * ACS_TO_RAD;
 
 		const chi = ((10.556403 +
@@ -309,21 +302,17 @@ class astrolib{
 
 		const s1=Math.sin(eps0);
 		const c1=Math.cos(eps0);
-		//sincos(eps0, &s1, &c1);
 
-		let s2=Math.sin(psi);
+		let s2=-Math.sin(psi);
 		const c2=Math.cos(psi);
-		//sincos(psi, &s2, &c2);
-		s2 *= -1.0;
+		//s2 *= -1.0;
 
-		let s3=Math.sin(omega);
+		let s3=-Math.sin(omega);
 		const c3=Math.cos(omega);
-		//sincos(omega, &s3, &c3);
-		s3 *= -1.0;
+		//s3 *= -1.0;
 
 		const s4=Math.sin(chi);
 		const c4=Math.cos(chi);
-		//sincos(chi, &s4, &c4);
 
 		let prec_matrix=new Array();
 		prec_matrix[0]=new Array();
