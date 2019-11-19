@@ -285,61 +285,45 @@ class astrolib{
 	}
 
 	static era2006_precession_matrix(jd){
-		const ACS_TO_RAD=4.84814e-6;
+		//Implemented from https://www.iers.org/SharedDocs/Publikationen/EN/IERS/Publications/tn/TechnNote36/tn36_043.pdf?__blob=publicationFile&v=1
+		const t =(jd - 2451545.0)/36525.0;  //5.2
+		const Arcsec2Radians=Math.PI/180.0/60.0/60.0; //Converts arc seconds used in equations below to radians
 
-		const eps0 = 84381.406 * ACS_TO_RAD;
-		const t =(jd - 2451545.0)/36525.0;
+		const e0 = 84381.406 * Arcsec2Radians; //5.6.4
+		const omegaA = e0 + ((-0.025754 + (0.0512623 +	(-0.00772503 + (-0.000000467 + 0.0000003337*t) * t) * t) * t) * t) * Arcsec2Radians; //5.39
+		const psiA = ((5038.481507 +	(-1.0790069 + (-0.00114045 + (0.000132851 - 0.0000000951*t) * t) * t) * t) * t) * Arcsec2Radians; //5.39
+		const chiA = ((10.556403 + (-2.3814292 + (-0.00121197 + (0.000170663 - 0.0000000560*t) * t) * t) * t) * t) * Arcsec2Radians; //5.40
 
-		const psi = ((5038.481507 +	(-1.0790069 + (-0.00114045 + (0.000132851 - 0.0000000951*t) * t) * t) * t) * t) * ACS_TO_RAD;
+		//Pre-compute sin/cos of each element for rotation matrix below
+		const sine0=Math.sin(e0);
+		const cose0=Math.cos(e0); 
+		const sinOmegaA=-Math.sin(omegaA);
+		const cosOmegaA=Math.cos(omegaA);
+		const sinPsiA=-Math.sin(psiA); 
+		const cosPsiA=Math.cos(psiA); 
+		const sinChiA=Math.sin(chiA);
+		const cosChiA=Math.cos(chiA); 
 
-		const omega = eps0 + ((-0.025754 + (0.0512623 +	(-0.00772503 +
-			(-0.000000467 + 0.0000003337*t) * t) * t) * t) * t) * ACS_TO_RAD;
-
-		const chi = ((10.556403 +
-			(-2.3814292 +
-			(-0.00121197 +
-			(0.000170663 - 0.0000000560*t) * t) * t) * t) * t) * ACS_TO_RAD;
-
-		const s1=Math.sin(eps0);
-		const c1=Math.cos(eps0);
-
-		let s2=-Math.sin(psi);
-		const c2=Math.cos(psi);
-		//s2 *= -1.0;
-
-		let s3=-Math.sin(omega);
-		const c3=Math.cos(omega);
-		//s3 *= -1.0;
-
-		const s4=Math.sin(chi);
-		const c4=Math.cos(chi);
-
+		//Combined rotation matrix from 5.4.5
+		//(R1(−e0) · R3(psiA) · R1(omegaA) · R3(−chiA))
 		let prec_matrix=new Array();
 		prec_matrix[0]=new Array();
 		prec_matrix[1]=new Array();
 		prec_matrix[2]=new Array();
 
-		prec_matrix[0][0] = (c4 * c2)-(s2 * s4 * c3);
-		prec_matrix[0][1] = (c4 * s2 * c1)+(s4 * c3 * c2 * c1)-(s1 * s4 * s3);
-		prec_matrix[0][2] = (c4 * s2 * s1)+(s4 * c3 * c2 * s1)+(c1 * s4 * s3);
+		prec_matrix[0][0] = (cosChiA * cosPsiA)-(sinPsiA * sinChiA * cosOmegaA);
+		prec_matrix[0][1] = (cosChiA * sinPsiA * cose0)+(sinChiA * cosOmegaA * cosPsiA * cose0)-(sine0 * sinChiA * sinOmegaA);
+		prec_matrix[0][2] = (cosChiA * sinPsiA * sine0)+(sinChiA * cosOmegaA * cosPsiA * sine0)+(cose0 * sinChiA * sinOmegaA);
 
-		prec_matrix[1][0] = -(s4 * c2)-(s2 * c4 * c3);
-		prec_matrix[1][1] = -(s4 * s2 * c1)+(c4 * c3 * c2 * c1)-(s1 * c4 * s3);
-		prec_matrix[1][2] = -(s4 * s2 * s1)+(c4 * c3 * c2 * s1)+(c1 * c4 * s3);
+		prec_matrix[1][0] = -(sinChiA * cosPsiA)-(sinPsiA * cosChiA * cosOmegaA);
+		prec_matrix[1][1] = -(sinChiA * sinPsiA * cose0)+(cosChiA * cosOmegaA * cosPsiA * cose0)-(sine0 * cosChiA * sinOmegaA);
+		prec_matrix[1][2] = -(sinChiA * sinPsiA * sine0)+(cosChiA * cosOmegaA * cosPsiA * sine0)+(cose0 * cosChiA * sinOmegaA);
 
-		prec_matrix[2][0] = s2 * s3;
-		prec_matrix[2][1] = -(s3 * c2 * c1)-(s1 * c3);
-		prec_matrix[2][2] = -(s3 * c2 * s1)+(c3 * c1);
+		prec_matrix[2][0] = sinPsiA * sinOmegaA;
+		prec_matrix[2][1] = -(sinOmegaA * cosPsiA * cose0)-(sine0 * cosOmegaA);
+		prec_matrix[2][2] = -(sinOmegaA * cosPsiA * sine0)+(cosOmegaA * cose0);
 
 		return prec_matrix;
-
-
-		/* Just transpose the matrix for precession to J2000 */
-		//if (toJ2000) {
-		//	swap(&prec_matrix[0][1], &prec_matrix[1][0]);
-		//	swap(&prec_matrix[0][2], &prec_matrix[2][0]);
-		//	swap(&prec_matrix[1][2], &prec_matrix[2][1]);
-		//}
 	}
 
 }

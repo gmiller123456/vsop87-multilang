@@ -5,9 +5,8 @@ Simple example to compute the topocentric alt/az position of the moon.  Note the
 used is not rigorous, it ignores several factors which will result in significant errors compared to other results.  However the largest
 of these errors are due to the movement of the observer (e.g. precession, aberation), so they do not have much effect on the
 objects' positions relative to each other.  E.g.  The first two entries in the table below are the Sun and Moon at the center
-of the Aug 17, 2017 solar eclipse.  Although the Al/Az positions differ from the JPL values by more than half a degree (the size of the sun and the moon),
-they still relatively agree with each other.  The Alt/Az positoins from JPL include precession, so switching to the VSOP87C version will
-provide better agreement with those numbers, but the "C" version does not include positons for the Moon.
+of the Aug 17, 2017 solar eclipse.  Although the Al/Az positions differ from the JPL values,
+they still relatively agree with each other.
 <br>
 <br>This example requires vsop87a_full.js and astrolib.js.<br><br>
 <table id="output" border=1 cellspacing=0></table>
@@ -28,14 +27,14 @@ console.log(astrolib.toHmsString(astrolib.getGMST(2457936.5)*15.0*Math.PI/180.0)
 runTests();
 
 function runTests(){
-	//Test data is from JPL Horizons, all for Louisville, KY USA
+	//Test data is from JPL Horizons, all but the first two for Louisville, KY USA
 	//Format of the data: Date, Body, Latitude, Longitude, RA, DEC, Az, Alt
 	
 	testPosition(new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.SUN,36.9664, -87.6709,150.78827, 11.94484, 197.9394,  63.8956);
 	testPosition(new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.MOON,36.9664,-87.6709,150.78837, 11.94480, 197.9392,  63.8956);
 	testPosition(new Date(Date.UTC(2000,0, 1,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,222.80147, -11.57774, 146.3255,  33.6752);
 	testPosition(new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.MOON,38.2464000,274.236400,249.19588, -20.90403, 261.7692, -24.3259);
-	testPosition(new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,246.94086, -20.63461, 225.6334,  16.3183);
+	testPosition(new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,246.93301, -20.63317, 225.6334,  16.3183);
 	testPosition(new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.26297, -21.16207, 176.5762,  30.5684);
 	testPosition(new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.27987, -21.15939, 232.6292,  10.1502);
 	testPosition(new Date(Date.UTC(2010,8,25,0,0,0,0)),astrolib.SATURN,38.2464000,274.236400,187.14592 , -0.73332, 269.7883,  -1.0113);
