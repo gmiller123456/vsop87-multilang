@@ -36,7 +36,7 @@ class astrolib{
 		body = astrolib.rotvsop2J2000(body);
 
 		//TODO: rotate body for precession, nutation and bias
-		let precession=astrolib.era2006_precession_matrix(jd);
+		let precession=astrolib.getPrecessionMatrix(jd);
 		body=astrolib.vecMatrixMul(body,precession);
 
 		//Convert to topocentric
@@ -73,6 +73,75 @@ class astrolib{
 		t[0]=v[0]*m[0][0]+v[1]*m[0][1]+v[2]*m[0][2];
 		t[1]=v[0]*m[1][0]+v[1]*m[1][1]+v[2]*m[1][2];
 		t[2]=v[0]*m[2][0]+v[1]*m[2][1]+v[2]*m[2][2];
+
+		return t;
+	}
+
+	//Subtracts two arrays (vectors), a-b
+	static sub(a, b){
+		let t = new Array();
+		t[0] = a[0] - b[0];
+		t[1] = a[1] - b[1];
+		t[2] = a[2] - b[2];
+		return t;
+	}
+
+	//Gets a rotation matrix about the x axis.  Angle R is in radians
+	static getXRotationMatrix(r){
+		let t=new Array();
+		t[0]=new Array();
+		t[1]=new Array();
+		t[2]=new Array();
+
+		t[0][0]=1;
+		t[0][1]=0;
+		t[0][2]=0;
+		t[1][0]=0;
+		t[1][1]=Math.cos(r);
+		t[1][2]=Math.sin(r);
+		t[2][0]=0;
+		t[2][1]=-Math.sin(r);
+		t[2][2]=Math.cos(r);
+
+		return t;
+	}
+
+	//Gets a rotation matrix about the y axis.  Angle R is in radians
+	static getYRotationMatrix(r){
+		let t=new Array();
+		t[0]=new Array();
+		t[1]=new Array();
+		t[2]=new Array();
+
+		t[0][0]=Math.cos(r);
+		t[0][1]=0;
+		t[0][2]=-Math.sin(r);
+		t[1][0]=0;
+		t[1][1]=1;
+		t[1][2]=0;
+		t[2][0]=Math.sin(r);
+		t[2][1]=0;
+		t[2][2]=Math.cos(r);
+
+		return t;
+	}
+
+	//Gets a rotation matrix about the z axis.  Angle R is in radians
+	static getZRotationMatrix(r){
+		let t=new Array();
+		t[0]=new Array();
+		t[1]=new Array();
+		t[2]=new Array();
+
+		t[0][0]=Math.cos(r);
+		t[0][1]=Math.sin(r);
+		t[0][2]=0;
+		t[1][0]=-Math.sin(r);
+		t[1][1]=Math.cos(r);
+		t[1][2]=0;
+		t[2][0]=0;
+		t[2][1]=0;
+		t[2][2]=1;
 
 		return t;
 	}
@@ -130,15 +199,6 @@ class astrolib{
 		if(t[1]<0){t[1]+=2*Math.PI;}
 		if(t[2]<0){t[2]+=2*Math.PI;}
 
-		return t;
-	}
-
-	//Subtracts two arrays (vectors), a-b
-	static sub(a, b){
-		let t = new Array();
-		t[0] = a[0] - b[0];
-		t[1] = a[1] - b[1];
-		t[2] = a[2] - b[2];
 		return t;
 	}
 
@@ -232,10 +292,16 @@ class astrolib{
 
 		let GMST=astrolib.getGMST(ut1);
 		GMST=-GMST*15.0*Math.PI/180.0;
+
+		let m=astrolib.getZRotationMatrix(GMST);
+		let t=astrolib.vecMatrixMul(r,m);
+
+		/*
 		let t=new Array();
 		t[0]=r[0]*Math.cos(GMST) + r[1]*(Math.sin(GMST));
 		t[1]=r[0]*(-Math.sin(GMST)) + r[1]*Math.cos(GMST);
 		t[2]=r[2];
+		*/
 
 		return t;
 	}
@@ -284,8 +350,9 @@ class astrolib{
 		return t;
 	}
 
-	static era2006_precession_matrix(jd){
-		//Implemented from https://www.iers.org/SharedDocs/Publikationen/EN/IERS/Publications/tn/TechnNote36/tn36_043.pdf?__blob=publicationFile&v=1
+	static getPrecessionMatrix(jd){
+		//2006 IAU Precession.  Implemented from IERS Technical Note No 36 ch5.
+		//https://www.iers.org/SharedDocs/Publikationen/EN/IERS/Publications/tn/TechnNote36/tn36_043.pdf?__blob=publicationFile&v=1
 		const t =(jd - 2451545.0)/36525.0;  //5.2
 		const Arcsec2Radians=Math.PI/180.0/60.0/60.0; //Converts arc seconds used in equations below to radians
 
@@ -306,24 +373,24 @@ class astrolib{
 
 		//Combined rotation matrix from 5.4.5
 		//(R1(−e0) · R3(psiA) · R1(omegaA) · R3(−chiA))
-		let prec_matrix=new Array();
-		prec_matrix[0]=new Array();
-		prec_matrix[1]=new Array();
-		prec_matrix[2]=new Array();
+		let m=new Array();
+		m[0]=new Array();
+		m[1]=new Array();
+		m[2]=new Array();
 
-		prec_matrix[0][0] = (cosChiA * cosPsiA)-(sinPsiA * sinChiA * cosOmegaA);
-		prec_matrix[0][1] = (cosChiA * sinPsiA * cose0)+(sinChiA * cosOmegaA * cosPsiA * cose0)-(sine0 * sinChiA * sinOmegaA);
-		prec_matrix[0][2] = (cosChiA * sinPsiA * sine0)+(sinChiA * cosOmegaA * cosPsiA * sine0)+(cose0 * sinChiA * sinOmegaA);
+		m[0][0] = (cosChiA * cosPsiA)-(sinPsiA * sinChiA * cosOmegaA);
+		m[0][1] = (cosChiA * sinPsiA * cose0)+(sinChiA * cosOmegaA * cosPsiA * cose0)-(sine0 * sinChiA * sinOmegaA);
+		m[0][2] = (cosChiA * sinPsiA * sine0)+(sinChiA * cosOmegaA * cosPsiA * sine0)+(cose0 * sinChiA * sinOmegaA);
 
-		prec_matrix[1][0] = -(sinChiA * cosPsiA)-(sinPsiA * cosChiA * cosOmegaA);
-		prec_matrix[1][1] = -(sinChiA * sinPsiA * cose0)+(cosChiA * cosOmegaA * cosPsiA * cose0)-(sine0 * cosChiA * sinOmegaA);
-		prec_matrix[1][2] = -(sinChiA * sinPsiA * sine0)+(cosChiA * cosOmegaA * cosPsiA * sine0)+(cose0 * cosChiA * sinOmegaA);
+		m[1][0] = -(sinChiA * cosPsiA)-(sinPsiA * cosChiA * cosOmegaA);
+		m[1][1] = -(sinChiA * sinPsiA * cose0)+(cosChiA * cosOmegaA * cosPsiA * cose0)-(sine0 * cosChiA * sinOmegaA);
+		m[1][2] = -(sinChiA * sinPsiA * sine0)+(cosChiA * cosOmegaA * cosPsiA * sine0)+(cose0 * cosChiA * sinOmegaA);
 
-		prec_matrix[2][0] = sinPsiA * sinOmegaA;
-		prec_matrix[2][1] = -(sinOmegaA * cosPsiA * cose0)-(sine0 * cosOmegaA);
-		prec_matrix[2][2] = -(sinOmegaA * cosPsiA * sine0)+(cosOmegaA * cose0);
+		m[2][0] = sinPsiA * sinOmegaA;
+		m[2][1] = -(sinOmegaA * cosPsiA * cose0)-(sine0 * cosOmegaA);
+		m[2][2] = -(sinOmegaA * cosPsiA * sine0)+(cosOmegaA * cose0);
 
-		return prec_matrix;
+		return m;
 	}
 
 }
