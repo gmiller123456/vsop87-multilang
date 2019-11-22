@@ -4,6 +4,7 @@ Released as public domain
 
 */
 
+
 class astrolib{
 
 	//Returns an array containing the distance, declination, and right ascension (in that order) in radians.
@@ -144,6 +145,21 @@ class astrolib{
 		t[2][2]=1;
 
 		return t;
+	}
+
+	static dot(a,b){
+		let m=new Array();
+		for(let i=0;i<a.length;i++){
+			m[i]=new Array();
+			for(let j=0;j<b[0].length;j++){
+				let temp=0;
+				for(let k=0;k<b.length;k++){
+					temp+=a[i][k]*b[k][j];
+				}
+				m[i][j]=temp;
+			}
+		}
+		return m;
 	}
 
 	//Returns a body's cartesian coordinates centered on the Sun.
@@ -350,6 +366,17 @@ class astrolib{
 		return t;
 	}
 
+	static printmat(m){
+		for(let i=0;i<m.length;i++){
+			let s="";
+			for(let j=0;j<m[i].length;j++){
+				s=s+""+m[i][j]+"\t";
+			}
+			console.log(s);
+		}
+		console.log("");
+	}
+
 	static getPrecessionMatrix(jd){
 		//2006 IAU Precession.  Implemented from IERS Technical Note No 36 ch5.
 		//https://www.iers.org/SharedDocs/Publikationen/EN/IERS/Publications/tn/TechnNote36/tn36_043.pdf?__blob=publicationFile&v=1
@@ -361,36 +388,20 @@ class astrolib{
 		const psiA = ((5038.481507 +	(-1.0790069 + (-0.00114045 + (0.000132851 - 0.0000000951*t) * t) * t) * t) * t) * Arcsec2Radians; //5.39
 		const chiA = ((10.556403 + (-2.3814292 + (-0.00121197 + (0.000170663 - 0.0000000560*t) * t) * t) * t) * t) * Arcsec2Radians; //5.40
 
-		//Pre-compute sin/cos of each element for rotation matrix below
-		const sine0=Math.sin(e0);
-		const cose0=Math.cos(e0); 
-		const sinOmegaA=-Math.sin(omegaA);
-		const cosOmegaA=Math.cos(omegaA);
-		const sinPsiA=-Math.sin(psiA); 
-		const cosPsiA=Math.cos(psiA); 
-		const sinChiA=Math.sin(chiA);
-		const cosChiA=Math.cos(chiA); 
-
-		//Combined rotation matrix from 5.4.5
+		//Rotation matrix from 5.4.5
 		//(R1(−e0) · R3(psiA) · R1(omegaA) · R3(−chiA))
-		let m=new Array();
-		m[0]=new Array();
-		m[1]=new Array();
-		m[2]=new Array();
+		//Above eq rotates from "of date" to J2000, so we reverse the signs to go from J2000 to "of date"
+		
+		const m1=astrolib.getXRotationMatrix(e0);
+		const m2=astrolib.getZRotationMatrix(-psiA);
+		const m3=astrolib.getXRotationMatrix(-omegaA);
+		const m4=astrolib.getZRotationMatrix(chiA);
 
-		m[0][0] = (cosChiA * cosPsiA)-(sinPsiA * sinChiA * cosOmegaA);
-		m[0][1] = (cosChiA * sinPsiA * cose0)+(sinChiA * cosOmegaA * cosPsiA * cose0)-(sine0 * sinChiA * sinOmegaA);
-		m[0][2] = (cosChiA * sinPsiA * sine0)+(sinChiA * cosOmegaA * cosPsiA * sine0)+(cose0 * sinChiA * sinOmegaA);
+		const m5=astrolib.dot(m4,m3);
+		const m6=astrolib.dot(m5,m2);
+		const m7=astrolib.dot(m6,m1);
 
-		m[1][0] = -(sinChiA * cosPsiA)-(sinPsiA * cosChiA * cosOmegaA);
-		m[1][1] = -(sinChiA * sinPsiA * cose0)+(cosChiA * cosOmegaA * cosPsiA * cose0)-(sine0 * cosChiA * sinOmegaA);
-		m[1][2] = -(sinChiA * sinPsiA * sine0)+(cosChiA * cosOmegaA * cosPsiA * sine0)+(cose0 * cosChiA * sinOmegaA);
-
-		m[2][0] = sinPsiA * sinOmegaA;
-		m[2][1] = -(sinOmegaA * cosPsiA * cose0)-(sine0 * cosOmegaA);
-		m[2][2] = -(sinOmegaA * cosPsiA * sine0)+(cosOmegaA * cose0);
-
-		return m;
+		return m7;
 	}
 
 }
