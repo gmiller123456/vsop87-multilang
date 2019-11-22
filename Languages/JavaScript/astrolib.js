@@ -411,15 +411,15 @@ class astrolib{
 		const m6=astrolib.dot(m5,m2);
 		const precessionMatrix=astrolib.dot(m6,m1);
 
-		//const m7=astrolib.getXRotationMatrix(epsA);
-		//const m8=astrolib.getZRotationMatrix(-dpsi);
-		//const m9=astrolib.getXRotationMatrix(-(epsA+deps));
+		const m7=astrolib.getXRotationMatrix(epsA);
+		const m8=astrolib.getZRotationMatrix(-dpsi);
+		const m9=astrolib.getXRotationMatrix(-(epsA+deps));
 
-		//const m10=astrolib.dot(m7,precessionMatrix);
-		//const m11=astrolib.dot(m10,m8);
-		//const m12=astrolib.dot(m11,m9);
+		const m10=astrolib.dot(m7,precessionMatrix);
+		const m11=astrolib.dot(m10,m8);
+		const nutationMatrix=astrolib.dot(m11,m9);
 
-		//return m12;
+		//return nutationMatrix;
 		return precessionMatrix;
 	}
 
