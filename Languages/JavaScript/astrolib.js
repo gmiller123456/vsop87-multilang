@@ -380,6 +380,7 @@ class astrolib{
 	static getPrecessionMatrix(jd){
 		//2006 IAU Precession.  Implemented from IERS Technical Note No 36 ch5.
 		//https://www.iers.org/SharedDocs/Publikationen/EN/IERS/Publications/tn/TechnNote36/tn36_043.pdf?__blob=publicationFile&v=1
+
 		const t =(jd - 2451545.0)/36525.0;  //5.2
 		const Arcsec2Radians=Math.PI/180.0/60.0/60.0; //Converts arc seconds used in equations below to radians
 
@@ -388,10 +389,19 @@ class astrolib{
 		const psiA = ((5038.481507 +	(-1.0790069 + (-0.00114045 + (0.000132851 - 0.0000000951*t) * t) * t) * t) * t) * Arcsec2Radians; //5.39
 		const chiA = ((10.556403 + (-2.3814292 + (-0.00121197 + (0.000170663 - 0.0000000560*t) * t) * t) * t) * t) * Arcsec2Radians; //5.40
 
+
+		//Compute nutation
+		const nut=eraNut00a(0,jd);
+		const dpsi=nut[0];
+		const deps=nut[1];
+		const epsA=e0 - ((46.83676900 - (0.0001831 + (0.0020034 - (0.000000576 - 0.000000043400*t) *t) *t) *t) *t) * Arcsec2Radians; //5.40
+		//const dpsi1=(dpsi*Math.sin(eA)*Math.cos(chiA)-deps*Math.sin(chiA))/Math.sin(omegaA); //5.24
+		//const deps1=dpsi*Math.sin(eA)*Math.sin(chiA)+deps*Math.cos(chiA);
+
+
 		//Rotation matrix from 5.4.5
 		//(R1(−e0) · R3(psiA) · R1(omegaA) · R3(−chiA))
 		//Above eq rotates from "of date" to J2000, so we reverse the signs to go from J2000 to "of date"
-		
 		const m1=astrolib.getXRotationMatrix(e0);
 		const m2=astrolib.getZRotationMatrix(-psiA);
 		const m3=astrolib.getXRotationMatrix(-omegaA);
@@ -399,9 +409,18 @@ class astrolib{
 
 		const m5=astrolib.dot(m4,m3);
 		const m6=astrolib.dot(m5,m2);
-		const m7=astrolib.dot(m6,m1);
+		const precessionMatrix=astrolib.dot(m6,m1);
 
-		return m7;
+		//const m7=astrolib.getXRotationMatrix(epsA);
+		//const m8=astrolib.getZRotationMatrix(-dpsi);
+		//const m9=astrolib.getXRotationMatrix(-(epsA+deps));
+
+		//const m10=astrolib.dot(m7,precessionMatrix);
+		//const m11=astrolib.dot(m10,m8);
+		//const m12=astrolib.dot(m11,m9);
+
+		//return m12;
+		return precessionMatrix;
 	}
 
 }
