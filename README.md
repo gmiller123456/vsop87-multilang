@@ -2,6 +2,8 @@
 Versions for C#, C, C++, Java, JavaScript, Perl, Python, and VB.Net have been created.  These have passed all test cases provided by the
 VSOP87 authors, a validation program is also included for each language.  They should be ready for use.
 
+An example in JavaScript showing computations is available at http://www.astrogreg.com/vsop87example/example_alt_az_moon.html
+
 Still to come: more languages, documentation, and examples.
 
 # About this Project
