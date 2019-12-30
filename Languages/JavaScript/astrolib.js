@@ -17,19 +17,9 @@ class astrolib{
 		
 		//Get current position of Earth
 		const earth = astrolib.getBody(3,t);
-		//Get current position of body
-		let body = astrolib.getBody(bodyNum,t);
 
-		//Calculate light time to body
-		body = astrolib.sub(body, earth);
-		let distance = Math.sqrt(body[0] * body[0] + body[1] * body[1] + body[2] * body[2]);
-		distance*=1.496e+11; //Convert from AU to meters
-		const lightTime=distance/299792458.0;
+		let body=astrolib.getBodyLightTimeAdjusted(t,earth,bodyNum);
 
-		//Convert light time to Julian Millenia, and subtract it from the original value of t
-		t-=lightTime / 24.0 / 60.0 / 60.0 / 365250.0;  
-		//Recalculate body position adjusted for light time
-		body = astrolib.getBody(bodyNum,t);
 		//Convert to Geocrntric position
 		body = astrolib.sub(body, earth);
 		
@@ -37,8 +27,9 @@ class astrolib{
 		body = astrolib.rotvsop2J2000(body);
 
 		//TODO: rotate body for precession, nutation and bias
-		let precession=astrolib.getPrecessionMatrix(jdTT);
+		let precession;
 		if(precess==true){
+			precession=astrolib.getPrecessionMatrix(jdTT);
 			body=astrolib.vecMatrixMul(body,precession);
 		}
 
@@ -60,6 +51,60 @@ class astrolib{
 		if(RaDec[2]<0){RaDec[2]+=2*Math.PI;} //Ensure RA is positive
 		
 		return(RaDec);
+	}
+
+	static getBodyLightTimeAdjusted(t,origin,bodyNum){
+		//Get current position of body
+		let body = astrolib.getBody(bodyNum,t);
+
+		let newT=t;
+
+		for(let i=0;i<2;i++){
+			//Calculate light time to body
+			body = astrolib.sub(body, origin);
+			let distance = Math.sqrt(body[0] * body[0] + body[1] * body[1] + body[2] * body[2]);
+			distance*=1.496e+11; //Convert from AU to meters
+			const lightTime=distance/299792458.0;
+
+			//Convert light time to Julian Millenia, and subtract it from the original value of t
+			newT-=lightTime / 24.0 / 60.0 / 60.0 / 365250.0;  
+			//Recalculate body position adjusted for light time
+			body = astrolib.getBody(bodyNum,newT);
+		}
+
+		return body;
+	}
+
+	//Returns a body's cartesian coordinates centered on the Sun.
+	//Requires vsop87a_full.js, if you wish to use a different version of VSOP87, replace the class name vsop87a_full below
+	static getBody(bodyNum,et){
+		switch(bodyNum){
+			case 0: 
+				return [0,0,0]; //Sun is at the center for vsop87a
+				//return vsop87e_full.getSun(et);  // "E" is the only version the Sun is not always at [0,0,0]
+			case 1:
+				return vsop87a_full.getMercury(et);
+			case 2:
+				return vsop87a_full.getVenus(et);
+			case 3:
+				return vsop87a_full.getEarth(et);
+			case 4:
+				return vsop87a_full.getMars(et);
+			case 5:
+				return vsop87a_full.getJupiter(et);
+			case 6:
+				return vsop87a_full.getSaturn(et);
+			case 7:
+				return vsop87a_full.getUranus(et);
+			case 8:
+				return vsop87a_full.getNeptune(et);
+			case 9:
+				//return [0,0,0]; //Vsop87a is the only version which can compute the moon
+				return vsop87a_full.getEmb(et);
+			case 10:
+				//return [0,0,0]; //Vsop87a is the only version which can compute the moon
+				return vsop87a_full.getMoon(vsop87a_full.getEarth(et), vsop87a_full.getEmb(et));
+		}
 	}
 
 	static transpose(m){
@@ -167,43 +212,41 @@ class astrolib{
 		return m;
 	}
 
-	//Returns a body's cartesian coordinates centered on the Sun.
-	//Requires vsop87a_full.js, if you wish to use a different version of VSOP87, replace the class name vsop87a_full below
-	static getBody(bodyNum,et){
-		switch(bodyNum){
-			case 0: 
-				return [0,0,0]; //Sun is at the center for vsop87a
-				//return vsop87e_full.getSun(et);  // "E" is the only version the Sun is not always at [0,0,0]
-			case 1:
-				return vsop87a_full.getMercury(et);
-			case 2:
-				return vsop87a_full.getVenus(et);
-			case 3:
-				return vsop87a_full.getEarth(et);
-			case 4:
-				return vsop87a_full.getMars(et);
-			case 5:
-				return vsop87a_full.getJupiter(et);
-			case 6:
-				return vsop87a_full.getSaturn(et);
-			case 7:
-				return vsop87a_full.getUranus(et);
-			case 8:
-				return vsop87a_full.getNeptune(et);
-			case 9:
-				//return [0,0,0]; //Vsop87a is the only version which can compute the moon
-				return vsop87a_full.getEmb(et);
-			case 10:
-				//return [0,0,0]; //Vsop87a is the only version which can compute the moon
-				return vsop87a_full.getMoon(vsop87a_full.getEarth(et), vsop87a_full.getEmb(et));
+	//Special "Math.floor()" function used by convertDateToJulianDate()
+	static INT(d){
+		if(d>0){
+			return Math.floor(d);
 		}
+		return Math.floor(d)-1;
 	}
 
 	//Converts a JavaScript Date object into a Julian Date
+	//From Meeus p61 (7.1)
 	static convertDateToJulianDate(date){
-	  return (date.valueOf() / (1000 * 60 * 60 * 24)) - 0.5 + 2440588;
-	}
+		let year=date.getUTCFullYear();
+		let month=date.getUTCMonth()+1;
+		let day=date.getUTCDate();
+		let hour=date.getUTCHours();
+		let min=date.getUTCMinutes();
+		let sec=date.getUTCSeconds();
 
+		if (month < 3){
+			year = year - 1;
+			month = month + 12;
+		}
+
+		let b = 0;
+		if (!(year<1582 || (year == 1582 && (month < 10 || (month==10 && day < 5))))){
+			let a = astrolib.INT(year / 100.0);
+			b = 2 - a + astrolib.INT(a / 4.0);
+		}
+
+		let jd=astrolib.INT(365.25 * (year + 4716)) + astrolib.INT(30.6001 * (month + 1)) + day + b - 1524.5;
+		jd+=hour/24.0;
+		jd+=min/24.0/60.0;
+		jd+=sec/24.0/60.0/60.0;
+		return jd;
+	}
 
 	//Converts a Julan Date to Julian Millenia since J2000, which is what VSOP87 expects as input
 	static convertJDToJulianMilleniaSinceJ2000(jd){
@@ -458,9 +501,9 @@ class astrolib{
 
 		const m10=astrolib.dot(m7,m8);
 		const m11=astrolib.dot(m10,m9);
-		const nutationMatrix=astrolib.dot(m11,precessionMatrix);
+		const nutationMatrix=astrolib.dot(precessionMatrix,m11);
 
-		//return nutationMatrix;
+		return nutationMatrix;
 		*/
 		return precessionMatrix;
 	}

@@ -10,9 +10,8 @@
 <p>Simple example to compute the topocentric alt/az position of the moon.  Note the reduction algorithm
 used is not rigorous, it ignores several factors which will result in (relativley) significant errors compared to other results.</p>
 <p>The below table compares the example astrolib output to results obtained from JPL Horizons.  Alt/Az positions for the planets are accurate
-	to within a few .001ths of a degree well into the future and for about 200 years in the past.  The main factor in results
-	older than 200 years are changes to the Gregorian Calendar not accounted for in the example library.  Lunar positions
-	show show considerable errors at about 1000 years in the future.Otherwise, lunar position errors are on the order of a few hundredths of a degree.</p>
+	to within a few .001ths of a degree.  Lunar positions show considerable errors at about 1000 years in the future.Otherwise, lunar position
+	errors are on the order of a few hundredths of a degree.</p>
 
 <br>This example requires vsop87a_full.js and astrolib.js.<br><br>
 <div style='background:red; color:white;'>UNDER DEVELOPMENT.  Not all columns are done, RA/Dec and Alt/Az columns should be accurate</div>
@@ -24,7 +23,6 @@ used is not rigorous, it ignores several factors which will result in (relativle
 <script src="nut00a.js"></script>
 <script>
 
-
 /*
 const d=astrolib.convertDateToJulianDate(new Date(Date.UTC(2020,3,11,16,0,0,0)));
 console.log(astrolib.toHmsString(astrolib.getGMST(d)*15.0*Math.PI/180.0));
@@ -33,8 +31,17 @@ console.log(astrolib.toHmsString(astrolib.getGMST(2457936.5)*15.0*Math.PI/180.0)
 
 runTests();
 
+
 function runTests(){
-	//planet, lat, lon, date, jul day, RA J2000, DEC J2000, RA of Date, Dec of date, Azi, Alt, Sidereal Time, 1 way Light Time, TDB-UT, Hour angle
+	//Test data generated from NASA's JPL Horizons system.
+	//         planet,   lat,            lon,              date,                    jul day,       RA J2000,   DEC J2000, RA of Date,   Dec of date, Azi,     Alt,      Sidereal Time, Light Time,   TDB-UT,      Hour angle
+	testPosition(199,-45.0396581387729,52.6267552330626,"1527-Oct-21 22:24:53", 2279088.433946759,204.3614898, -7.8488443, 198.2076359, -5.3974508, 124.4669,-22.8271,  4.5307070225,   7.751917,   174.433345,  -8.683135370);
+	testPosition(10,-75.6965454927354,163.712986244958,"1125-Jun-14 01:12:44", 2132128.550509259,101.6429994, 23.1221215,  88.3563845, 23.5451200, 358.1011, -9.2500,  6.0267231267,   8.458209,  1094.474313,   0.136297493);
+	testPosition(10,26.7967632675912,217.814997034872,"1111-Oct-25 15:55:01", 2127148.163206019,228.0588903,-17.9715040, 215.7391762,-14.2874437, 107.4392,  2.5997,  9.0780394226,   8.223219,  1133.585393,  -5.304572322);
+	testPosition(10,-71.5030354802627,322.670493082992,"1063-Mar-19 18:38:43", 2109396.276886574, 16.1408604,  6.9214724,   4.0935808,  1.7854219, 298.4607,  7.1989,  4.3240156388,   8.332709,  1289.454952,   4.051110250);
+	testPosition(10,77.2069702520977,118.639627806683,"1472-Aug-18 16:47:23", 2258936.199571759,163.2048884,  7.1568736, 156.3041080,  9.9129372,  10.1558, -2.6785, 23.1069400896,   8.383890,   241.881103, -11.313333776);
+	testPosition(499,81.9121742352522,248.896246076003,"1955-Aug-26 17:03:14", 2435346.210578704,152.6589871, 12.4817319, 152.0646154, 12.7006088, 145.5122, 19.4223,  7.9250404113,  22.224508,    30.612439,  -2.212600613);
+	testPosition(599,68.4688217628369,60.2632226629549,"1658-Jul-25 05:53:38", 2326837.745578703,121.6124830, 20.6193895, 116.6004466, 21.5438150, 149.0091, 40.6459,  6.1176176006,  52.068447,    36.526055,  -1.655745503);
 
 	testPosition(10,40.5685793309708,179.240599988614,"2633-Apr-22 05:33:46", 2682854.731782407, 21.5877673,  9.0180628,  29.9967331, 12.1818592, 274.8692, 13.1751,  7.5320745447,   8.334292,    69.185614,   5.532292336);
 	testPosition(799,-89.163023764716,66.9975288348826,"2491-Sep-06 15:58:33", 2631128.165659722,262.3758482,-23.4105260, 269.8757219,-23.5979494, 336.9535, 24.3685, 19.5184614332, 157.283276,    69.182658,   1.526746639);
