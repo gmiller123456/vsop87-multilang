@@ -38,7 +38,9 @@ class astrolib{
 
 		//TODO: rotate body for precession, nutation and bias
 		let precession=astrolib.getPrecessionMatrix(jdTT);
-		body=astrolib.vecMatrixMul(body,precession);
+		if(precess==true){
+			body=astrolib.vecMatrixMul(body,precession);
+		}
 
 		//Convert to topocentric
 		let observerXYZ=astrolib.getObserverGeocentric(jdTT,lat,lon);
@@ -203,7 +205,7 @@ class astrolib{
 	}
 
 
-	//Converts a Julan Date to Julian Millenia since J2000, which is what VSOP expects as input
+	//Converts a Julan Date to Julian Millenia since J2000, which is what VSOP87 expects as input
 	static convertJDToJulianMilleniaSinceJ2000(jd){
 		return (jd - 2451545.0) / 365250.0;
 	}
