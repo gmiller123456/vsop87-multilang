@@ -149,6 +149,7 @@ class astrolib{
 		return t;
 	}
 
+	//Matrix dot product
 	static dot(a,b){
 		let m=new Array();
 		for(let i=0;i<a.length;i++){
