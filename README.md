@@ -1,8 +1,10 @@
-### Current Stauts
-Versions for C#, C, C++, Java, JavaScript, Perl, Python, and VB.Net have been created.  These have passed all test cases provided by the
-VSOP87 authors, a validation program is also included for each language.  They should be ready for use.
+# Example
 
 An example in JavaScript showing computations is available at http://www.astrogreg.com/vsop87example/example_alt_az_moon.html
+
+### Current Stauts
+Versions for Arduino, C#, C, C++, Java, JavaScript, Matlab/Octave, Pascal, Perl, PHP, Python, VB.Net have been created.  These have passed all test cases provided by the
+VSOP87 authors, a validation program is also included for each language.  They should be ready for use.
 
 Still to come: more languages, documentation, and examples.
 
