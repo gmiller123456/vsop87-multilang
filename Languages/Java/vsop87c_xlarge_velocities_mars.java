@@ -1,3 +1,6 @@
+//VSOP87-Multilang http://www.astrogreg.com/vsop87-multilang/index.html
+//Greg Miller (gmiller@gregmiller.net) 2019.  Released as Public Domain
+
 import static java.lang.Math.*;
 
 public class vsop87c_xlarge_velocities_mars{

@@ -1,5 +1,9 @@
 #!/usr/bin/python
 
+#VSOP87-Multilang http://www.astrogreg.com/vsop87-multilang/index.html
+#Greg Miller (gmiller@gregmiller.net) 2019.  Released as Public Domain
+
+
 import vsop87a_full
 import vsop87a_full_velocities
 import vsop87a_large
