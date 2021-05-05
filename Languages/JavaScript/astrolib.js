@@ -33,7 +33,7 @@ class astrolib{
 			body=astrolib.vecMatrixMul(body,precession);
 		}
 
-		//Convert to topocentric
+		//Get observer topocentric position
 		let observerXYZ=astrolib.getObserverGeocentric(jdTT,lat,lon);
 
 		if(precess==true){
@@ -307,46 +307,60 @@ class astrolib{
 
 	//Converts a Julian Date in UTC to Terrestrial Time (TT)
 	static convertUTCtoTT(jd){
-		//Leap seconds are hard coded, should be updated from the IERS website for other times
-		
 		//TAI = UTC + leap seconds (e.g. 32)
 		//TT=TAI + 32.184
 
-		//return jd + (32.0 + 32.184) / 24.0 / 60.0 / 60.0;
-		return jd + (37.0 + 32.184) / 24.0 / 60.0 / 60.0;
-
-		/*
-		https://data.iana.org/time-zones/tzdb-2018a/leap-seconds.list
-		2272060800	10	# 1 Jan 1972
-		2287785600	11	# 1 Jul 1972
-		2303683200	12	# 1 Jan 1973
-		2335219200	13	# 1 Jan 1974
-		2366755200	14	# 1 Jan 1975
-		2398291200	15	# 1 Jan 1976
-		2429913600	16	# 1 Jan 1977
-		2461449600	17	# 1 Jan 1978
-		2492985600	18	# 1 Jan 1979
-		2524521600	19	# 1 Jan 1980
-		2571782400	20	# 1 Jul 1981
-		2603318400	21	# 1 Jul 1982
-		2634854400	22	# 1 Jul 1983
-		2698012800	23	# 1 Jul 1985
-		2776982400	24	# 1 Jan 1988
-		2840140800	25	# 1 Jan 1990
-		2871676800	26	# 1 Jan 1991
-		2918937600	27	# 1 Jul 1992
-		2950473600	28	# 1 Jul 1993
-		2982009600	29	# 1 Jul 1994
-		3029443200	30	# 1 Jan 1996
-		3076704000	31	# 1 Jul 1997
-		3124137600	32	# 1 Jan 1999
-		3345062400	33	# 1 Jan 2006
-		3439756800	34	# 1 Jan 2009
-		3550089600	35	# 1 Jul 2012
-		3644697600	36	# 1 Jul 2015
-		3692217600	37	# 1 Jan 2017
-		*/
+		return jd + (this.getLeapSeconds(jd) + 32.184) / 24.0 / 60.0 / 60.0;
 	}
+
+	static getLeapSeconds(jd){
+		//Source IERS Resolution B1 and http://maia.usno.navy.mil/ser7/tai-utc.dat
+		//This function must be updated any time a new leap second is introduced
+
+		if(jd > 2457754.5) return 37.0;
+		if(jd > 2457204.5) return 36.0;
+		if(jd > 2456109.5) return 35.0;
+		if(jd > 2454832.5) return 34.0;
+		if(jd > 2453736.5) return 33.0;
+		if(jd > 2451179.5) return 32.0;
+		if(jd > 2450630.5) return 31.0;
+		if(jd > 2450083.5) return 30.0;
+		if(jd > 2449534.5) return 29.0;
+		if(jd > 2449169.5) return 28.0;
+		if(jd > 2448804.5) return 27.0;
+		if(jd > 2448257.5) return 26.0;
+		if(jd > 2447892.5) return 25.0;
+		if(jd > 2447161.5) return 24.0;
+		if(jd > 2446247.5) return 23.0;
+		if(jd > 2445516.5) return 22.0;
+		if(jd > 2445151.5) return 21.0;
+		if(jd > 2444786.5) return 20.0;
+		if(jd > 2444239.5) return 19.0;
+		if(jd > 2443874.5) return 18.0;
+		if(jd > 2443509.5) return 17.0;
+		if(jd > 2443144.5) return 16.0;
+		if(jd > 2442778.5) return 15.0;
+		if(jd > 2442413.5) return 14.0;
+		if(jd > 2442048.5) return 13.0;
+		if(jd > 2441683.5) return 12.0;
+		if(jd > 2441499.5) return 11.0;
+		if(jd > 2441317.5) return 10.0;
+		if(jd > 2439887.5) return 4.2131700 + (jd - 2439126.5) * 0.002592;
+		if(jd > 2439126.5) return 4.3131700 + (jd - 2439126.5) * 0.002592;
+		if(jd > 2439004.5) return 3.8401300 + (jd - 2438761.5) * 0.001296;
+		if(jd > 2438942.5) return 3.7401300 + (jd - 2438761.5) * 0.001296;
+		if(jd > 2438820.5) return 3.6401300 + (jd - 2438761.5) * 0.001296;
+		if(jd > 2438761.5) return 3.5401300 + (jd - 2438761.5) * 0.001296;
+		if(jd > 2438639.5) return 3.4401300 + (jd - 2438761.5) * 0.001296;
+		if(jd > 2438486.5) return 3.3401300 + (jd - 2438761.5) * 0.001296;
+		if(jd > 2438395.5) return 3.2401300 + (jd - 2438761.5) * 0.001296;
+		if(jd > 2438334.5) return 1.9458580 + (jd - 2437665.5) * 0.0011232;
+		if(jd > 2437665.5) return 1.8458580 + (jd - 2437665.5) * 0.0011232;
+		if(jd > 2437512.5) return 1.3728180 + (jd - 2437300.5) * 0.001296;
+		if(jd > 2437300.5) return 1.4228180 + (jd - 2437300.5) * 0.001296;
+		return 0.0;
+	}
+
 
 	//Convert Geodedic Lat Lon to geocentric XYZ position vector
 	//All angles are input as radians

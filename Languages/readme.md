@@ -11,7 +11,7 @@ VB.Net       |Yes         |Pass            |
 JavaScript   |Yes         |Pass            |In Progress
 PHP          |Yes         |Pass            |
 Ruby         |            |                |
-Swift        |            |                |
+Swift        |Yes         |Pass            |
 Matlab/Octave|Yes         |Pass            |
 Groovy       |            |                |
 Go           |            |                |
