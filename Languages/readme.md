@@ -10,7 +10,7 @@ C++          |Yes         |Pass            |
 VB.Net       |Yes         |Pass            |
 JavaScript   |Yes         |Pass            |In Progress
 PHP          |Yes         |Pass            |
-Ruby         |            |                |
+Ruby         |Yes         |Pass            |
 Swift        |Yes         |Pass            |
 Matlab/Octave|Yes         |Pass            |
 Groovy       |            |                |
