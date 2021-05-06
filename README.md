@@ -3,8 +3,9 @@
 An example in JavaScript showing computations is available at http://www.astrogreg.com/vsop87example/example_alt_az_moon.html
 
 ### Current Stauts
-Versions for Arduino, C#, C, C++, Java, JavaScript, Matlab/Octave, Pascal, Perl, PHP, Python, VB.Net have been created.  These have passed all test cases provided by the
-VSOP87 authors, a validation program is also included for each language.  They should be ready for use.
+Versions for many different languages and environments have been created.  These have passed all test cases provided by the
+VSOP87 authors, a validation program is also included for each language.  They should be ready for use. See the "Languages" directory for the status
+of each language.
 
 Still to come: more languages, documentation, and examples.
 
@@ -16,7 +17,7 @@ The goal of this project is to provide easier to use (readymade source files), i
 
 # What is VSOP87? Why use it?
 VSOP87 is one of many solutions available for predicting the positions of the planets (plus the Sun and the Moon) in our solar system.  The actual name is
-Variations Séculaires des Orbites Planétaires, and it was published in 1987 by the Bureau des Longitudes.  Even though there have been many other methods
+Variations Sï¿½culaires des Orbites Planï¿½taires, and it was published in 1987 by the Bureau des Longitudes.  Even though there have been many other methods
 developed before and after VSOP87, it remains one of the most popular methods among amatuers.  It provides better accuracy than most amatuers require (.1 arcseconds)
 over a period of a few thousand years before and after the year 2000.
 
