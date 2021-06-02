@@ -1,6 +1,6 @@
 # Example
 
-An example in JavaScript showing computations is available at http://www.astrogreg.com/vsop87example/example_alt_az_moon.html
+An example in JavaScript showing computations is available at http://www.celestialprogramming.com/vsop87-multilang/
 
 ### Current Stauts
 Versions for many different languages and environments have been created.  These have passed all test cases provided by the

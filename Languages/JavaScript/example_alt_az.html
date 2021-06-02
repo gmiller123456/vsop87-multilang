@@ -1,26 +1,31 @@
 ﻿<html>
 <head>
 	<style>
+		.errorRow{
+			background-color: #ffdddd;
+		}
 		td{
 		}
 	</style>
 </head>
 
 <body>
-<p>Simple example to compute the topocentric alt/az position of the moon.  Note the reduction algorithm
-used is not rigorous, it ignores several factors which will result in (relativley) significant errors compared to other results.</p>
-<p>The below table compares the example astrolib output to results obtained from JPL Horizons.  Alt/Az positions for the planets are accurate
-	to within a few .001ths of a degree.  Lunar positions show considerable errors at about 1000 years in the future.Otherwise, lunar position
-	errors are on the order of a few hundredths of a degree.</p>
+<p>Test cases for reduction generated using JPL Horizons.</p>
+<p>The largest source of error will be DeltaT in the distant past.  This mostly doesn't affect RA/Dec coordinates, but
+	has an effect of many arcseconds on alt/az coordinates.  This should still be acceptable for most applications for
+	amateurs.  The Moon also has a topocentric error of a few arcseconds even for modern dates, this is largely due
+	to parallax effects since this does not implement sub-second corrections for UTC-UT1.  Such corrections need daily
+	updates from the IERS, and are not included here due to the constant updates required.  Modern calculations for
+	all planets and the Sun should be have sub-arcsecond accuracy, which approaches the limits of VSOP87's accuracy.
+</p>
 
-<br>This example requires vsop87a_full.js and astrolib.js.<br><br>
-<div style='background:red; color:white;'>UNDER DEVELOPMENT.  Not all columns are done, RA/Dec and Alt/Az columns should be accurate</div>
+<br>This example requires CelestialProgrammingReduce.js, vsop87a_full.js and vsop87a_full_velocities.js.<br><br>
 <table id="output" border=1 cellspacing=0 cellpadding=0></table>
 
 
 <script src="vsop87a_full.js"></script>
-<script src="astrolib.js"></script>
-<script src="nut00a.js"></script>
+<script src="vsop87a_full_velocities.js"></script>
+<script src="CelestialProgrammingReduce.js"></script>
 <script>
 
 /*
@@ -35,16 +40,12 @@ runTests();
 function runTests(){
 	//Test data generated from NASA's JPL Horizons system.
 	//         planet,   lat,            lon,              date,                    jul day,       RA J2000,   DEC J2000, RA of Date,   Dec of date, Azi,     Alt,      Sidereal Time, Light Time,   TDB-UT,      Hour angle
-	testPosition(10,77.2069702520977,118.639627806683,"1472-Aug-18 16:47:23", 2258936.199571759,163.2048884,  7.1568736, 156.3041080,  9.9129372,  10.1558, -2.6785, 23.1069400896,   8.383890,   241.881103, -11.313333776);
-	testPosition(199,-45.0396581387729,52.6267552330626,"1527-Oct-21 22:24:53", 2279088.433946759,204.3614898, -7.8488443, 198.2076359, -5.3974508, 124.4669,-22.8271,  4.5307070225,   7.751917,   174.433345,  -8.683135370);
+
 	testPosition(299,75.8072259286161,308.733126034821,"2549-Jan-01 20:31:11", 2652064.354988426,295.3293094,-22.7920089, 303.4519425,-21.2960037, 231.4286,-12.7578, 23.8918905112,  13.119573,    69.183712,   3.661761012);
 	testPosition(301,-73.0670209146797,289.84443213466,"2031-Oct-13 00:15:55", 2463152.511053241,159.0161874,  4.3821005, 159.4272905,  4.2167361, 205.7468,-19.5860, 21.0132760718,   0.022152,    69.182330,  10.384790039);
-	testPosition(499,81.9121742352522,248.896246076003,"1955-Aug-26 17:03:14", 2435346.210578704,152.6589871, 12.4817319, 152.0646154, 12.7006088, 145.5122, 19.4223,  7.9250404113,  22.224508,    30.612439,  -2.212600613);
-	testPosition(599,68.4688217628369,60.2632226629549,"1658-Jul-25 05:53:38", 2326837.745578703,121.6124830, 20.6193895, 116.6004466, 21.5438150, 149.0091, 40.6459,  6.1176176006,  52.068447,    36.526055,  -1.655745503);
 	testPosition(699,-33.2644558278182,0.545545956075841,"1905-Mar-24 20:19:06", 2416929.346597222,331.9789746,-12.8175229, 330.6995282,-13.2817491, 209.9314,-38.2334,  8.4634774969,  88.421497,     5.230122,  10.416842280);
 	testPosition(799,27.0113601589112,328.857064625173,"2104-Jun-15 08:30:28", 2489695.854490741, 36.6630189, 14.0391588,  38.0922383, 14.5011793, 101.7903, 52.6233,  0.0151652940, 170.599676,    69.184594,  -2.524317262);
 	testPosition(899,19.0977681214935,325.206309923673,"1961-Oct-05 08:10:23", 2437577.840543982,218.6616932,-13.3456515, 218.1331775,-13.1749970,  94.7853,-29.0830,  6.7710808583, 259.537056,    33.553914,  -7.771130976);
-
 	testPosition(10,-75.6965454927354,163.712986244958,"1125-Jun-14 01:12:44", 2132128.550509259,101.6429994, 23.1221215,  88.3563845, 23.5451200, 358.1011, -9.2500,  6.0267231267,   8.458209,  1094.474313,   0.136297493);
 	testPosition(10,26.7967632675912,217.814997034872,"1111-Oct-25 15:55:01", 2127148.163206019,228.0588903,-17.9715040, 215.7391762,-14.2874437, 107.4392,  2.5997,  9.0780394226,   8.223219,  1133.585393,  -5.304572322);
 	testPosition(10,-71.5030354802627,322.670493082992,"1063-Mar-19 18:38:43", 2109396.276886574, 16.1408604,  6.9214724,   4.0935808,  1.7854219, 298.4607,  7.1989,  4.3240156388,   8.332709,  1289.454952,   4.051110250);
@@ -311,100 +312,83 @@ function runTests(){
 	testPosition(699,84.6156786574339,257.886879591591,"2069-Apr-13 19:41:47", 2476850.320682870,181.9744163,  1.9686319, 182.8695257,  1.5801099,  33.0831, -2.9332,  2.3945275554,  71.423953,    69.185645,  -9.796774155);
 	testPosition(799,-17.6920649238991,121.118898140633,"1845-Apr-03 19:58:32", 2395025.332314815,  8.3605486,  2.8752413,   6.3726049,  2.0198042,  95.4953,-23.0879, 16.8503931116, 175.061474,     8.069914,  -7.574447218);
 	testPosition(299,65.9331506878624,99.0654496530298,"2668-Jan-16 04:49:17", 2695541.700891204,239.6471786,-16.1447897, 249.2416638,-17.7432528, 215.2946,  1.7533, 19.1045281056,   4.320011,    69.184036,   2.488417185);
-	
-	//testPosition(new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.SUN,36.9664, -87.6709,150.78827, 11.94484, 197.9394,  63.8956);
-	//testPosition(new Date(Date.UTC(2017,7, 21,18,25,32,0)),astrolib.MOON,36.9664,-87.6709,150.78837, 11.94480, 197.9392,  63.8956);
-	//testPosition(new Date(Date.UTC(2000,0, 1,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,222.80147, -11.57774, 146.3255,  33.6752);
-	//testPosition(new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.MOON,38.2464000,274.236400,249.19588, -20.90403, 261.7692, -24.3259);
-	//testPosition(new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.MOON,38.2464000,274.236400,246.93301, -20.63317, 225.6334,  16.3183);
-	//testPosition(new Date(Date.UTC(2020,3,11,12,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.26297, -21.16207, 176.5762,  30.5684);
-	//testPosition(new Date(Date.UTC(2020,3,11,16,0,0,0)),astrolib.JUPITER,38.2464000,274.236400,297.27987, -21.15939, 232.6292,  10.1502);
-	//testPosition(new Date(Date.UTC(2010,8,25,0,0,0,0)),astrolib.SATURN,38.2464000,274.236400,187.14592 , -0.73332, 269.7883,  -1.0113);
 }
 
 function monthStringToNum(m){
 	switch(m){
-		case "Jan": return 0;
-		case "Feb": return 1;
-		case "Mar": return 2;
-		case "Apr": return 3;
-		case "May": return 4;
-		case "Jun": return 5;
-		case "Jul": return 6;
-		case "Aug": return 7;
-		case "Sep": return 8;
-		case "Oct": return 9;
-		case "Nov": return 10;
-		case "Dec": return 11;
+		case "Jan": return 1;
+		case "Feb": return 2;
+		case "Mar": return 3;
+		case "Apr": return 4;
+		case "May": return 5;
+		case "Jun": return 6;
+		case "Jul": return 7;
+		case "Aug": return 8;
+		case "Sep": return 9;
+		case "Oct": return 10;
+		case "Nov": return 11;
+		case "Dec": return 12;
 	}
 	return -1;
 }
 
-function stringDateToDate(d){
-	const year=d.substr(0,4);
-	const mon=monthStringToNum(d.substr(5,3));
-	const mday=d.substr(9,2);
-	const hour=d.substr(12,2);
-	const min=d.substr(15,2);
-	let sec="00";
+function stringDateToJD(d){
+	const year=d.substr(0,4)-0;
+	const mon=monthStringToNum(d.substr(5,3))-0;
+	const mday=d.substr(9,2)-0;
+	const hour=d.substr(12,2)-0;
+	const min=d.substr(15,2)-0;
+	let sec=0;
 	if(d.length>18){
-		sec=d.substr(18,2);
+		sec=d.substr(18,2)-0;
 	}
 
-	const date=new Date(Date.UTC(year,mon,mday,hour,min,sec,0));
-	return date;
+	return JulianDate.gregorianDateToJulianDate(year,mon,mday,hour,min,sec)
 }
 
 function jplBodyToInt(b){
 	switch(b){
-		case 10: return astrolib.SUN;
-		case 199: return astrolib.MERCURY;
-		case 299: return astrolib.VENUS;
-		case 399: return astrolib.EARTH;
-		case 499: return astrolib.MARS;
-		case 599: return astrolib.JUPITER;
-		case 699: return astrolib.SATURN;
-		case 799: return astrolib.URANUS;
-		case 899: return astrolib.NEPTUNE;
-		case 301: return astrolib.MOON;
+		case 10: return CPReduce.SUN;
+		case 199: return CPReduce.MERCURY;
+		case 299: return CPReduce.VENUS;
+		case 399: return CPReduce.EARTH;
+		case 499: return CPReduce.MARS;
+		case 599: return CPReduce.JUPITER;
+		case 699: return CPReduce.SATURN;
+		case 799: return CPReduce.URANUS;
+		case 899: return CPReduce.NEPTUNE;
+		case 301: return CPReduce.MOON;
 	}
 }
 
 function testPosition(body, lat, lon, date,julianDate,raJ2000,decJ2000,ra,dec,az,alt,sideRealTime,lightTime,TDB_UT,hourAngle){
 
-	//All angles passed to Astrolib need to be in radians!!!!!
-	latR=lat*Math.PI/180;
-	lonR=lon*Math.PI/180;
+	//All angles passed to CPReduce need to be in radians!!!!!
+	const observer=[lat*Math.PI/180,lon*Math.PI/180,0];
 
-	const dt=stringDateToDate(date);
+	const jd=stringDateToJD(date);
 	const b=jplBodyToInt(body);
 
-	//Convert the JavaScript date to a Julian Date
-	const jd=astrolib.convertDateToJulianDate(dt);
+	const deltaT=(CPReduce.convertUTCtoTT(jd)-jd)*60*60*24;
 
-	const deltaT=(astrolib.convertUTCtoTT(jd)-jd)*60*60*24;
+	//const sideReal=(CPReduce.getGMST(jd)+lon)/15.0;
+	const sideReal=0;
 
-	const sideReal=(astrolib.getGMST(jd)+lon)/15.0;
-
-	//Get the RA/Dec.  This call accounts for light time and parallax
-	const RaDecJ2000=astrolib.getBodyRaDec(jd,b,latR,lonR,false);
-	const RaDec=astrolib.getBodyRaDec(jd,b,latR,lonR,true);
+	//Get the RA/Dec and Alt/Az.
+	const positions=CPReduce.reduce(b,jd,observer);
 
 	const hourAngle2=0;
 
-	//Use RA/Dec from above to compute Alt/Az
-	const AltAz=astrolib.convertRaDecToAltAz(jd,latR,lonR,RaDec[2],RaDec[1]);
-
-	display(b,lat,lon,date,julianDate,jd,ra,dec,alt,az,RaDec,AltAz,raJ2000,decJ2000,RaDecJ2000,sideRealTime,sideReal,TDB_UT,deltaT,hourAngle,hourAngle2);
+	display(b,lat,lon,date,julianDate,jd,ra,dec,alt,az,raJ2000,decJ2000,sideRealTime,sideReal,TDB_UT,deltaT,hourAngle,hourAngle2,positions);
 }
 
-function display(body,lat,lon,date,julianDate,jd,ra,dec,alt,az,RaDec,AltAz,raJ2000,decJ2000,RaDecJ2000,sideRealTime,sideReal,TDB_UT,deltaT,hourAngle, hourAngle2){
+function display(body,lat,lon,date,julianDate,jd,ra,dec,alt,az,raJ2000,decJ2000,sideRealTime,sideReal,TDB_UT,deltaT,hourAngle, hourAngle2,positions){
 	const o=document.getElementById("output");
 	let row=o.insertRow();
 	let c=row.insertCell();
-	c.colSpan=10;
+	c.colSpan=8;
 	c.innerHTML=date+" Lat:"+lat+" Lon:"+lon;
-	row.insertCell().innerHTML=astrolib.bodies[body];
+	row.insertCell().innerHTML="<b>"+CPReduce.bodies[body]+"</b>";
 
 	row=o.insertRow();
 	row.insertCell().innerHTML="Source";
@@ -416,8 +400,8 @@ function display(body,lat,lon,date,julianDate,jd,ra,dec,alt,az,RaDec,AltAz,raJ20
 	row.insertCell().innerHTML="Dec of Date";
 	row.insertCell().innerHTML="Alt";
 	row.insertCell().innerHTML="Az";
-	row.insertCell().innerHTML="Sidereal";
-	row.insertCell().innerHTML="LHA";
+	//row.insertCell().innerHTML="Sidereal";
+	//row.insertCell().innerHTML="LHA";
 
 	row=o.insertRow();
 	row.insertCell().innerHTML="JPL";
@@ -429,34 +413,35 @@ function display(body,lat,lon,date,julianDate,jd,ra,dec,alt,az,RaDec,AltAz,raJ20
 	row.insertCell().innerHTML=dec.toFixed(7);
 	row.insertCell().innerHTML=alt.toFixed(7);
 	row.insertCell().innerHTML=az.toFixed(7);
-	row.insertCell().innerHTML=sideRealTime.toFixed(7);
-	row.insertCell().innerHTML=hourAngle.toFixed(7);
+	//row.insertCell().innerHTML=sideRealTime.toFixed(7);
+	//row.insertCell().innerHTML=hourAngle.toFixed(7);
 
 	row=o.insertRow();
-	row.insertCell().innerHTML="AstroLib";
+	row.insertCell().innerHTML="Computed";
 	row.insertCell().innerHTML=jd.toFixed(7);
 	row.insertCell().innerHTML=deltaT.toFixed(7);
-	row.insertCell().innerHTML=(RaDecJ2000[2] * 180.0/Math.PI).toFixed(7);
-	row.insertCell().innerHTML=(RaDecJ2000[1] * 180.0/Math.PI).toFixed(7);
-	row.insertCell().innerHTML=(RaDec[2] * 180.0/Math.PI).toFixed(7);
-	row.insertCell().innerHTML=(RaDec[1] * 180.0/Math.PI).toFixed(7);
-	row.insertCell().innerHTML=(AltAz[1] * 180.0/Math.PI).toFixed(7);
-	row.insertCell().innerHTML=(AltAz[0] * 180.0/Math.PI).toFixed(7);
-	row.insertCell().innerHTML=sideReal.toFixed(7);
-	row.insertCell().innerHTML=hourAngle2.toFixed(7);
+	row.insertCell().innerHTML=(positions[0] * 180.0/Math.PI).toFixed(7);
+	row.insertCell().innerHTML=(positions[1] * 180.0/Math.PI).toFixed(7);
+	row.insertCell().innerHTML=(positions[2] * 180.0/Math.PI).toFixed(7);
+	row.insertCell().innerHTML=(positions[3] * 180.0/Math.PI).toFixed(7);
+	row.insertCell().innerHTML=(positions[5] * 180.0/Math.PI).toFixed(7);
+	row.insertCell().innerHTML=(positions[4] * 180.0/Math.PI).toFixed(7);
+	//row.insertCell().innerHTML=sideReal.toFixed(7);
+	//row.insertCell().innerHTML=hourAngle2.toFixed(7);
 
 	row=o.insertRow();
+	row.classList.add("errorRow");
 	row.insertCell().innerHTML="Error";
 	row.insertCell().innerHTML=Math.abs(jd-julianDate).toFixed(7);
 	row.insertCell().innerHTML=Math.abs(TDB_UT-deltaT).toFixed(7);
-	row.insertCell().innerHTML=Math.abs((raJ2000 - RaDecJ2000[2] * 180.0/Math.PI)*60*60).toFixed(7)+"\"";
-	row.insertCell().innerHTML=Math.abs((decJ2000 - RaDecJ2000[1] * 180.0/Math.PI)*60*60).toFixed(7)+"\"";
-	row.insertCell().innerHTML=Math.abs((ra - RaDec[2] * 180.0/Math.PI)*60*60).toFixed(7)+"\"";
-	row.insertCell().innerHTML=Math.abs((dec - RaDec[1] * 180.0/Math.PI)*60*60).toFixed(7)+"\"";
-	row.insertCell().innerHTML=Math.abs((alt - AltAz[1] * 180.0/Math.PI)*60*60).toFixed(7)+"\"";
-	row.insertCell().innerHTML=Math.abs((az - AltAz[0] * 180.0/Math.PI)*60*60).toFixed(7)+"\"";
-	row.insertCell().innerHTML=Math.abs(sideRealTime-sideReal).toFixed(7);
-	row.insertCell().innerHTML=Math.abs(hourAngle-hourAngle2).toFixed(7);
+	row.insertCell().innerHTML=Math.abs((raJ2000 - positions[0] * 180.0/Math.PI)*60*60).toFixed(7)+"\"";
+	row.insertCell().innerHTML=Math.abs((decJ2000 - positions[1] * 180.0/Math.PI)*60*60).toFixed(7)+"\"";
+	row.insertCell().innerHTML=Math.abs((ra - positions[2] * 180.0/Math.PI)*60*60).toFixed(7)+"\"";
+	row.insertCell().innerHTML=Math.abs((dec - positions[3] * 180.0/Math.PI)*60*60).toFixed(7)+"\"";
+	row.insertCell().innerHTML=Math.abs((alt - positions[5] * 180.0/Math.PI)*60*60).toFixed(7)+"\"";
+	row.insertCell().innerHTML=Math.abs((az - positions[4] * 180.0/Math.PI)*60*60).toFixed(7)+"\"";
+	//row.insertCell().innerHTML=Math.abs(sideRealTime-sideReal).toFixed(7);
+	//row.insertCell().innerHTML=Math.abs(hourAngle-hourAngle2).toFixed(7);
 
 	row=o.insertRow();
 	c=row.insertCell();

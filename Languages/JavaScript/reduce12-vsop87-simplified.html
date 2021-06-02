@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reduction Walkthrough: Computing a Planet's Alt/Az position</title>
+</head>
+<body>
+<script src="vsop87a_full.js"></script>
+<script src="vsop87a_full_velocities.js"></script>
+<script src="reduce12.js"></script>
+<script src="testcasesvsop.js"></script>
+
+<table id="resultsTable1" border=1 cellspacing=0>
+	<Tr><th>Planet</th><th>RA J2000</th><th>DEC J2000</th><th>RA App</th><th>DEC App</th><th>Az App</th><th>El App</th></Tr>
+</table>
+
+
+<script>
+'use strict';
+
+runTests(Reduce12);
+</script>
+
+</body>
+
+</html>

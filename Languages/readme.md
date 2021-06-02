@@ -1,6 +1,6 @@
 Below is a list of the planned languages and their current status.
 
-Language     |Main Library|Validation Tests|Alt Az Example
+Language     |Main Library|Validation Tests|Alt Az Reduction Example
 -------------|------------|----------------|--------------
 Java         |Yes         |Pass            |
 C            |Yes         |Pass            |
@@ -8,7 +8,7 @@ C#           |Yes         |Pass            |
 Python       |Yes         |Pass            |
 C++          |Yes         |Pass            |
 VB.Net       |Yes         |Pass            |
-JavaScript   |Yes         |Pass            |In Progress
+JavaScript   |Yes         |Pass            |Yes
 PHP          |Yes         |Pass            |
 Ruby         |Yes         |Pass            |
 Swift        |Yes         |Pass            |
