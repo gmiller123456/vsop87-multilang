@@ -28,14 +28,26 @@
 <script src="CelestialProgrammingReduce.js"></script>
 <script>
 
-/*
-const d=astrolib.convertDateToJulianDate(new Date(Date.UTC(2020,3,11,16,0,0,0)));
-console.log(astrolib.toHmsString(astrolib.getGMST(d)*15.0*Math.PI/180.0));
-console.log(astrolib.toHmsString(astrolib.getGMST(2457936.5)*15.0*Math.PI/180.0));
-*/
-
 runTests();
 
+function testPosition(body, lat, lon, date,julianDate,raJ2000,decJ2000,ra,dec,az,alt,sideRealTime,lightTime,TDB_UT,hourAngle){
+
+	const jd=stringDateToJD(date);
+	const b=jplBodyToInt(body);
+
+	const deltaT=(CPReduce.convertUTCtoTT(jd)-jd)*60*60*24;
+
+	//All angles passed to CPReduce need to be in radians!!!!!
+	const observer=[lat*Math.PI/180, lon*Math.PI/180, 0];
+
+	//---------------------------------------------------------------------------------------------------------
+	//This is the main call that gets the position of a planet from the CPReduce library.
+	//Get the RA/Dec and Alt/Az.
+	const positions=CPReduce.reduce(b,jd,observer);
+	//---------------------------------------------------------------------------------------------------------
+
+	display(b,lat,lon,date,julianDate,jd,ra,dec,alt,az,raJ2000,decJ2000,sideRealTime,0,TDB_UT,deltaT,hourAngle,0,positions);
+}
 
 function runTests(){
 	//Test data generated from NASA's JPL Horizons system.
@@ -359,27 +371,6 @@ function jplBodyToInt(b){
 		case 899: return CPReduce.NEPTUNE;
 		case 301: return CPReduce.MOON;
 	}
-}
-
-function testPosition(body, lat, lon, date,julianDate,raJ2000,decJ2000,ra,dec,az,alt,sideRealTime,lightTime,TDB_UT,hourAngle){
-
-	//All angles passed to CPReduce need to be in radians!!!!!
-	const observer=[lat*Math.PI/180,lon*Math.PI/180,0];
-
-	const jd=stringDateToJD(date);
-	const b=jplBodyToInt(body);
-
-	const deltaT=(CPReduce.convertUTCtoTT(jd)-jd)*60*60*24;
-
-	//const sideReal=(CPReduce.getGMST(jd)+lon)/15.0;
-	const sideReal=0;
-
-	//Get the RA/Dec and Alt/Az.
-	const positions=CPReduce.reduce(b,jd,observer);
-
-	const hourAngle2=0;
-
-	display(b,lat,lon,date,julianDate,jd,ra,dec,alt,az,raJ2000,decJ2000,sideRealTime,sideReal,TDB_UT,deltaT,hourAngle,hourAngle2,positions);
 }
 
 function display(body,lat,lon,date,julianDate,jd,ra,dec,alt,az,raJ2000,decJ2000,sideRealTime,sideReal,TDB_UT,deltaT,hourAngle, hourAngle2,positions){
