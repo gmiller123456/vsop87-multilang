@@ -14,7 +14,7 @@ Ruby         |Yes         |Pass            |
 Swift        |Yes         |Pass            |
 Matlab/Octave|Yes         |Pass            |
 Groovy       |            |                |
-Go           |            |                |
+Go           |Yes         |Pass            |
 Pascal       |Yes         |0.000009au      |
 Perl         |Yes         |Pass            |
 R            |            |                |
