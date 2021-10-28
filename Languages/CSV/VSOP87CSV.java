@@ -8,15 +8,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class VSOP87 {
+/*
+It is the responsibility of the caller to not attempt to get a planet on
+a VSOP version which does not contain data for that planet.
 
-    int version=-1;
-    char[] varsOsculating={'a','l','k','h','q','p'};
-    char[] varsRectangular={'x','y','z'};
-    char[] varsPolar={'l','b','r'};
-    Map<Integer,Map<Character,Map<Integer,List<double[]>>>> data=null;
+input t - Time in Julian centuries since J2000: (jd - 2451545.0) / 365250.0)
+ouptut - VSOP87
+            Osculating elements in order: a, l, k, h, q, p
+         VSOP87A, VSOP87C, VSOP87E
+            Rectangular coordinates and velocities: x, y, z, vx, vy, vz
+            in AU and AU/Day
+         VSOP87B, VSOP87D
+            Polar coordinates and velocities: l, b, r, lv, bv, rv
+            in radians and radians/Day (r, rv in AU and AU/Day)
+*/
 
-    public VSOP87(String filename) throws Exception{
+public class VSOP87CSV {
+
+    private int version=-1;
+    private String versionString;
+    private final char[] varsOsculating={'a','l','k','h','q','p'};
+    private final char[] varsRectangular={'x','y','z'};
+    private final char[] varsPolar={'l','b','r'};
+    private Map<Integer,Map<Character,Map<Integer,List<double[]>>>> data=null;
+
+    public VSOP87CSV(String filename) throws Exception{
         /*
         File is assumed to be in the following format:
         Version,Planet,Variable,Exponent,A,B,C
@@ -66,7 +82,18 @@ public class VSOP87 {
         return getPlanet(9,t);
     }
 
-    public double[] getPlanet(int planetID, double t){
+    public double[] getMoon(double[] earth, double[] emb){
+        double[] temp=new double[3];
+        temp[0]=(emb[0]-earth[0])*(1 + 1 / 0.01230073677);
+        temp[1]=(emb[1]-earth[1])*(1 + 1 / 0.01230073677);
+        temp[2]=(emb[2]-earth[2])*(1 + 1 / 0.01230073677);
+        temp[0]=temp[0]+earth[0];
+        temp[1]=temp[1]+earth[1];
+        temp[2]=temp[2]+earth[2];
+        return temp;
+    }
+
+    private double[] getPlanet(int planetID, double t){
 
         double[] pv=new double[6];
         Map<Character,Map<Integer,List<double[]>>> planet=data.get(planetID);
@@ -131,6 +158,7 @@ public class VSOP87 {
 
             if(version==-1){
                 version=getVersionID(f[0].trim());
+                versionString=f[0].trim();
             }
 
             double[] vars=new double[3];
@@ -173,7 +201,7 @@ public class VSOP87 {
         return -1;
     }
 
-    public int getPlanetID(String planet) {
+    private int getPlanetID(String planet) {
         if(planet.toLowerCase().equals("sun")){
             return 0;
         } else if(planet.toLowerCase().equals("mercury")){

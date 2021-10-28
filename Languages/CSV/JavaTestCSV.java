@@ -1,7 +1,7 @@
 //VSOP87-Multilang https://www.celestialprogramming.com/vsop87-multilang/index.html
 //Greg Miller (gmiller@gregmiller.net) 2021.  Released as Public Domain
 
-public class JavaTest
+public class JavaTestCSV
 {
     static boolean pass=true;
     static double jd2et(double jd)
@@ -50,12 +50,12 @@ public class JavaTest
 
     public static void main(String[] args) throws Exception
     {
-        VSOP87 vsop87_full=new VSOP87("vsop87.csv");
-        VSOP87 vsop87a_full=new VSOP87("vsop87a.csv");
-        VSOP87 vsop87b_full=new VSOP87("vsop87b.csv");
-        VSOP87 vsop87c_full=new VSOP87("vsop87c.csv");
-        VSOP87 vsop87d_full=new VSOP87("vsop87d.csv");
-        VSOP87 vsop87e_full=new VSOP87("vsop87e.csv");
+        VSOP87CSV vsop87_full=new VSOP87CSV("C:\\prog\\Astronomy\\Vsop87JavaList\\src\\vsop87.csv");
+        VSOP87CSV vsop87a_full=new VSOP87CSV("C:\\prog\\Astronomy\\Vsop87JavaList\\src\\vsop87a.csv");
+        VSOP87CSV vsop87b_full=new VSOP87CSV("C:\\prog\\Astronomy\\Vsop87JavaList\\src\\vsop87b.csv");
+        VSOP87CSV vsop87c_full=new VSOP87CSV("C:\\prog\\Astronomy\\Vsop87JavaList\\src\\vsop87c.csv");
+        VSOP87CSV vsop87d_full=new VSOP87CSV("C:\\prog\\Astronomy\\Vsop87JavaList\\src\\vsop87d.csv");
+        VSOP87CSV vsop87e_full=new VSOP87CSV("C:\\prog\\Astronomy\\Vsop87JavaList\\src\\vsop87e.csv");
 
         check(vsop87_full.getMercury(jd2et(2451545.0)), .3870982122, .0446647518, .0406161541, 4.4026057779, .2007208958, .0456355031);
         check(vsop87_full.getMercury(jd2et(2415020.0)), .3870977206, .0452159418, .0405500078, 3.1341564065, .2005915794, .0457636622);
