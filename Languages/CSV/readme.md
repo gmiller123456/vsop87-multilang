@@ -1,4 +1,1 @@
-The purpose of this is to show how to compute the positions using an external file, which may be useful for applications where it is unnecessary or incapable of storing
-all of the data in memory.  This implementation is horribly inefficient, it reads the entire file for each property (e.g. x, y, and z) of each planet.  Many optimizations
-are possible, but would make the code much more difficult to follow.  If you plan to use this method, and need reasonable compute times, I would recommend creating
-a list of indexes into the file for each variable, so that you can "seek()" directly to the data you need, then exit the loop when the planet changes.
+There are two different styles of CSV programs here.  The modules labeled just "CSV" read the entire VSOP87 file into memory when initialized, and store it for later use.  The modules lableled "lowmem" do not store the data in memory, and instead read the file line by line each time.
