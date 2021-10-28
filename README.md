@@ -4,7 +4,7 @@ An example in JavaScript showing computations is available at http://www.celesti
 
 ### Current Stauts
 Versions for many different languages and environments have been created.  These have passed all test cases provided by the
-VSOP87 authors, a validation program is also included for each language.  They should be ready for use. See the "Languages" directory for the status
+VSOP87 authors, a validation program is also included for each language.  They are ready for use. See the "Languages" directory for the status
 of each language.
 
 Still to come: more languages, documentation, and examples.
@@ -20,6 +20,13 @@ VSOP87 is one of many solutions available for predicting the positions of the pl
 Variations S�culaires des Orbites Plan�taires, and it was published in 1987 by the Bureau des Longitudes.  Even though there have been many other methods
 developed before and after VSOP87, it remains one of the most popular methods among amatuers.  It provides better accuracy than most amatuers require (.1 arcseconds)
 over a period of a few thousand years before and after the year 2000.
+
+# Implementation Types
+There are three different types of implementations: Inline, CSV, and CSV Low Memory.  The inline versions are generally the easiest to use as they will have no
+external requirements, they are also the easiest to generate, so they're available for more languages.  The CSV versions require a CSV file (located in the 
+languages/CSV folder) which is loaded into memory.  The advantages of the CSV versions are you can compute the velocities with the same data the positions
+are generated from, and you can load and dispose of the memory used by the data when you need it.  At the Low Memory versions read the same CSV files, but the
+data is not retained in memory.  The CSV versions are located in the Languages/CSV directory, as well as the required CSV files.
 
 # Which Version Should I Use?
 For the overwhelming majority of users, the VSOP87A_full version will be all that you need.  This is the full version, but should still be fast enough and small enough

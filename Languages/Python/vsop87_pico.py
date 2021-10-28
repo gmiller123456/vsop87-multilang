@@ -1,20 +1,13 @@
 import math
 
-#VSOP87-Multilang http://www.astrogreg.com/vsop87-multilang/index.html
-#Greg Miller (gmiller@gregmiller.net) 2019.  Released as Public Domain
+#VSOP87-Multilang https://www.celestialprogramming.com/vsop87-multilang/index.html
+#Greg Miller (gmiller@gregmiller.net) 2021.  Released as Public Domain
 
 
 class vsop87_pico :
    @staticmethod
    def getEmb(t):
-      temp=[]
-      temp.append(vsop87_pico.emb_a(t))
-      temp.append(vsop87_pico.emb_l(t))
-      temp.append(vsop87_pico.emb_k(t))
-      temp.append(vsop87_pico.emb_h(t))
-      temp.append(vsop87_pico.emb_q(t))
-      temp.append(vsop87_pico.emb_p(t))
-      return temp
+      return getPlanet
    
 
    @staticmethod
