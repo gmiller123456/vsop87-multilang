@@ -4,6 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//VSOP87-Multilang https://www.celestialprogramming.com/vsop87-multilang/index.html
+//Greg Miller (gmiller@gregmiller.net) 2021.  Released as Public Domain
+
+/*
+
+To compile and run this test.  Windows comes with a C# compiler, so there is no
+need to install anything.  However, the location of that compiler may change.  On
+all current versions of Windows, the program can be compiled with the command
+below:
+
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc VSOP87CSVTest.cs VSOP87CSV.cs
+
+This will generate VSOP87CSVTest.exe.  With the VSOP87.csv files in the current
+directory, just run the exe.
+
+*/
+
 namespace VSOP87CSVTest
 {
     class VSOP87CSVTest
@@ -12,7 +29,6 @@ namespace VSOP87CSVTest
         static double jd2et(double jd)
         {
             return (jd - 2451545.0) / 365250.0;
-
         }
 
         static void check(double a, double b)
