@@ -2,6 +2,9 @@ package vsop87;
 use strict;
 use POSIX "fmod";
 
+#VSOP87-Multilang https://www.celestialprogramming.com/vsop87-multilang/index.html
+#Greg Miller (gmiller@gregmiller.net) 2020.  Released as Public Domain
+
 my $pi=3.14159265358979;
 
 sub getPlanet{
