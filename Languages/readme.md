@@ -3,7 +3,7 @@ Below is a list of the planned languages and their current status.
 Language     |Inline|CSV|CSV Low Mem|Validation Tests|Alt Az Reduction Example
 -------------|------|---|-----------|----------------|--------------
 Java         |Yes   |Yes|           |Pass            |
-C            |Yes   |   |           |Pass            |
+C            |Yes   |   |Yes        |Pass            |
 C#           |Yes   |Yes|           |Pass            |
 Python       |Yes   |Yes|           |Pass            |
 C++          |Yes   |   |           |Pass            |
