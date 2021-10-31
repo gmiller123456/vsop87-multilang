@@ -15,6 +15,35 @@ precisions, then convert the resulting files into other languages.  This project
 The goal of this project is to provide easier to use (readymade source files), include all data (e.g. the Moon and velocities), are truncated to different accuracy levels,
 , for more languages, and have a more permissive license (public domain).  It will provide tests against the original VSOP87 test data for each programming language to validate correctness, as well as examples to show common useage.
 
+# Language Status
+
+Below is a list of the planned languages and their current status.
+
+Language     |Inline|JSON|CSV|CSV Low Mem|Validation Tests|Alt Az Reduction Example
+-------------|------|----|---|-----------|----------------|--------------
+Java         |Yes   |    |Yes|           |Pass            |
+C            |Yes   |    |   |Yes        |Pass            |
+C#           |Yes   |    |Yes|           |Pass            |
+Python       |Yes   |Yes |Yes|           |Pass            |
+C++          |Yes   |    |   |           |Pass            |
+VB.Net       |Yes   |    |   |           |Pass            |
+JavaScript   |Yes   |Yes |   |           |Pass            |Yes
+PHP          |Yes   |    |   |           |Pass            |
+Ruby         |Yes   |    |   |           |Pass            |
+Swift        |Yes   |    |   |           |Pass            |
+Matlab/Octave|Yes   |    |   |           |Pass            |
+Groovy       |      |    |   |           |                |
+Go           |Yes   |    |   |           |Pass            |
+Pascal       |Yes   |    |   |           |0.000009au      |
+Perl         |Yes   |    |   |Yes        |Pass            |
+R            |Fail  |    |   |           |Fail            |
+Cobol        |      |    |   |           |                |
+Fortran      |      |    |   |           |                |
+Rust         |      |    |   |           |                |
+Kotlin       |      |    |   |           |                |
+Arduino      |Yes   |    |   |           |0.000009au      |
+Objective C  |      |    |   |           |                |
+
 # What is VSOP87? Why use it?
 VSOP87 is one of many solutions available for predicting the positions of the planets (plus the Sun and the Moon) in our solar system.  The actual name is
 Variations S�culaires des Orbites Plan�taires, and it was published in 1987 by the Bureau des Longitudes.  Even though there have been many other methods
@@ -22,11 +51,13 @@ developed before and after VSOP87, it remains one of the most popular methods am
 over a period of a few thousand years before and after the year 2000.
 
 # Implementation Types
-There are three different types of implementations: Inline, CSV, and CSV Low Memory.  The inline versions are generally the easiest to use as they will have no
-external requirements, they are also the easiest to generate, so they're available for more languages.  The CSV versions require a CSV file (located in the 
-languages/CSV folder) which is loaded into memory.  The advantages of the CSV versions are you can compute the velocities with the same data the positions
-are generated from, and you can load and dispose of the memory used by the data when you need it.  At the Low Memory versions read the same CSV files, but the
-data is not retained in memory.  The CSV versions are located in the Languages/CSV directory, as well as the required CSV files.
+There are a few different types of implementations: Inline, JSON, CSV, and CSV Low Memory.  The inline versions are generally the easiest to use as they will have no
+external requirements, they are also the easiest to generate, so they're available for more languages.  The JSON versions require a JSON file (located in the 
+languages/JSON folder) which is loaded into memory.  The advantages of the JSON versions are you can compute the velocities with the same data the positions
+are generated from, and you can load and dispose of the memory used by the data when you need it.  The CSV implementations are similar to the JSON implementations, 
+but, obviously, read from a CSV file (located in the languages/CSV folder). And the Low Memory CSV implementations read the same CSV files, but the
+data is not retained in memory.  The JSON versions are located in the Languages/JSON directory, as well as the required JSON files, and the CSV implementations
+are in the languages/CSV folder.
 
 # Which Version Should I Use?
 For the overwhelming majority of users, the VSOP87A_full version will be all that you need.  This is the full version, but should still be fast enough and small enough
