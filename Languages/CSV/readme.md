@@ -18,10 +18,10 @@ the CSV files to be in the current directory, but you may simply delete test cas
 * vsop87csv_lowmem.h
 
 ### Compile:
-gcc -o ccsvtest_lowmem.exe cCSVTest_lowmem.c vsop87csv_lowmem.c
+* gcc -o ccsvtest_lowmem.exe cCSVTest_lowmem.c vsop87csv_lowmem.c
 
 ### Run:
-./ccsvtest_lowmem.exe
+* ./ccsvtest_lowmem.exe
 
 # C#
 ### Files:
@@ -29,10 +29,10 @@ gcc -o ccsvtest_lowmem.exe cCSVTest_lowmem.c vsop87csv_lowmem.c
 * VSOP87CSV.cs
 
 ### Compile:
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc csharpVSOP87CSVTest.cs VSOP87CSV.cs
+* C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc csharpVSOP87CSVTest.cs VSOP87CSV.cs
 
 ### Run:
-./csharpVSOP87CSVTest
+* ./csharpVSOP87CSVTest
 
 # Groovy
 ### Files:
@@ -40,7 +40,7 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc csharpVSOP87CSVTest.cs VSOP8
 * VSOP87CSV.groovy
 
 ### Run:
-groovy GroovyTestCSV.groovy
+* groovy GroovyTestCSV.groovy
 
 # Java
 ### Files:
@@ -48,11 +48,11 @@ groovy GroovyTestCSV.groovy
 * VSOP87CSV.java
 
 ### Compile:
-javac VSOP87CSV.java
-javac JavaTestCSV.java
+* javac VSOP87CSV.java
+* javac JavaTestCSV.java
 
 ### Run:
-java JavaTestCSV
+* java JavaTestCSV
 
 # Perl
 ### Files:
@@ -60,7 +60,7 @@ java JavaTestCSV
 * vsop87csv.py
 
 ### Run:
-perl perlCSVTest_lowmem.pl
+* perl perlCSVTest_lowmem.pl
 
 # Python
 ### Files:
@@ -68,4 +68,4 @@ perl perlCSVTest_lowmem.pl
 * vsop87csv_lowmem.pm
 
 ### Run:
-python pythonCSVTest.py
+* python pythonCSVTest.py
