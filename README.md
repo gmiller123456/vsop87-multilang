@@ -19,6 +19,7 @@ The goal of this project is to provide easier to use (readymade source files), i
 
 Below is a list of the planned languages and their current status.
 
+
 Language     |Inline|JSON|CSV|CSV Low Mem|Validation Tests|Alt Az Reduction Example
 -------------|------|----|---|-----------|----------------|--------------
 Java         |Yes   |    |Yes|           |Pass            |
@@ -32,17 +33,15 @@ PHP          |Yes   |    |   |           |Pass            |
 Ruby         |Yes   |    |   |           |Pass            |
 Swift        |Yes   |    |   |           |Pass            |
 Matlab/Octave|Yes   |    |   |           |Pass            |
-Groovy       |      |    |   |           |                |
+Groovy       |      |    |Yes|           |Pass            |
 Go           |Yes   |    |   |           |Pass            |
 Pascal       |Yes   |    |   |           |0.000009au      |
 Perl         |Yes   |    |   |Yes        |Pass            |
-R            |Fail  |    |   |           |Fail            |
+R            |Fail! |    |   |           |Fail!           |
 Cobol        |      |    |   |           |                |
 Fortran      |      |    |   |           |                |
-Rust         |      |    |   |           |                |
-Kotlin       |      |    |   |           |                |
+Rust         |Yes   |    |   |           |Pass            |
 Arduino      |Yes   |    |   |           |0.000009au      |
-Objective C  |      |    |   |           |                |
 
 # What is VSOP87? Why use it?
 VSOP87 is one of many solutions available for predicting the positions of the planets (plus the Sun and the Moon) in our solar system.  The actual name is

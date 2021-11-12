@@ -21,6 +21,4 @@ R            |Fail! |    |   |           |Fail!           |
 Cobol        |      |    |   |           |                |
 Fortran      |      |    |   |           |                |
 Rust         |Yes   |    |   |           |Pass            |
-Kotlin       |      |    |   |           |                |
 Arduino      |Yes   |    |   |           |0.000009au      |
-Objective C  |      |    |   |           |                |
