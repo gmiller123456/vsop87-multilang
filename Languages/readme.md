@@ -13,14 +13,14 @@ PHP          |Yes   |    |   |           |Pass            |
 Ruby         |Yes   |    |   |           |Pass            |
 Swift        |Yes   |    |   |           |Pass            |
 Matlab/Octave|Yes   |    |   |           |Pass            |
-Groovy       |      |    |Yes|           |                |
+Groovy       |      |    |Yes|           |Pass            |
 Go           |Yes   |    |   |           |Pass            |
 Pascal       |Yes   |    |   |           |0.000009au      |
 Perl         |Yes   |    |   |Yes        |Pass            |
-R            |Fail  |    |   |           |Fail            |
+R            |Fail! |    |   |           |Fail!           |
 Cobol        |      |    |   |           |                |
 Fortran      |      |    |   |           |                |
-Rust         |      |    |   |           |                |
+Rust         |Yes   |    |   |           |Pass            |
 Kotlin       |      |    |   |           |                |
 Arduino      |Yes   |    |   |           |0.000009au      |
 Objective C  |      |    |   |           |                |
