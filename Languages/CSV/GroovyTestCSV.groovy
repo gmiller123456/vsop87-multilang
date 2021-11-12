@@ -1,6 +1,12 @@
 //VSOP87-Multilang https://www.celestialprogramming.com/vsop87-multilang/index.html
 //Greg Miller (gmiller@gregmiller.net) 2021.  Released as Public Domain
 
+/*
+Due to limitations of Groovy, the compiler cannot run all tests in one go, so the tests for the osculating
+elements has been commented out.  The tests still pass, and you may uncomment them to run them, but you
+will need to comment out or delete other tests.  Otherwise you will receive a "Method too large" error.
+*/
+
 public class JavaTestCSV
 {
     static boolean pass=true;
@@ -24,7 +30,7 @@ public class JavaTestCSV
             pass=false;
         } else
         {
-            //Console.WriteLine("Pass");
+            //System.out.println("Pass");
         }
     }
 
@@ -48,15 +54,9 @@ public class JavaTestCSV
         check(r[5],zv);
     }
 
-    public static void main(String[] args) throws Exception
-    {
+    /*
+    static void testvsop87(){
         VSOP87CSV vsop87_full=new VSOP87CSV("vsop87.csv");
-        VSOP87CSV vsop87a_full=new VSOP87CSV("vsop87a.csv");
-        VSOP87CSV vsop87b_full=new VSOP87CSV("vsop87b.csv");
-        VSOP87CSV vsop87c_full=new VSOP87CSV("vsop87c.csv");
-        VSOP87CSV vsop87d_full=new VSOP87CSV("vsop87d.csv");
-        VSOP87CSV vsop87e_full=new VSOP87CSV("vsop87e.csv");
-
         check(vsop87_full.getMercury(jd2et(2451545.0)), .3870982122, .0446647518, .0406161541, 4.4026057779, .2007208958, .0456355031);
         check(vsop87_full.getMercury(jd2et(2415020.0)), .3870977206, .0452159418, .0405500078, 3.1341564065, .2005915794, .0457636622);
         check(vsop87_full.getMercury(jd2et(2378495.0)), .3870988718, .0457588298, .0404841231, 1.8657954073, .2004369024, .0458905455);
@@ -137,6 +137,11 @@ public class JavaTestCSV
         check(vsop87_full.getEmb(jd2et(2195870.0)), .9999859333, -.0031249207, .0007994895, 1.8300786647, .0166697592, -.0000484642);
         check(vsop87_full.getEmb(jd2et(2159345.0)), 1.0000057990, -.0030431504, .0009147433, 1.8410570604, .0167901447, -.0000505301);
         check(vsop87_full.getEmb(jd2et(2122820.0)), 1.0000134926, -.0029638175, .0010301901, 1.8519621673, .0168402194, -.0000530795);
+    }
+    */
+    
+    static void testvsop87a(){
+        VSOP87CSV vsop87a_full=new VSOP87CSV("vsop87a.csv");
         check2(vsop87a_full.getMercury(jd2et(2451545.0)), -.1300934115, -.4472876716, -.0245983802, .0213663982, -.0064479797, -.0024878668);
         check2(vsop87a_full.getMercury(jd2et(2415020.0)), -.3897246931, -.1502242199, .0236199373, .0043015312, -.0250162370, -.0024362082);
         check2(vsop87a_full.getMercury(jd2et(2378495.0)), -.1683565237, .2735108157, .0378103630, -.0296164267, -.0136328471, .0016235345);
@@ -227,6 +232,11 @@ public class JavaTestCSV
         check2(vsop87a_full.getEmb(jd2et(2195870.0)), -.2544800656, .9495642257, .0014936626, -.0169050854, -.0045073961, -.0000088462);
         check2(vsop87a_full.getEmb(jd2et(2159345.0)), -.2654471686, .9464953236, .0017047755, -.0168543115, -.0046981611, -.0000102989);
         check2(vsop87a_full.getEmb(jd2et(2122820.0)), -.2762837551, .9433889919, .0019144183, -.0168007538, -.0048864356, -.0000118518);
+    }
+
+    static void testvsop87b(){
+        VSOP87CSV vsop87b_full=new VSOP87CSV("vsop87b.csv");
+
         check2(vsop87b_full.getMercury(jd2et(2451545.0)), 4.4293481043, -.0527573411, .4664714751, .0479088415, -.0053005994, .0003551593);
         check2(vsop87b_full.getMercury(jd2et(2415020.0)), 3.5095041512, .0564907883, .4183426276, .0595900338, -.0064868219, .0048383515);
         check2(vsop87b_full.getMercury(jd2et(2378495.0)), 2.1225631484, .1171864614, .3233909531, .1007792689, .0035704944, .0040779555);
@@ -307,6 +317,11 @@ public class JavaTestCSV
         check2(vsop87b_full.getNeptune(jd2et(2195870.0)), 3.7635416328, .0306777430, 30.3109115122, .0001025371, .0000003456, .0000068907);
         check2(vsop87b_full.getNeptune(jd2et(2159345.0)), 6.2151087391, -.0215395777, 29.9065506899, .0001054447, -.0000023323, -.0000157106);
         check2(vsop87b_full.getNeptune(jd2et(2122820.0)), 2.4315044302, .0040125142, 30.0653694889, .0001045297, .0000031984, .0000314397);
+    }
+
+    static void testvsop87c(){
+        VSOP87CSV vsop87c_full=new VSOP87CSV("vsop87c.csv");
+
         check2(vsop87c_full.getMercury(jd2et(2451545.0)), -.1300934112, -.4472876717, -.0245983802, .0213666969, -.0064480663, -.0024878697);
         check2(vsop87c_full.getMercury(jd2et(2415020.0)), -.3932698769, -.1406751043, .0236616333, .0036905421, -.0251144644, -.0024306096);
         check2(vsop87c_full.getMercury(jd2et(2378495.0)), -.1548281758, .2814058364, .0376921749, -.0302455726, -.0121730326, .0016308312);
@@ -387,6 +402,11 @@ public class JavaTestCSV
         check2(vsop87c_full.getNeptune(jd2et(2195870.0)), -27.2598513119, -13.2185335840, .9603281950, .0013584200, -.0028161503, .0000144397);
         check2(vsop87c_full.getNeptune(jd2et(2159345.0)), 28.8728659385, -7.7682281056, -.6434491288, .0008075110, .0030680808, -.0000751830);
         check2(vsop87c_full.getNeptune(jd2et(2122820.0)), -17.9958638451, 24.0846111039, .0826739833, -.0025520890, -.0018680012, .0001014972);
+
+    }
+
+    static void testvsop87d(){
+        VSOP87CSV vsop87d_full=new VSOP87CSV("vsop87d.csv");
         check2(vsop87d_full.getMercury(jd2et(2451545.0)), 4.4293481036, -.0527573409, .4664714751, .0479095093, -.0053006055, .0003551593);
         check2(vsop87d_full.getMercury(jd2et(2415020.0)), 3.4851161911, .0565906173, .4183426275, .0595923705, -.0064746087, .0048383515);
         check2(vsop87d_full.getMercury(jd2et(2378495.0)), 2.0737894888, .1168184804, .3233909533, .1007745969, .0035976980, .0040779555);
@@ -467,6 +487,12 @@ public class JavaTestCSV
         check2(vsop87d_full.getNeptune(jd2et(2195870.0)), 3.5930943433, .0316878975, 30.3109114960, .0001032055, .0000004694, .0000068902);
         check2(vsop87d_full.getNeptune(jd2et(2159345.0)), 6.0203596580, -.0215169842, 29.9065506848, .0001061056, -.0000025258, -.0000157107);
         check2(vsop87d_full.getNeptune(jd2et(2122820.0)), 2.2124988267, .0027498093, 30.0653693610, .0001051888, .0000033730, .0000314401);
+
+    }
+
+    static void testvsop87e(){
+        VSOP87CSV vsop87e_full=new VSOP87CSV("vsop87e.csv");
+    
         check2(vsop87e_full.getSun(jd2et(2451545.0)), -.0071415279, -.0027881715, .0002061418, .0000053774, -.0000074073, -.0000000943);
         check2(vsop87e_full.getSun(jd2et(2415020.0)), .0031876597, .0063575996, -.0001036885, -.0000073486, .0000037875, .0000001748);
         check2(vsop87e_full.getSun(jd2et(2378495.0)), .0034889967, -.0058080486, -.0000676295, .0000085927, .0000010321, -.0000002331);
@@ -557,6 +583,17 @@ public class JavaTestCSV
         check2(vsop87e_full.getNeptune(jd2et(2195870.0)), -24.6233894507, -17.6544160439, .9297188987, .0018093571, -.0025335175, .0000105589);
         check2(vsop87e_full.getNeptune(jd2et(2159345.0)), 29.8297729719, -2.0298541972, -.6440952021, .0001916960, .0031491386, -.0000692459);
         check2(vsop87e_full.getNeptune(jd2et(2122820.0)), -22.7959876638, 19.5945850298, .1205430330, -.0020656054, -.0023624426, .0000961274);
+    }
+
+    public static void main(String[] args) throws Exception
+    {
+        
+        //testvsop87();
+        testvsop87a();
+        testvsop87b();
+        testvsop87c();
+        testvsop87d();
+        testvsop87e();
 
         System.out.println("Pass:"+pass);
     }
