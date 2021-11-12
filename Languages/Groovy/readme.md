@@ -1,0 +1,1 @@
+Only the CSV version is currently implemented, see the CSV directory for details.
