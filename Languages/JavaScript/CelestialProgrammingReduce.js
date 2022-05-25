@@ -10,7 +10,7 @@ Julian Date class at the bottom (JulianDate.gregorianDateToJulianDate).
 */
 
 class CPReduce {
-    //By Greg Miller (gmiller@gregmiller.net)
+    //By Greg Miller (gmiller@gregmiller.net) 2021
     //Released as public domain
 
     /*

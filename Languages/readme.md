@@ -22,3 +22,4 @@ Cobol        |      |    |   |           |                |
 Fortran      |      |    |   |           |                |
 Rust         |Yes   |    |   |           |Pass            |
 Arduino      |Yes   |    |   |           |0.000009au      |
+BASIC        |Yes   |    |   |           |(ok) depends    |
