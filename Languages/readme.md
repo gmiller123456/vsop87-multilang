@@ -15,7 +15,7 @@ Swift        |Yes   |    |   |           |Pass            |
 Matlab/Octave|Yes   |    |   |           |Pass            |
 Groovy       |      |    |Yes|           |Pass            |
 Go           |Yes   |    |   |           |Pass            |
-Pascal       |Yes   |    |   |           |0.000009au      |
+Pascal       |Yes   |    |   |           |Pass*           |
 Perl         |Yes   |    |   |Yes        |Pass            |
 R            |Fail! |    |   |           |Fail!           |
 Cobol        |      |    |   |           |                |
