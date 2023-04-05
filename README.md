@@ -44,6 +44,7 @@ Rust         |Yes   |    |   |           |Pass            |
 Arduino      |Yes   |    |   |           |0.000009au      |
 BASIC        |Yes   |    |   |           |(ok) depends    |
 Lua          |Yes   |    |   |           |10e-9au         |
+VBA          |Yes   |    |   |           |Fail!           |
 
 # What is VSOP87? Why use it?
 VSOP87 is one of many solutions available for predicting the positions of the planets (plus the Sun and the Moon) in our solar system.  The actual name is
