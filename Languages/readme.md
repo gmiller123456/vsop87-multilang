@@ -25,3 +25,4 @@ Arduino      |Yes   |    |   |           |0.000009au      |
 BASIC        |Yes   |    |   |           |(ok) depends    |
 Lua          |Yes   |    |   |           |10e-9au         |
 VBA          |Yes   |    |   |           |Fail!           |
+SQL          |Yes   |    |   |           |Pass            |
