@@ -1,0 +1,1 @@
+When compiling some of the files, the error "The containing function or module body is too large for control flow analysis" will get thrown.  The compiled .js files will still get generated and work fine.

@@ -29,6 +29,7 @@ Python       |Yes   |Yes |Yes|           |Pass            |
 C++          |Yes   |    |   |           |Pass            |
 VB.Net       |Yes   |    |   |           |Pass            |
 JavaScript   |Yes   |Yes |   |           |Pass            |Yes
+Typescript   |Yes   |    |   |           |Pass
 PHP          |Yes   |    |   |           |Pass            |
 Ruby         |Yes   |    |   |           |Pass            |
 Swift        |Yes   |    |   |           |Pass            |
