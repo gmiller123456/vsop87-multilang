@@ -26,6 +26,7 @@ C            |Yes   |    |   |Yes        |Pass            |
 C#           |Yes   |    |Yes|           |Pass            |
 Python       |Yes   |Yes |Yes|           |Pass            |
 C++          |Yes   |    |   |           |Pass            |
+Scratch      |Yes*  |    |   |           |Pass*           |Yes*
 VB.Net       |Yes   |    |   |           |Pass            |
 JavaScript   |Yes   |Yes |   |           |Pass            |Yes
 Typescript   |Yes   |    |   |           |Pass
