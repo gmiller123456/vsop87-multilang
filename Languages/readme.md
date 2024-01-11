@@ -28,5 +28,6 @@ BASIC        |Yes   |    |   |           |(ok) depends    |
 Lua          |Yes   |    |   |           |10e-9au         |
 VBA          |Yes   |    |   |           |Fail!           |
 SQL          |Yes   |    |   |           |Pass            |
+Kotlin       |Fail  |    |Yes|           |Pass            |
 
 * The Scratch implemenation doesn't use VSOP87, instead it uses low accuracy Kelperian elements

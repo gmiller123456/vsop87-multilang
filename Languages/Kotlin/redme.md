@@ -1,0 +1,1 @@
+Sadly, the full inline versions result in a "method too large" error, so only the small versions are here.  Look in the CSV directories for non-inline versions.  Or use the Java inline version.
