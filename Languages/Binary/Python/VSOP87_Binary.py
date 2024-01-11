@@ -1,3 +1,10 @@
+#VSOP87-Multilang http://www.astrogreg.com/vsop87-multilang/index.html
+#Greg Miller (gmiller@gregmiller.net) 2023.  Released as Public Domain
+
+#Binary implementation of VSOP87, requires the vsop87*.bin file for the version
+#you want to use.  Order of the vairables is the same as in the offsets.txt
+#file. E.g, x,y,z,xv,yv,zv for rectangular versions.
+
 import math
 import array
 import os
