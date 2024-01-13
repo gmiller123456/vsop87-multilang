@@ -23,7 +23,7 @@ sub addheader {
 	my $l=<$f>;
 	print $o $l;
 
-	print $o "\r\n//VSOP87-Multilang http://www.astrogreg.com/vsop87-multilang/index.html\r\n";
+	print $o "\r\n//VSOP87-Multilang http://www.celestialprogramming.com/vsop87-multilang/index.html\r\n";
 	print $o "//Greg Miller (gmiller\@gregmiller.net) 2019.  Released as Public Domain\r\n\r\n";
 
 	while($l=<$f>){

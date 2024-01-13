@@ -1,4 +1,4 @@
-#Vsop87-Multilang http://www.astrogreg.com/Vsop87-multilang/index.html
+#Vsop87-Multilang http://www.celestialprogramming.com/Vsop87-multilang/index.html
 #Greg Miller (gmiller@gregmiller.net) 2019.  Released as Public Domain
 
 
