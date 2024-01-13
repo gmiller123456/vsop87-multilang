@@ -21,7 +21,7 @@ Pascal       |Yes   |    |   |           |      |Pass            |
 Perl         |Yes   |    |   |Yes        |      |Pass            |
 R            |Fail! |    |   |           |      |Fail!           |
 Cobol        |      |    |   |           |      |                |
-Fortran      |      |    |   |           |      |                |
+Fortran      |Yes   |    |   |           |      |Pass            |
 Rust         |Yes   |    |   |           |      |Pass            |
 Arduino      |Yes   |    |   |           |      |0.000009au      |
 BASIC        |Yes   |    |   |           |      |(ok) depends    |

@@ -1,0 +1,11 @@
+gfortran -c VSOP87_Full.f90
+gfortran -c VSOP87A_Full.f90
+gfortran -c VSOP87B_Full.f90
+gfortran -c VSOP87C_Full.f90
+gfortran -c VSOP87D_Full.f90
+gfortran -c VSOP87E_Full.f90
+gfortran -c VSOP87A_Full_Velocities.f90
+gfortran -c VSOP87B_Full_Velocities.f90
+gfortran -c VSOP87C_Full_Velocities.f90
+gfortran -c VSOP87D_Full_Velocities.f90
+gfortran -c VSOP87E_Full_Velocities.f90
