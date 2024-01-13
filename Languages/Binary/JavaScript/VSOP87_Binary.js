@@ -1,4 +1,4 @@
-//VSOP87-Multilang http://www.astrogreg.com/vsop87-multilang/index.html
+//VSOP87-Multilang http://www.celestialprogramming.com/vsop87-multilang/index.html
 //Greg Miller (gmiller@gregmiller.net) 2023.  Released as Public Domain
 
 //Binary implementation of VSOP87, requires the vsop87*.bin file for the version

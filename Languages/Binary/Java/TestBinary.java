@@ -1,5 +1,5 @@
     
-//VSOP87-Multilang http://www.astrogreg.com/vsop87-multilang/index.html
+//VSOP87-Multilang http://www.celestialprogramming.com/vsop87-multilang/index.html
 //Greg Miller (gmiller@gregmiller.net) 2024.  Released as Public Domain
 
 public class TestBinary {
