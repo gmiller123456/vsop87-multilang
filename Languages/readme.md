@@ -18,7 +18,7 @@ Matlab/Octave|Yes   |    |   |           |      |Pass            |
 Groovy       |      |    |Yes|           |      |Pass            |
 Go           |Yes   |    |   |           |      |Pass            |
 Pascal       |Yes   |    |   |           |      |Pass            |
-Perl         |Yes   |    |   |Yes        |      |Pass            |
+Perl         |Yes   |    |   |Yes        |Yes   |Pass            |
 R            |Fail! |    |   |           |      |Fail!           |
 Cobol        |      |    |   |           |      |                |
 Fortran      |Yes   |    |   |           |      |Pass            |
